@@ -9,7 +9,6 @@ import org.openqa.selenium.TakesScreenshot;
 import testBase.BaseClass;
 import utilities.ExtentReportManager;
 import utilities.ScreenshotUtility;
-import utilities.TestContext;
 
 public class Hooks extends BaseClass {
 
@@ -28,28 +27,36 @@ public class Hooks extends BaseClass {
     @After
     public void tearDownScenario(Scenario scenario) {
         try {
-        	byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            // Capture screenshot for Cucumber report
+            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", "Failed Screenshot");
 
-            // Save screenshot file (for Extent report)
+            // Save screenshot for Extent report
             String path = ScreenshotUtility.takeScreenshot(driver, scenario.getName());
 
             if (scenario.isFailed()) {
-                         ExtentReportManager.getTest()
-                        .fail("Scenario failed: " + scenario.getName())
-                        .addScreenCaptureFromPath(path);
+                ExtentReportManager.getTest()
+                    .fail("Scenario failed: " + scenario.getName())
+                    .addScreenCaptureFromPath(path);
             } else {
                 ExtentReportManager.getTest()
-                .pass("Scenario passed: " + scenario.getName())
-                .addScreenCaptureFromPath(path);
+                    .pass("Scenario passed: " + scenario.getName())
+                    .addScreenCaptureFromPath(path);
             }
         } catch (Exception e) {
             ExtentReportManager.getTest().log(Status.FAIL, "Error in Hooks: " + e.getMessage());
         } finally {
             tearDown();
-            ExtentReportManager.flushReport();
+            // Flush report safely: opens browser only locally
+            if (System.getenv("JENKINS_HOME") == null) { // only open locally
+                ExtentReportManager.flushReport();
+            } else {
+                // Jenkins: flush report but do NOT open browser
+                ExtentReportManager.getExtent().flush();
+            }
         }
     }
+
 
 
 }

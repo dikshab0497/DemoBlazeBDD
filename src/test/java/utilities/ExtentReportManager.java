@@ -20,7 +20,8 @@ public class ExtentReportManager {
     public static ExtentReports getExtent() {
         if (extent == null) {
             String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-            reportPath = System.getProperty("user.dir") + "/reports/Test-Report-" + timeStamp + ".html";
+//            reportPath = System.getProperty("user.dir") + "/reports/Test-Report-" + timeStamp + ".html";
+            reportPath = System.getProperty("user.dir") + "/ExtentReports/Test-Report-" + timeStamp + ".html";
             ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
             spark.config().setReportName("Automation Test Report");
             spark.config().setDocumentTitle("Execution Results");
