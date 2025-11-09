@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+C:\Users\Diksha\OneDrive\Desktop\Diksha\MagnatoAutomation\.metadata\.plugins\org.eclipse.jdt.core
-3493082336.index
-1865797976.index
-3575548282.index

@@ -1,2 +1,3 @@
-2025/06/21-19:56:56.962 6818 Creating DB C:\Users\Diksha\OneDrive\Desktop\Diksha\MagnatoAutomation\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb since it was missing.
-2025/06/21-19:56:56.985 6818 Reusing MANIFEST C:\Users\Diksha\OneDrive\Desktop\Diksha\MagnatoAutomation\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2025/06/21-19:57:15.838 3a38 Reusing MANIFEST C:\Users\Diksha\OneDrive\Desktop\Diksha\MagnatoAutomation\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2025/06/21-19:57:15.844 3a38 Recovering log #3
+2025/06/21-19:57:15.846 3a38 Reusing old log C:\Users\Diksha\OneDrive\Desktop\Diksha\MagnatoAutomation\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/000003.log 

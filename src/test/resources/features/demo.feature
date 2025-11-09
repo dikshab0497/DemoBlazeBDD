@@ -12,4 +12,9 @@ Feature: Account Registration
     When User login into application
     Then User chcek privious order 
     
-    
+    @EditAcctInfo
+    Scenario: Edit Account Info
+    Given user launches the application
+    When User login into application
+    When User update my account information
+    Then User should see a success message

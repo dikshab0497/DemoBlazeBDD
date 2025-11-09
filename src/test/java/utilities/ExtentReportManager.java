@@ -13,22 +13,31 @@ import java.util.Date;
 public class ExtentReportManager {
 
     private static ExtentReports extent;
-    public static ExtentTest test;
-
+    private static ExtentTest test;
     private static String reportPath;
+    public static Throwable lastError;
 
     public static ExtentReports getExtent() {
         if (extent == null) {
             String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
             reportPath = System.getProperty("user.dir") + "/reports/Test-Report-" + timeStamp + ".html";
-            ExtentSparkReporter reporter = new ExtentSparkReporter(reportPath);
-            reporter.config().setReportName("Automation Test Report");
-            reporter.config().setDocumentTitle("Test Results");
+            ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
+            spark.config().setReportName("Automation Test Report");
+            spark.config().setDocumentTitle("Execution Results");
 
             extent = new ExtentReports();
-            extent.attachReporter(reporter);
+            extent.attachReporter(spark);
         }
         return extent;
+    }
+
+    public static ExtentTest createTest(String testName) {
+        test = getExtent().createTest(testName);
+        return test;
+    }
+
+    public static ExtentTest getTest() {
+        return test;
     }
 
     public static void flushReport() {
