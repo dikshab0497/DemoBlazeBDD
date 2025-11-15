@@ -12,21 +12,23 @@ import java.util.Date;
 
 public class ScreenshotUtility {
 
-    public static String takeScreenshot(WebDriver driver, String screenshotName) {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String screenshotDir = System.getProperty("user.dir") + "/screenshots/";
-        String screenshotPath = screenshotDir + screenshotName + "_" + timeStamp + ".png";
+	public static String takeScreenshot(WebDriver driver, String screenshotName) {
+	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+	    String reportDir = System.getProperty("user.dir") + "/ExtentReports/screenshots/";
+	    String screenshotPath = reportDir + screenshotName + "_" + timeStamp + ".png";
 
-        try {
-            File dir = new File(screenshotDir);
-            if (!dir.exists()) dir.mkdirs();
+	    try {
+	        File dir = new File(reportDir);
+	        if (!dir.exists()) dir.mkdirs();
 
-            File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(src, new File(screenshotPath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+	        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	        FileUtils.copyFile(src, new File(screenshotPath));
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 
-        return screenshotPath;
-    }
+	    // Return relative path from the report folder
+	    return "screenshots/" + screenshotName + "_" + timeStamp + ".png";
+	}
+
 }
