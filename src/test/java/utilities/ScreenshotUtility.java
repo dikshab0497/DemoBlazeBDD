@@ -14,7 +14,9 @@ public class ScreenshotUtility {
 
     public static String takeScreenshot(WebDriver driver, String screenshotName) {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String screenshotDir = System.getProperty("user.dir") + "/screenshots/";
+
+        // Save screenshots inside reports folder for Jenkins compatibility
+        String screenshotDir = System.getProperty("user.dir") + "/reports/screenshots/";
         String screenshotPath = screenshotDir + screenshotName + "_" + timeStamp + ".png";
 
         try {
@@ -23,10 +25,12 @@ public class ScreenshotUtility {
 
             File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(src, new File(screenshotPath));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return screenshotPath;
+        // Return **relative path** for ExtentReports embedding
+        return "screenshots/" + screenshotName + "_" + timeStamp + ".png";
     }
 }

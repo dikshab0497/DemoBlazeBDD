@@ -19,14 +19,30 @@ public class ExtentReportManager {
 
     public static ExtentReports getExtent() {
         if (extent == null) {
-            String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-            reportPath = System.getProperty("user.dir") + "/reports/Test-Report-" + timeStamp + ".html";
-            ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
-            spark.config().setReportName("Automation Test Report");
-            spark.config().setDocumentTitle("Execution Results");
+            try {
+                String reportDir = System.getProperty("user.dir") + "/reports";
+                File dir = new File(reportDir);
+                if (!dir.exists()) dir.mkdirs();
 
-            extent = new ExtentReports();
-            extent.attachReporter(spark);
+                // Use fixed name for Jenkins, timestamped for local
+                if (System.getenv("JENKINS_HOME") != null) {
+                    reportPath = reportDir + "/Test-Report.html";
+                } else {
+                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+                    reportPath = reportDir + "/Test-Report-" + timeStamp + ".html";
+                }
+
+                ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
+                spark.config().setReportName("Automation Test Report");
+                spark.config().setDocumentTitle("Execution Results");
+                spark.config().setOfflineMode(true); // works on Jenkins without CDN
+
+                extent = new ExtentReports();
+                extent.attachReporter(spark);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return extent;
     }
@@ -43,10 +59,16 @@ public class ExtentReportManager {
     public static void flushReport() {
         if (extent != null) {
             extent.flush();
-            try {
-                Desktop.getDesktop().browse(new File(reportPath).toURI());
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            // Open only locally, not on Jenkins
+            if (System.getenv("JENKINS_HOME") == null && Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new File(reportPath).toURI());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("ExtentReport generated at: " + reportPath);
             }
         }
     }
