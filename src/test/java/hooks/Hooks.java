@@ -14,12 +14,12 @@ public class Hooks extends BaseClass {
 
     @Before
     public void beforeScenario(Scenario scenario) throws Exception {
-        // ✅ Load config and initialize WebDriver
+        // Initialize config and WebDriver
         loadConfig();
         setupDriver("windows", configProp.getProperty("browser")); // adjust OS if needed
         openApplication();
 
-        // ✅ Create ExtentTest for this scenario
+        // Create ExtentTest for this scenario
         ExtentReportManager.createTest(scenario.getName());
         ExtentReportManager.getTest().log(Status.INFO, "Starting scenario: " + scenario.getName());
     }
@@ -27,11 +27,11 @@ public class Hooks extends BaseClass {
     @After
     public void afterScenario(Scenario scenario) {
         try {
-            // ⭐ Capture screenshot for Cucumber report
+            // Capture screenshot for Cucumber report
             byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", "Screenshot");
+            scenario.attach(screenshot, "image/png", scenario.getName());
 
-            // ⭐ Save screenshot for ExtentReport
+            // Capture screenshot for ExtentReport
             String path = ScreenshotUtility.takeScreenshot(driver, scenario.getName());
 
             if (scenario.isFailed()) {
@@ -45,17 +45,17 @@ public class Hooks extends BaseClass {
             }
 
         } catch (Exception e) {
-            ExtentReportManager.getTest().log(Status.FAIL, "Error in Hooks: " + e.getMessage());
+            ExtentReportManager.getTest().log(Status.FAIL, "Error in Hooks afterScenario: " + e.getMessage());
         } finally {
-            // Close browser
+            // Quit driver
             tearDown();
 
-            // ⭐ Flush report
+            // Flush ExtentReport
             if (System.getenv("JENKINS_HOME") == null) {
-                // Local: flush and open HTML
+                // Local: open browser with report
                 ExtentReportManager.flushReport();
             } else {
-                // Jenkins: flush report but do NOT open browser
+                // Jenkins: just flush, do not open browser
                 ExtentReportManager.getExtent().flush();
             }
         }
