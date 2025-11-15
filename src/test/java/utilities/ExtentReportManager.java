@@ -3,12 +3,11 @@ package utilities;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,15 +20,24 @@ public class ExtentReportManager {
     public static ExtentReports getExtent() {
         if (extent == null) {
             try {
+
+                // Create ExtentReports directory
                 File reportDir = new File(System.getProperty("user.dir") + "/ExtentReports");
                 if (!reportDir.exists()) reportDir.mkdirs();
 
+                // Create timestamped file
                 String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
                 reportPath = reportDir + "/Test-Report-" + timeStamp + ".html";
 
+                // Spark reporter with offline support
                 ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
+
                 spark.config().setReportName("Automation Test Report");
                 spark.config().setDocumentTitle("Execution Results");
+                spark.config().setTheme(Theme.DARK);
+
+                // ⭐ MUST FOR JENKINS: Copies CSS + JS locally
+                spark.config().setOfflineMode(true);
 
                 extent = new ExtentReports();
                 extent.attachReporter(spark);
@@ -54,10 +62,7 @@ public class ExtentReportManager {
         if (extent != null) {
             extent.flush();
 
-            // Inject CSS for Jenkins
-            injectCss(reportPath);
-
-            // Only open automatically in local machine
+            // ⭐ Do NOT auto-open report on Jenkins
             if (System.getenv("JENKINS_HOME") == null) {
                 try {
                     Desktop.getDesktop().browse(new File(reportPath).toURI());
@@ -65,27 +70,6 @@ public class ExtentReportManager {
                     e.printStackTrace();
                 }
             }
-        }
-    }
-
-    private static void injectCss(String filePath) {
-        try {
-            File htmlFile = new File(filePath);
-            String html = new String(Files.readAllBytes(htmlFile.toPath()), StandardCharsets.UTF_8);
-
-            String css =
-                    "<style>"
-                            + "body { font-family: 'Segoe UI', Arial; }"
-                            + ".status.pass { background: #e6ffe6 !important; color: green !important; }"
-                            + ".status.fail { background: #ffe6e6 !important; color: red !important; }"
-                            + "</style>";
-
-            html = html.replace("</head>", css + "</head>");
-
-            Files.write(htmlFile.toPath(), html.getBytes(StandardCharsets.UTF_8));
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
