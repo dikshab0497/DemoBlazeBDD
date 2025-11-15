@@ -9,55 +9,47 @@ import org.openqa.selenium.TakesScreenshot;
 import testBase.BaseClass;
 import utilities.ExtentReportManager;
 import utilities.ScreenshotUtility;
+import utilities.TestContext;
 
 public class Hooks extends BaseClass {
 
     @Before
-    public void beforeScenario(Scenario scenario) throws Exception {
-        // Initialize config and WebDriver
+    public void setUp(Scenario scenario) throws Exception {
+        // ✅ Load config and initialize WebDriver
         loadConfig();
         setupDriver("windows", configProp.getProperty("browser")); // adjust OS if needed
         openApplication();
 
-        // Create ExtentTest for this scenario
+        // ✅ Create Extent report entry for this scenario
         ExtentReportManager.createTest(scenario.getName());
         ExtentReportManager.getTest().log(Status.INFO, "Starting scenario: " + scenario.getName());
     }
 
     @After
-    public void afterScenario(Scenario scenario) {
+    public void tearDownScenario(Scenario scenario) {
         try {
-            // Capture screenshot for Cucumber report
-            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", scenario.getName());
+        	byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", "Failed Screenshot");
 
-            // Capture screenshot for ExtentReport
+            // Save screenshot file (for Extent report)
             String path = ScreenshotUtility.takeScreenshot(driver, scenario.getName());
 
             if (scenario.isFailed()) {
-                ExtentReportManager.getTest()
+                         ExtentReportManager.getTest()
                         .fail("Scenario failed: " + scenario.getName())
                         .addScreenCaptureFromPath(path);
             } else {
                 ExtentReportManager.getTest()
-                        .pass("Scenario passed: " + scenario.getName())
-                        .addScreenCaptureFromPath(path);
+                .pass("Scenario passed: " + scenario.getName())
+                .addScreenCaptureFromPath(path);
             }
-
         } catch (Exception e) {
-            ExtentReportManager.getTest().log(Status.FAIL, "Error in Hooks afterScenario: " + e.getMessage());
+            ExtentReportManager.getTest().log(Status.FAIL, "Error in Hooks: " + e.getMessage());
         } finally {
-            // Quit driver
             tearDown();
-
-            // Flush ExtentReport
-            if (System.getenv("JENKINS_HOME") == null) {
-                // Local: open browser with report
-                ExtentReportManager.flushReport();
-            } else {
-                // Jenkins: just flush, do not open browser
-                ExtentReportManager.getExtent().flush();
-            }
+            ExtentReportManager.flushReport();
         }
     }
+
+
 }
