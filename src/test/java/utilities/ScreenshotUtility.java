@@ -15,7 +15,7 @@ public class ScreenshotUtility {
     public static String takeScreenshot(WebDriver driver, String screenshotName) {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
-        // Save screenshots inside reports folder for Jenkins compatibility
+        // Save screenshots inside reports folder for Jenkins
         String screenshotDir = System.getProperty("user.dir") + "/reports/screenshots/";
         String screenshotPath = screenshotDir + screenshotName + "_" + timeStamp + ".png";
 
@@ -30,7 +30,7 @@ public class ScreenshotUtility {
             e.printStackTrace();
         }
 
-        // Return **relative path** for ExtentReports embedding
+        // Return relative path for ExtentReports embedding
         return "screenshots/" + screenshotName + "_" + timeStamp + ".png";
     }
 }

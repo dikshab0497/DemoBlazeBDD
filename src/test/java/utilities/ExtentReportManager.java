@@ -15,7 +15,6 @@ public class ExtentReportManager {
     private static ExtentReports extent;
     private static ExtentTest test;
     private static String reportPath;
-    public static Throwable lastError;
 
     public static ExtentReports getExtent() {
         if (extent == null) {
@@ -24,7 +23,7 @@ public class ExtentReportManager {
                 File dir = new File(reportDir);
                 if (!dir.exists()) dir.mkdirs();
 
-                // Use fixed name for Jenkins, timestamped for local
+                // Fixed name for Jenkins, timestamped for local
                 if (System.getenv("JENKINS_HOME") != null) {
                     reportPath = reportDir + "/Test-Report.html";
                 } else {
