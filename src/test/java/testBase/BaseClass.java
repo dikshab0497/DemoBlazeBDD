@@ -14,6 +14,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterSuite;
+
+import utilities.ExtentReportManager;
 
 public class BaseClass {
 
@@ -70,5 +73,11 @@ public class BaseClass {
         if (driver != null) {
             driver.quit();
         }
+    }
+
+    // ⭐ Flush ExtentReport after all tests
+    @AfterSuite
+    public void flushExtentReport() {
+        ExtentReportManager.flushReport();
     }
 }

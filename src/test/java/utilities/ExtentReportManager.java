@@ -2,6 +2,7 @@ package utilities;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
@@ -16,13 +17,13 @@ import java.util.Date;
 public class ExtentReportManager {
 
     private static ExtentReports extent;
-    private static ExtentTest test;
+    private static ThreadLocal<ExtentTest> testThread = new ThreadLocal<>();
     private static String reportPath;
 
+    // Initialize ExtentReports
     public static ExtentReports getExtent() {
         if (extent == null) {
             try {
-
                 File reportDir = new File(System.getProperty("user.dir") + "/ExtentReports");
                 if (!reportDir.exists()) reportDir.mkdirs();
 
@@ -30,12 +31,9 @@ public class ExtentReportManager {
                 reportPath = reportDir + "/Test-Report-" + timeStamp + ".html";
 
                 ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
-
                 spark.config().setDocumentTitle("Automation Test Report");
                 spark.config().setReportName("Execution Results");
                 spark.config().setTheme(Theme.DARK);
-
-                // ⭐ Offline Mode → Copies CSS + JS locally
                 spark.config().setOfflineMode(true);
 
                 extent = new ExtentReports();
@@ -48,32 +46,44 @@ public class ExtentReportManager {
         return extent;
     }
 
+    // Create a test and attach to ThreadLocal
     public static ExtentTest createTest(String testName) {
-        test = getExtent().createTest(testName);
-        return test;
+        ExtentTest t = getExtent().createTest(testName);
+        testThread.set(t);
+        return t;
     }
 
+    // Get current test
     public static ExtentTest getTest() {
-        return test;
+        return testThread.get();
     }
 
+    // Log screenshot easily
+    public static void logScreenshot(String message, String screenshotPath) {
+        // Relative path to ExtentReports folder
+		getTest().fail(message, MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+    }
+
+    // Flush the report at the end
     public static void flushReport() {
         if (extent != null) {
             extent.flush();
-
-            // ⭐ Fix CSS for Jenkins: inject basic CSS manually
             injectCss(reportPath);
 
-            if (System.getenv("JENKINS_HOME") == null) {
+            // Open locally if not running on Jenkins
+            if (System.getenv("JENKINS_HOME") == null && Desktop.isDesktopSupported()) {
                 try {
                     Desktop.getDesktop().browse(new File(reportPath).toURI());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            } else {
+                System.out.println("ExtentReport generated at: " + reportPath);
             }
         }
     }
 
+    // Optional CSS injection
     private static void injectCss(String path) {
         try {
             File html = new File(path);
@@ -87,7 +97,6 @@ public class ExtentReportManager {
 
             content = content.replace("</head>", css + "</head>");
             Files.write(html.toPath(), content.getBytes(StandardCharsets.UTF_8));
-
         } catch (Exception ignored) {}
     }
 }
