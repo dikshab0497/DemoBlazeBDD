@@ -1,11 +1,14 @@
 pipeline {
     agent any
 
-    stages {
+    tools {
+        maven 'M3'
+    }
 
+    stages {
         stage('Checkout Code') {
             steps {
-                echo "Pulling latest code from Git..."
+                echo "Pulling latest code..."
                 checkout scm
             }
         }
@@ -19,25 +22,23 @@ pipeline {
 
         stage('Publish Extent Report') {
             steps {
-                echo "Publishing Extent Report..."
-                publishHTML(target: [
-                    reportDir: 'reports',
-                    reportFiles: 'ExtentReport.html',  // change this to your actual report file
-                    reportName: 'Extent Report',
+                publishHTML([
+                    allowMissing: true,
                     keepAll: true,
-                    alwaysLinkToLastBuild: true,
-                    allowMissing: true
+                    reportDir: 'reports',
+                    reportFiles: 'index.html',
+                    reportName: 'Extent Report'
                 ])
             }
         }
     }
 
     post {
-        success {
-            echo "Build Successful!"
-        }
         failure {
             echo "Build Failed!"
+        }
+        success {
+            echo "Build Successful!"
         }
     }
 }
