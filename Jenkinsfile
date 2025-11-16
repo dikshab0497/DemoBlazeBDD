@@ -29,8 +29,8 @@ pipeline {
             steps {
                 publishHTML(target: [
                     reportDir: 'reports',
-                    reportFiles: 'TestReport.html',
-                    reportName: 'Extent Report',
+                    reportFiles: '*.html',
+                    reportName: 'ExtentReport',
                     keepAll: true,
                     alwaysLinkToLastBuild: true,
                     allowMissing: true
