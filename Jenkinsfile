@@ -19,6 +19,11 @@ pipeline {
                 script {
                     def mvnHome = tool 'M3'       // Fetch Maven tool
                     withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+                        // Clean old reports before running tests
+                        bat "rmdir /s /q reports || exit 0"
+                        bat "mkdir reports"
+                        
+                        // Run tests with Maven
                         bat "${mvnHome}\\bin\\mvn.cmd clean test"
                     }
                 }
@@ -27,14 +32,23 @@ pipeline {
 
         stage('Publish Extent Report') {
             steps {
-                publishHTML(target: [
-                    reportDir: 'reports',
-                    reportFiles: '*.html',
-                    reportName: 'ExtentReport',
-                    keepAll: true,
-                    alwaysLinkToLastBuild: true,
-                    allowMissing: true
-                ])
+                script {
+                    // Get the latest report dynamically
+                    def reportDir = new File("${WORKSPACE}/reports")
+                    def latestReport = reportDir.listFiles().findAll { it.name.endsWith(".html") }
+                                       .max { it.lastModified() }.name
+
+                    echo "Publishing report: ${latestReport}"
+
+                    publishHTML(target: [
+                        reportDir: 'reports',
+                        reportFiles: latestReport,
+                        reportName: 'ExtentReport',
+                        keepAll: true,
+                        alwaysLinkToLastBuild: true,
+                        allowMissing: true
+                    ])
+                }
             }
         }
     }
