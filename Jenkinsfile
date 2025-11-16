@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'M3'      // This must match the Maven name you configured in Jenkins
+        maven 'M3' // This must match the Maven name you configured in Jenkins
     }
 
     stages {
@@ -17,12 +17,12 @@ pipeline {
         stage('Build & Test') {
             steps {
                 script {
-                    def mvnHome = tool 'M3'       // Fetch Maven tool
+                    def mvnHome = tool 'M3'
                     withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
                         // Clean old reports before running tests
                         bat "rmdir /s /q reports || exit 0"
                         bat "mkdir reports"
-                        
+
                         // Run tests with Maven
                         bat "${mvnHome}\\bin\\mvn.cmd clean test"
                     }
@@ -33,21 +33,25 @@ pipeline {
         stage('Publish Extent Report') {
             steps {
                 script {
-                    // Get the latest report dynamically
-                    def reportDir = new File("${WORKSPACE}/reports")
-                    def latestReport = reportDir.listFiles().findAll { it.name.endsWith(".html") }
-                                       .max { it.lastModified() }.name
+                    // Use findFiles (sandbox-safe) to get all HTML reports
+                    def files = findFiles(glob: 'reports/*.html')
 
-                    echo "Publishing report: ${latestReport}"
+                    if (files.size() == 0) {
+                        echo "No report files found!"
+                    } else {
+                        // Get the latest report based on lastModified
+                        def latestReport = files.sort { it.lastModified }[-1].name
+                        echo "Publishing latest report: ${latestReport}"
 
-                    publishHTML(target: [
-                        reportDir: 'reports',
-                        reportFiles: latestReport,
-                        reportName: 'ExtentReport',
-                        keepAll: true,
-                        alwaysLinkToLastBuild: true,
-                        allowMissing: true
-                    ])
+                        publishHTML(target: [
+                            reportDir: 'reports',
+                            reportFiles: latestReport,
+                            reportName: 'ExtentReport',
+                            keepAll: true,
+                            alwaysLinkToLastBuild: true,
+                            allowMissing: true
+                        ])
+                    }
                 }
             }
         }
