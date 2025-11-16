@@ -16,10 +16,11 @@ public class ExtentReportManager {
     private static ExtentTest test;
     private static String reportPath;
 
-    public static ExtentReports getExtent() {
+    public static ExtentReports getExtent(String testName) {
         if (extent == null) {
             try {
-                String reportDir = System.getProperty("user.dir") + "/reports";
+            	
+            	String reportDir = System.getProperty("user.dir") + "/reports";
                 File dir = new File(reportDir);
                 if (!dir.exists()) dir.mkdirs();
 
@@ -27,8 +28,8 @@ public class ExtentReportManager {
                 if (System.getenv("JENKINS_HOME") != null) {
                     reportPath = reportDir + "/Test-Report.html";
                 } else {
-                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-                    reportPath = reportDir + "/Test-Report-" + timeStamp + ".html";
+//                    String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+                    reportPath = reportDir + "/Test-Report-" + testName + ".html";
                 }
 
                 ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
@@ -47,7 +48,7 @@ public class ExtentReportManager {
     }
 
     public static ExtentTest createTest(String testName) {
-        test = getExtent().createTest(testName);
+        test = getExtent(testName.replace(" ", "")).createTest(testName);
         return test;
     }
 

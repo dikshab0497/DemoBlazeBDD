@@ -15,10 +15,11 @@ public class Hooks extends BaseClass {
     @Before
     public void setUp(Scenario scenario) throws Exception {
         // Load config and initialize WebDriver
+    	
         loadConfig();
         setupDriver("windows", configProp.getProperty("browser")); // adjust OS if needed
         openApplication();
-
+        
         // Create Extent test for this scenario
         ExtentReportManager.createTest(scenario.getName())
                 .log(Status.INFO, "Starting scenario: " + scenario.getName());
