@@ -46,7 +46,7 @@ pipeline {
                         publishHTML(target: [
                             reportDir: 'reports',
                             reportFiles: latestReport,
-                            reportName: "ExtentReport - ${latestReportFile.replace('.html','')}",
+                            reportName: 'ExtentReport - ${latestReportFile.replace('.html','')}',
                             keepAll: true,
                             alwaysLinkToLastBuild: true,
                             allowMissing: true
