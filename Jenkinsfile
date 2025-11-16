@@ -2,10 +2,11 @@ pipeline {
     agent any
 
     tools {
-        maven 'M3'
+        maven 'M3'      // This must match the Maven name you configured in Jenkins
     }
 
     stages {
+
         stage('Checkout Code') {
             steps {
                 echo "Pulling latest code..."
@@ -15,32 +16,35 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                echo "Running Maven tests..."
-                bat 'mvn clean test'
+                script {
+                    def mvnHome = tool 'M3'       // Fetch Maven tool
+                    withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+                        bat "${mvnHome}\\bin\\mvn.cmd clean test"
+                    }
+                }
             }
         }
 
         stage('Publish Extent Report') {
             steps {
-                publishHTML([
-    				reportDir: 'reports', 
-    				reportFiles: 'index.html', 
-    				reportName: 'Extent Report',
-    				keepAll: true,
-    				alwaysLinkToLastBuild: true,
-    				allowMissing: false
-				])
-
+                publishHTML(target: [
+                    reportDir: 'reports',
+                    reportFiles: 'TestReport.html',
+                    reportName: 'Extent Report',
+                    keepAll: true,
+                    alwaysLinkToLastBuild: true,
+                    allowMissing: true
+                ])
             }
         }
     }
 
     post {
+        success {
+            echo "Build Success!"
+        }
         failure {
             echo "Build Failed!"
-        }
-        success {
-            echo "Build Successful!"
         }
     }
 }
