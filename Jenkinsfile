@@ -1,4 +1,7 @@
 pipeline {
+	parameters {
+        string(name: 'Test Case', defaultValue: ' ', description: 'Enter tag to run')
+    }
     agent any
 
     tools {
