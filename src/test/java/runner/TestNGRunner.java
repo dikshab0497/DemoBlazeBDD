@@ -11,7 +11,8 @@ import io.cucumber.testng.CucumberOptions;
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
                 "json:target/cucumber.json"
         },
-        tags = "@LoginWithValidCred",   // ✅ specify the tag you want to run
+//        tags = "@LoginWithValidCred",   // ✅ specify the tag you want to run
+       
         monochrome = true
 )
 public class TestNGRunner extends AbstractTestNGCucumberTests {

@@ -1,6 +1,6 @@
 pipeline {
 	parameters {
-        string(name: 'Test Case', defaultValue: ' ', description: 'Enter tag to run')
+        string(name: 'Test Case', defaultValue: '', description: 'Enter tag to run')
     }
     agent any
 
@@ -26,8 +26,9 @@ pipeline {
                         bat "rmdir /s /q reports || exit 0"
                         bat "mkdir reports"
 
-                        // Run tests with Maven
-                        bat "${mvnHome}\\bin\\mvn.cmd clean test"
+                       
+                        // Pass tag from Jenkins here
+                        bat "${mvnHome}\\bin\\mvn.cmd clean test -Dcucumber.filter.tags=\"${params['Test Case']}\""
                     }
                 }
             }
