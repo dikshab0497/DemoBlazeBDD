@@ -1,11 +1,13 @@
 pipeline {
-	parameters {
-        string(name: 'TestCase', defaultValue: '', description: 'Enter tag to run')
+    // Parameter to pass Cucumber tag from Jenkins UI
+    parameters {
+        string(name: 'TestCase', defaultValue: '', description: 'Enter Cucumber tag to run (e.g., @LoginWithValidCred)')
     }
+
     agent any
 
     tools {
-        maven 'M3' // This must match the Maven name you configured in Jenkins
+        maven 'M3'  // Must match Maven installation name in Jenkins
     }
 
     stages {
@@ -26,9 +28,10 @@ pipeline {
                         bat "rmdir /s /q reports || exit 0"
                         bat "mkdir reports"
 
-                       
-                        // Pass tag from Jenkins here
-                        bat "${mvnHome}\\bin\\mvn.cmd clean test -Dcucumber.filter.tags=\"${params['TestCase']}\""
+                        // Run tests with Maven, pass Cucumber tag from Jenkins UI
+                        def tagParam = params.TestCase.trim()
+                        def cucumberTagOption = tagParam ? "-Dcucumber.filter.tags=${tagParam}" : ""
+                        bat "${mvnHome}\\bin\\mvn.cmd clean test ${cucumberTagOption}"
                     }
                 }
             }
@@ -37,25 +40,20 @@ pipeline {
         stage('Publish Extent Report') {
             steps {
                 script {
-                    // Use findFiles (sandbox-safe) to get all HTML reports
-                    def files = findFiles(glob: 'reports/*.html')
+                    // Update this path according to where Extent report generates
+                    def reportDir = 'reports'  // folder containing index.html + assets
+                    def reportFile = 'index.html'
 
-                    if (files.size() == 0) {
-                        echo "No report files found!"
-                    } else {
-                        // Get the latest report based on lastModified
-                        def latestReport = files.sort { it.lastModified }[-1].name
-                        echo "Publishing latest report: ${latestReport}"
+                    echo "Publishing Extent Report from folder: ${reportDir}"
 
-                        publishHTML(target: [
-                            reportDir: 'reports',
-                            reportFiles: latestReport,
-                            reportName: 'ExtentReport',
-                            keepAll: true,
-                            alwaysLinkToLastBuild: true,
-                            allowMissing: true
-                        ])
-                    }
+                    publishHTML(target: [
+                        reportDir: reportDir,
+                        reportFiles: reportFile,
+                        reportName: 'ExtentReport',
+                        keepAll: true,
+                        alwaysLinkToLastBuild: true,
+                        allowMissing: false
+                    ])
                 }
             }
         }
@@ -63,10 +61,10 @@ pipeline {
 
     post {
         success {
-            echo "Build Success!"
+            echo "Build & Tests Completed Successfully!"
         }
         failure {
-            echo "Build Failed!"
+            echo "Build or Tests Failed!"
         }
     }
 }
