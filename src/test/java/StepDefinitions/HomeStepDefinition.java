@@ -45,8 +45,8 @@ public class HomeStepDefinition extends BaseClass {
     	try {
             ExtentReportManager.getTest().log(Status.INFO, "Redirecting homepage");
             
-        
-        String username = configProp.getProperty("userName");
+        String env = configProp.getProperty("env","qa");
+        String username = configProp.getProperty(env + ".userName");
           
         Assert.assertEquals(homePage.getWelcomeText(), "Welcome "+ username, "Welcome text does not match!");
         ExtentReportManager.getTest().log(Status.PASS, "Redirection succesfull");

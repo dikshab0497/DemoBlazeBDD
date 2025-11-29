@@ -15,10 +15,12 @@ public class LoginStepDefinition extends BaseClass {
     public void enterLoginCredential() throws InterruptedException {
         loginPage = new LoginPage(driver);
         try {
-            String username = configProp.getProperty("userName");
-            String password = configProp.getProperty("password");
+        	
+        	String env = configProp.getProperty("env","qa").toLowerCase();
+            String username = configProp.getProperty(env + ".userName");
+            String password = configProp.getProperty(env + ".password");
 
-            loginPage.enterLoginCredentials(username, password);
+            loginPage.enterLoginCredentials(username,password);
 
             ExtentReportManager.getTest().log(Status.PASS, "Entered username and password");
         } catch (Exception e) {
