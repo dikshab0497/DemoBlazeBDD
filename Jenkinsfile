@@ -42,7 +42,7 @@ pipeline {
 
                         // Read tag parameter
                         def tagParam = params.TestCase.trim()
-                        def cucumberTagOption = tagParam ? "-Dcucumber.filter.tags=${tagParam}" : ""
+                        def cucumberTagOption = tagParam ? "-Dcucumber.filter.tags=@${tagParam.replace('@','')}" : ""
                         
                         //Read env parameter
                         def envParam = "-Denv=${params.Environment}"
