@@ -48,7 +48,7 @@ pipeline {
                         def envParam = "-Denv=${params.Environment}"
 
                         // Run tests
-                        bat "${mvnHome}\\bin\\mvn.cmd clean test ${cucumberTagOption}"
+                        bat "${mvnHome}\\bin\\mvn.cmd clean test ${cucumberTagOption} ${envParam}"
                     }
                 }
             }
