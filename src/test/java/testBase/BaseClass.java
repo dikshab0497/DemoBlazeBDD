@@ -65,7 +65,8 @@ public class BaseClass {
 
     // Open application URL
     public static void openApplication() {
-        driver.get(configProp.getProperty("appURL"));
+    	String env = System.getProperty("env", "qa").toLowerCase(); // "dev", "qa", or "uat"
+        driver.get(configProp.getProperty(env +".appURL"));
     }
 
     // Close browser

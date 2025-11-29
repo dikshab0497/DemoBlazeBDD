@@ -7,6 +7,11 @@ pipeline {
             defaultValue: '',
             description: 'Enter Cucumber tag to run (e.g., @LoginWithValidCred)'
         )
+        choice(
+			name:'Environment',
+			choices: ['DEV', 'QA', 'UAT'],
+			description: 'Select Environment'
+		)
     }
 
     agent any
@@ -38,6 +43,9 @@ pipeline {
                         // Read tag parameter
                         def tagParam = params.TestCase.trim()
                         def cucumberTagOption = tagParam ? "-Dcucumber.filter.tags=${tagParam}" : ""
+                        
+                        //Read env parameter
+                        def envParam = "-Denv=${params.Environment}"
 
                         // Run tests
                         bat "${mvnHome}\\bin\\mvn.cmd clean test ${cucumberTagOption}"
@@ -76,10 +84,10 @@ pipeline {
 
     post {
         success {
-            echo "✔ Build & Tests Completed Successfully!"
+            echo " Build & Tests Completed Successfully!"
         }
         failure {
-            echo "❌ Build or Tests Failed!"
+            echo " Build or Tests Failed!"
         }
     }
 }
