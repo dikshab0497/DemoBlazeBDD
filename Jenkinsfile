@@ -12,6 +12,10 @@ pipeline {
 			choices: ['DEV', 'QA', 'UAT'],
 			description: 'Select Environment'
 		)
+		string(
+			name: 'EmailTo', 
+			defaultValue: 'team@example.com', 
+			description: 'Email to notify')
     }
 
     agent any
@@ -82,12 +86,23 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            echo " Build & Tests Completed Successfully!"
-        }
-        failure {
-            echo " Build or Tests Failed!"
-        }
+   post {
+    success {
+        echo "Build & Tests Completed Successfully!"
+        emailext(
+            subject: "Jenkins Build Success",
+            body: "Build SUCCESS for ${env.JOB_NAME} #${env.BUILD_NUMBER}. Check console output: ${env.BUILD_URL}console",
+            to: "${params.EmailTo ?: 'team@example.com'}"
+        )
     }
+    failure {
+        echo "Build or Tests Failed!"
+        emailext(
+            subject: "Jenkins Build Failed",
+            body: "Build FAILED for ${env.JOB_NAME} #${env.BUILD_NUMBER}. Check console output: ${env.BUILD_URL}console",
+            to: "${params.EmailTo ?: 'team@example.com'}"
+        )
+    }
+}
+
 }
