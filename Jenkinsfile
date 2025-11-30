@@ -1,35 +1,22 @@
 pipeline {
-
-    parameters {
-        string(
-            name: 'TestCase',
-            defaultValue: '',
-            description: 'Enter Cucumber tag(s) to run, comma separated (e.g., @LoginWithValidCred,@LoginWithInvalidCred)'
-        )
-        choice(
-            name: 'Environment',
-            choices: ['DEV', 'QA', 'UAT'],
-            description: 'Select Environment'
-        )
-        string(
-            name: 'EmailTo', 
-            defaultValue: 'team@example.com', 
-            description: 'Email to notify'
-        )
-    }
-
     agent any
-
-    tools {
-        maven 'M3'
+    parameters {
+        string(name: 'TestCase', defaultValue: '', description: 'Enter Cucumber tag(s), comma separated')
+        choice(name: 'Environment', choices: ['DEV', 'QA', 'UAT'], description: 'Select Environment')
+        string(name: 'EmailTo', defaultValue: 'team@example.com', description: 'Email to notify')
     }
+    tools { maven 'M3' }
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                bat 'rmdir /s /q target || echo "target folder not found"'
+                bat 'rmdir /s /q reports_* || echo "reports folders not found"'
+            }
+        }
 
         stage('Checkout Code') {
-            steps {
-                checkout scm
-            }
+            steps { checkout scm }
         }
 
         stage('Run Tests in Parallel') {
@@ -44,18 +31,17 @@ pipeline {
                         branches["Run ${tag}"] = {
                             stage("Execute ${tag}") {
                                 withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
-                                    // Create report folder for this tag
-                                    bat "mkdir reports_${tag} || exit 0"
+                                    bat "mkdir reports_${tag} || echo 'Folder already exists'"
 
-                                    // Run tests for this tag
+                                    // Run tests
                                     bat """
-                                       ${mvnHome}\\bin\\mvn.cmd clean test \
+                                       ${mvnHome}\\bin\\mvn.cmd test \
                                        -Dcucumber.filter.tags=${tag} \
                                        -Denv=${params.Environment}
                                     """
 
-                                    // Copy report
-                                    bat "copy target\\*.html reports_${tag} || exit 0"
+                                    // Copy report if exists
+                                    bat "if exist target\\*.html copy target\\*.html reports_${tag} || echo 'No HTML report for ${tag}'"
                                 }
                             }
                         }
@@ -70,7 +56,6 @@ pipeline {
             steps {
                 script {
                     def files = findFiles(glob: 'reports_*/**/*.html')
-
                     if (files.size() == 0) {
                         echo "❗ No reports found!"
                     } else {
@@ -95,14 +80,14 @@ pipeline {
             emailext(
                 subject: "Jenkins Build Success",
                 body: "Build SUCCESS for ${env.JOB_NAME} #${env.BUILD_NUMBER}. Check console output: ${env.BUILD_URL}console",
-                to: "${params.EmailTo ?: 'team@gmail.com'}"
+                to: "${params.EmailTo ?: 'team@example.com'}"
             )
         }
         failure {
             emailext(
                 subject: "Jenkins Build Failed",
                 body: "Build FAILED for ${env.JOB_NAME} #${env.BUILD_NUMBER}. Check console output: ${env.BUILD_URL}console",
-                to: "${params.EmailTo ?: 'team@gmail.com'}"
+                to: "${params.EmailTo ?: 'team@example.com'}"
             )
         }
     }
