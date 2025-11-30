@@ -15,10 +15,11 @@ public class SignupStepDefinition extends BaseClass{
        
 		signup = new SignupPage(driver);
         
+		String env = configProp.getProperty("env","qa").toLowerCase();
         
-        String username = configProp.getProperty("userName1");
+        String username = configProp.getProperty(env + ".userName1");
        
-        String password = configProp.getProperty("password1");
+        String password = configProp.getProperty(env + ".password1");
         
         
         System.out.print(username);
