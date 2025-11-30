@@ -1,14 +1,14 @@
 pipeline {
 
-    // Parameter to pass Cucumber tag from Jenkins UI
+    // Parameters to pass Cucumber tags, environment, and email
     parameters {
         string(
             name: 'TestCase',
             defaultValue: '',
-            description: 'Enter Cucumber tags separated by comma (e.g., @LoginWithValidCred,@LoginWithInValidCred)'
+            description: 'Enter Cucumber tag(s) to run, comma separated (e.g., @LoginWithValidCred,@LoginWithInvalidCred)'
         )
         choice(
-            name: 'Environment',
+            name:'Environment',
             choices: ['DEV', 'QA', 'UAT'],
             description: 'Select Environment'
         )
@@ -38,35 +38,30 @@ pipeline {
             steps {
                 script {
                     def mvnHome = tool 'M3'
-
-                    // Split tags passed from Jenkins UI
                     def tags = params.TestCase.split(",")
 
                     def branches = [:]
 
                     for (int i = 0; i < tags.size(); i++) {
                         def tag = tags[i].trim()
-                        if (tag) {
-                            branches["Run ${tag}"] = {
-                                node {
-                                    stage("Execute ${tag}") {
-                                        withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+                        branches["Run ${tag}"] = {
+                            node {
+                                stage("Execute ${tag}") {
+                                    // Checkout code inside each parallel node
+                                    checkout scm
+                                    
+                                    withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+                                        def reportDir = "reports_${tag}"
 
-                                            // Create folder per tag to avoid overwriting
-                                            def reportFolder = "reports_${tag.replaceAll('@','')}"
-                                            bat "rmdir /s /q ${reportFolder} || exit 0"
-                                            bat "mkdir ${reportFolder}"
+                                        // Clean or create report folder
+                                        bat "if exist ${reportDir} rmdir /s /q ${reportDir}"
+                                        bat "mkdir ${reportDir}"
 
-                                            // Run tests
-                                            bat """
-                                               ${mvnHome}\\bin\\mvn.cmd clean test \
-                                               -Dcucumber.filter.tags=${tag} \
-                                               -Denv=${params.Environment}
-                                            """
+                                        // Run Maven from project root
+                                        bat "${mvnHome}\\bin\\mvn.cmd clean test -Dcucumber.filter.tags=${tag} -Denv=${params.Environment}"
 
-                                            // Copy HTML reports to tag folder
-                                            bat "copy target\\*.html ${reportFolder} || exit 0"
-                                        }
+                                        // Copy generated HTML reports to branch-specific folder
+                                        bat "if exist target\\*.html copy target\\*.html ${reportDir} || exit 0"
                                     }
                                 }
                             }
@@ -81,33 +76,27 @@ pipeline {
         stage('Publish Reports') {
             steps {
                 script {
-                    // Loop through each report folder
-                    def tags = params.TestCase.split(",")
-                    for (int i = 0; i < tags.size(); i++) {
-                        def tag = tags[i].trim()
-                        if (tag) {
-                            def reportFolder = "reports_${tag.replaceAll('@','')}"
-                            def files = findFiles(glob: "${reportFolder}/*.html")
-                            if (files.size() > 0) {
-                                def latestReport = files.sort { it.lastModified }[-1].name
-                                echo "Publishing report for ${tag}: ${latestReport}"
-                                publishHTML(target: [
-                                    reportDir: reportFolder,
-                                    reportFiles: latestReport,
-                                    reportName: "ExtentReport_${tag.replaceAll('@','')}",
-                                    keepAll: true,
-                                    alwaysLinkToLastBuild: true,
-                                    allowMissing: true
-                                ])
-                            } else {
-                                echo "❗ No report found for ${tag}!"
-                            }
+                    // Collect all report folders
+                    def allReports = findFiles(glob: 'reports_*/**/*.html')
+
+                    if (allReports.size() == 0) {
+                        echo "❗ No Extent HTML reports found!"
+                    } else {
+                        allReports.each { report ->
+                            def folder = report.path.split('/')[0]
+                            publishHTML(target: [
+                                reportDir: folder,
+                                reportFiles: report.name,
+                                reportName: "ExtentReport - ${folder}",
+                                keepAll: true,
+                                alwaysLinkToLastBuild: true,
+                                allowMissing: true
+                            ])
                         }
                     }
                 }
             }
         }
-
     }
 
     post {
@@ -128,5 +117,4 @@ pipeline {
             )
         }
     }
-
 }
