@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sat Nov 29 19:02:05 IST 2025</td>
+<td>Started on:</td><td>Sun Nov 30 15:59:00 IST 2025</td>
 </tr>
-<tr><td>Total time:</td><td>11 seconds (11296 ms)</td>
+<tr><td>Total time:</td><td>9 seconds (9760 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,8 +67,8 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td><b>Attribute(s)</b></td>
 <td width="30%"><b>Exception</b></td>
@@ -76,9 +76,26 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='runner.TestNGRunner.runScenario()'><b>runScenario</b><br>Test class: runner.TestNGRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "TC001 - Login with valid credentials", "Account Flow - Login functionality"</td>
-<td></td>
-<td>10</td>
+<td title='runner.TestNGRunner.runScenario()'><b>runScenario</b><br>Test class: runner.TestNGRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "TC003 - Sign Up with New credentials", "Account Flow - Login functionality"</td>
+<td><div><pre>java.lang.AssertionError: Sign up Unsuccessful. expected [Sign up successful.] but found [Please fill out Username and Password.]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:656)
+	at StepDefinitions.SignupStepDefinition.checkSuccessfulStatus(SignupStepDefinition.java:33)
+	at ✽.user validate successful message in Alert Box(file:///C:/Users/Diksha/OneDrive/Desktop/Diksha/DemoBlazeBDD/src/test/resources/features/DemoBlaze.feature:20)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1869219481", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1869219481'><pre>java.lang.AssertionError: Sign up Unsuccessful. expected [Sign up successful.] but found [Please fill out Username and Password.]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:656)
+	at StepDefinitions.SignupStepDefinition.checkSuccessfulStatus(SignupStepDefinition.java:33)
+	at ✽.user validate successful message in Alert Box(file:///C:/Users/Diksha/OneDrive/Desktop/Diksha/DemoBlazeBDD/src/test/resources/features/DemoBlaze.feature:20)
+</pre></div></td>
+<td>8</td>
 <td>runner.TestNGRunner@5dd91bca</td></tr>
 </table><p>
 </body>

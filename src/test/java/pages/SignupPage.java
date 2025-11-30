@@ -32,8 +32,8 @@ WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("sign-username")));
                 
-//        usernameLogin.sendKeys(username);
-        usernameLogin.sendKeys("");
+        usernameLogin.sendKeys(username);
+//        usernameLogin.sendKeys("");
     	passwordLogin.sendKeys(password);
     	   	
     	btnSignUp.click();

@@ -81,29 +81,29 @@ pipeline {
         }
 
         stage('Publish Extent Report') {
-            steps {
-                script {
-                    // Original stage unchanged
-                    def files = findFiles(glob: 'reports/*.html')
-
-                    if (files.size() == 0) {
-                        echo "❗ No Extent HTML report found in reports/ folder!"
-                    } else {
-                        def latestReport = files.sort { it.lastModified }[-1].name
-                        echo "Publishing Extent Report: ${latestReport}"
-
-                        publishHTML(target: [
-                            reportDir: 'reports',
-                            reportFiles: latestReport,
-                            reportName: 'ExtentReport',
-                            keepAll: true,
-                            alwaysLinkToLastBuild: true,
-                            allowMissing: true
-                        ])
-                    }
+    steps {
+        script {
+            catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                def files = findFiles(glob: 'reports/*.html')
+                if (files.size() == 0) {
+                    echo "❗ No Extent HTML report found!"
+                } else {
+                    def latestReport = files.sort { it.lastModified }[-1].name
+                    echo "Publishing Extent Report: ${latestReport}"
+                    publishHTML(target: [
+                        reportDir: 'reports',
+                        reportFiles: latestReport,
+                        reportName: 'ExtentReport',
+                        keepAll: true,
+                        alwaysLinkToLastBuild: true,
+                        allowMissing: true
+                    ])
                 }
             }
         }
+    }
+}
+
     }
 
     post {
