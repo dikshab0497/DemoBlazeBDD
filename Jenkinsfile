@@ -50,7 +50,7 @@ pipeline {
                                 stage("Execute ${tag}") {
                                     withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
 
-                                        // Temporary folder for this tag
+                                        // Temp folder for this tag
                                         def tempReportDir = "reports_${tag.replaceAll('@','')}"
                                         bat "rmdir /s /q ${tempReportDir} || exit 0"
                                         bat "mkdir ${tempReportDir}"
@@ -62,11 +62,10 @@ pipeline {
                                            -Denv=${params.Environment}
                                         """
 
-                                        // Copy Extent report from test run into temp folder
-                                        // Replace with actual path where your Extent report is generated
+                                        // Copy generated Extent report to temp folder (your code must flush report)
                                         bat "copy /Y reports\\Test-Report.html ${tempReportDir}\\Test-Report-${tag.replaceAll('@','')}.html || exit 0"
 
-                                        // Copy temp report to main workspace for Jenkins
+                                        // Copy all temp reports to main reports folder for Jenkins UI
                                         bat "mkdir reports || exit 0"
                                         bat "copy /Y ${tempReportDir}\\*.html reports || exit 0"
                                     }
@@ -75,6 +74,7 @@ pipeline {
                         }
                     }
 
+                    // Run all tags in parallel
                     parallel branches
                 }
             }
@@ -88,10 +88,11 @@ pipeline {
                         if (files.size() == 0) {
                             echo "❗ No Extent HTML report found!"
                         } else {
+                            echo "Publishing all Extent Reports..."
                             publishHTML(target: [
                                 reportDir: 'reports',
                                 reportFiles: '*.html',
-                                reportName: 'ExtentReport',
+                                reportName: 'ExtentReports',
                                 keepAll: true,
                                 alwaysLinkToLastBuild: true,
                                 allowMissing: true
