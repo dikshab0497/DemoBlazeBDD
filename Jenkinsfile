@@ -1,108 +1,42 @@
-pipeline {
+stage('Run Tests in Parallel') {
+    steps {
+        script {
 
-    // Parameter to pass Cucumber tag from Jenkins UI
-    parameters {
-        string(
-            name: 'TestCase',
-            defaultValue: '',
-            description: 'Enter Cucumber tag to run (e.g., @LoginWithValidCred)'
-        )
-        choice(
-			name:'Environment',
-			choices: ['DEV', 'QA', 'UAT'],
-			description: 'Select Environment'
-		)
-		string(
-			name: 'EmailTo', 
-			defaultValue: 'team@example.com', 
-			description: 'Email to notify')
-    }
+            def mvnHome = tool 'M3'
 
-    agent any
+            // Split tags passed from Jenkins UI
+            def tags = params.TestCase.split(",")
 
-    tools {
-        maven 'M3'   // Must match Maven installation name in Jenkins
-    }
+            // Create parallel branches
+            def branches = [:]
 
-    stages {
+            for (int i = 0; i < tags.size(); i++) {
+                def tag = tags[i].trim()
 
-        stage('Checkout Code') {
-            steps {
-                echo "Pulling latest code..."
-                checkout scm
-            }
-        }
+                branches["Run ${tag}"] = {
+                    node {
+                        stage("Execute ${tag}") {
 
-        stage('Build & Test') {
-            steps {
-                script {
-                    def mvnHome = tool 'M3'
+                            withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
 
-                    withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+                                // Clear reports folder for each branch
+                                bat "mkdir reports_${tag}"
 
-                        // Clean old reports before running tests
-                        bat "rmdir /s /q reports || exit 0"
-                        bat "mkdir reports"
+                                bat """
+                                   ${mvnHome}\\bin\\mvn.cmd clean test \
+                                   -Dcucumber.filter.tags=${tag} \
+                                   -Denv=${params.Environment}
+                                """
 
-                        // Read tag parameter
-                        def tagParam = params.TestCase.trim()
-                        def cucumberTagOption = tagParam ? "-Dcucumber.filter.tags=@${tagParam.replace('@','')}" : ""
-                        
-                        //Read env parameter
-                        def envParam = "-Denv=${params.Environment}"
-
-                        // Run tests
-                        bat "${mvnHome}\\bin\\mvn.cmd clean test ${cucumberTagOption} ${envParam}"
+                                // Move report for each tag
+                                bat "copy target\\*.html reports_${tag} || exit 0"
+                            }
+                        }
                     }
                 }
             }
-        }
 
-        stage('Publish Extent Report') {
-            steps {
-                script {
-
-                    // Find any HTML file inside /reports/
-                    def files = findFiles(glob: 'reports/*.html')
-
-                    if (files.size() == 0) {
-                        echo "❗ No Extent HTML report found in reports/ folder!"
-                    } else {
-                        // Get latest report
-                        def latestReport = files.sort { it.lastModified }[-1].name
-                        echo "Publishing Extent Report: ${latestReport}"
-
-                        publishHTML(target: [
-                            reportDir: 'reports',
-                            reportFiles: latestReport,
-                            reportName: 'ExtentReport',
-                            keepAll: true,
-                            alwaysLinkToLastBuild: true,
-                            allowMissing: true
-                        ])
-                    }
-                }
-            }
+            parallel branches
         }
     }
-
-   post {
-    success {
-        echo "Build & Tests Completed Successfully!"
-        emailext(
-            subject: "Jenkins Build Success",
-            body: "Build SUCCESS for ${env.JOB_NAME} #${env.BUILD_NUMBER}. Check console output: ${env.BUILD_URL}console",
-            to: "${params.EmailTo ?: 'team@example.com'}"
-        )
-    }
-    failure {
-        echo "Build or Tests Failed!"
-        emailext(
-            subject: "Jenkins Build Failed",
-            body: "Build FAILED for ${env.JOB_NAME} #${env.BUILD_NUMBER}. Check console output: ${env.BUILD_URL}console",
-            to: "${params.EmailTo ?: 'team@example.com'}"
-        )
-    }
-}
-
 }
