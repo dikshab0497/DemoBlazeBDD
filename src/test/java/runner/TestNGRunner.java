@@ -13,7 +13,7 @@ import io.cucumber.testng.CucumberOptions;
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
                 "json:target/cucumber.json"
         },
-//        tags = "@SignUp",   // ✅ specify the tag you want to run
+        tags = "@SignUp",   // ✅ specify the tag you want to run
        
         monochrome = true
 )

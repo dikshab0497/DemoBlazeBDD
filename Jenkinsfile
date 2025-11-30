@@ -5,7 +5,7 @@ pipeline {
         string(
             name: 'TestCase',
             defaultValue: '',
-            description: 'Enter Cucumber tags separated by comma (e.g., @LoginWithValidCred,@LoginWithInValidCred)'
+            description: 'Enter Cucumber tags separated by comma (e.g., @LoginWithValidCred,@SignUp)'
         )
         choice(
             name: 'Environment',
@@ -22,7 +22,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'M3'
+        maven 'M3'   // Maven configured in Jenkins
     }
 
     stages {
@@ -42,7 +42,6 @@ pipeline {
 
                     def branches = [:]
 
-                    // Create parallel branches for each tag
                     for (int i = 0; i < tags.size(); i++) {
                         def tag = tags[i].trim()
                         branches["Run ${tag}"] = {
@@ -62,25 +61,24 @@ pipeline {
                                            -Denv=${params.Environment}
                                         """
 
-                                        // Copy generated Extent report to temp folder (your code must flush report)
-                                        bat "copy /Y reports\\Test-Report.html ${tempReportDir}\\Test-Report-${tag.replaceAll('@','')}.html || exit 0"
+                                        // Copy all generated HTML reports to temp folder
+                                        bat "copy /Y target\\*.html ${tempReportDir}\\ || exit 0"
 
-                                        // Copy all temp reports to main reports folder for Jenkins UI
+                                        // Merge temp report into main reports folder
                                         bat "mkdir reports || exit 0"
-                                        bat "copy /Y ${tempReportDir}\\*.html reports || exit 0"
+                                        bat "copy /Y ${tempReportDir}\\*.html reports\\ || exit 0"
                                     }
                                 }
                             }
                         }
                     }
 
-                    // Run all tags in parallel
                     parallel branches
                 }
             }
         }
 
-        stage('Publish Extent Report') {
+        stage('Publish Extent Reports') {
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
@@ -88,11 +86,10 @@ pipeline {
                         if (files.size() == 0) {
                             echo "❗ No Extent HTML report found!"
                         } else {
-                            echo "Publishing all Extent Reports..."
                             publishHTML(target: [
-                                reportDir: 'reports',
-                                reportFiles: '*.html',
-                                reportName: 'ExtentReports',
+                                reportDir: 'reports',    // folder where all HTML reports are
+                                reportFiles: '*.html',   // pick all HTML files
+                                reportName: 'Extent Reports',
                                 keepAll: true,
                                 alwaysLinkToLastBuild: true,
                                 allowMissing: true
@@ -105,8 +102,11 @@ pipeline {
     }
 
     post {
+        always {
+            echo "Build Completed!"
+        }
         success {
-            echo "Build & Tests Completed Successfully!"
+            echo "All Tests Passed!"
             emailext(
                 subject: "Jenkins Build Success",
                 body: "Build SUCCESS for ${env.JOB_NAME} #${env.BUILD_NUMBER}. Check console output: ${env.BUILD_URL}console",
@@ -114,7 +114,7 @@ pipeline {
             )
         }
         failure {
-            echo "Build or Tests Failed!"
+            echo "Some Tests Failed!"
             emailext(
                 subject: "Jenkins Build Failed",
                 body: "Build FAILED for ${env.JOB_NAME} #${env.BUILD_NUMBER}. Check console output: ${env.BUILD_URL}console",
