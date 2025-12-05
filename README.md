@@ -1,231 +1,157 @@
-\# 🧪 Magento Automation Project
+🛒 DemoBlaze End-to-End Automation Framework
 
+This project is a Selenium + Cucumber BDD automation framework for testing the DemoBlaze
+ e-commerce website. It demonstrates end-to-end automation of critical account, product, and checkout flows, along with advanced Selenium scenarios, logging, reporting, and CI/CD integration.
 
+📌 Project Highlights
 
-This is a Selenium automation framework for testing the Magento e-commerce website. It is built using \*\*Java\*\*, \*\*Maven\*\*, \*\*Cucumber (BDD)\*\*, and \*\*TestNG\*\* with professional features like \*\*Extent Reports\*\*, \*\*Log4j logging\*\*, and \*\*automatic screenshots on failure\*\*.
+✅ Selenium WebDriver for robust UI automation
 
+📘 Cucumber BDD with human-readable Gherkin scenarios
 
+🧪 TestNG for test execution and assertions
 
----
+📊 Extent Reports for detailed HTML reports
 
+📝 Log4j for runtime logging
 
+📸 Automatic screenshots on test failures
 
-\## 📌 Project Highlights
+🏗 Page Object Model (POM) for maintainable and reusable code
 
+🔁 Hooks (Before/After) for test setup and teardown
 
+🔄 CI/CD Integration using Jenkins/GitHub Actions
 
-\- 🔍 \*\*Selenium WebDriver\*\* for browser automation
+🔬 Advanced Selenium Scenarios: dropdowns, hover actions, scrolling, tables, keyboard actions, alerts/modals, drag & drop, window/tab switching
 
-\- 🧱 \*\*Maven\*\* for project and dependency management
-
-\- 📘 \*\*Cucumber BDD\*\* for human-readable Gherkin scenarios
-
-\- 🧪 \*\*TestNG\*\* for test execution and assertions
-
-\- 📊 \*\*Extent Reports\*\* for rich HTML reporting
-
-\- 📝 \*\*Log4j\*\* for runtime logging
-
-\- 📸 \*\*Screenshot capture\*\* on failure
-
-\- 📂 \*\*Page Object Model (POM)\*\* for maintainability and reusability
-
-\- 🔁 \*\*Hooks (Before/After)\*\* for setup and teardown
-
-
-
----
-
-
-
-\## 🛠️ Tech Stack
-
-
-
-| Tool          | Purpose                        |
-
-|---------------|--------------------------------|
-
-| Java          | Programming Language           |
-
-| Selenium      | UI Automation                  |
-
-| Cucumber      | Behavior-Driven Development    |
-
-| Maven         | Dependency Management          |
-
-| TestNG        | Test Framework                 |
-
-| Extent Reports| Advanced HTML Reporting        |
-
-| Log4j         | Logging                        |
-
-| Git \& GitHub  | Version Control                |
-
-
-
----
-
-
-
-\## 🗂️ Project Structure
-Magento-Automation/
+🛠️ Tech Stack
+Tool	Purpose
+Java	Programming Language
+Selenium	UI Automation
+Cucumber	Behavior-Driven Development
+Maven	Dependency & Project Management
+TestNG	Test Framework
+Extent Reports	Advanced HTML Reporting
+Log4j	Runtime Logging
+Git & GitHub	Version Control
+Jenkins / GitHub Actions	CI/CD Automation
+WebDriverManager / ChromeDriver	Browser Driver
+🗂️ Project Structure
+DemoBlaze-Automation/
 ├── src/
-│ ├── main/java/
-│ │ └── pages/ # Page Object Classes
-│ ├── test/java/
-│ │ ├── stepDefinitions/ # Step Definitions for Cucumber
-│ │ └── runner/ # Test Runner Classes
-├── features/ # Gherkin Feature Files
-├── pom.xml # Maven Configuration
-└── README.md # Project Overview
+│   ├── main/java/
+│   │   └── pages/           # Page Object Classes
+│   ├── test/java/
+│   │   ├── stepDefinitions/ # Step Definitions for Cucumber
+│   │   └── runner/          # Test Runner Classes
+├── features/                # Gherkin Feature Files
+├── test-output/             # Extent Reports & Screenshots
+├── pom.xml                  # Maven Configuration
+└── README.md                # Project Documentation
 
-yaml
-Copy
-Edit
+🧪 Test Coverage
+1. Account Flow
 
----
+Login with valid/invalid credentials
 
-## 🚀 How to Run the Project
-
-1. **Clone the Repo**
-   ```bash
-   git clone https://github.com/dikshab0497/Magento-Automation.git
-   cd Magento-Automation
-Import in IntelliJ or Eclipse as a Maven project
-
-Install Dependencies
-
-bash
-Copy
-Edit
-mvn clean install
-Run Tests
-
-Run using Cucumber Test Runner (.java class)
-
-Or use Maven:
-
-bash
-Copy
-Edit
-mvn test
-📊 Reporting
-This framework uses Extent Reports to generate elegant and customizable HTML reports after each test execution.
-
-✅ Reports are automatically generated and stored in the configured report directory.
-
-🧪 Sample Scenarios Covered
-User login
-
-Product search
-
-Add to cart
-
-Checkout flow
-
-Invalid input validation
+Sign up new users
 
 Logout functionality
 
-...and more coming soon!
+Alerts for duplicate registration
+
+Field validations on account forms
+
+2. Product Flow
+
+Browse categories & search products
+
+Add/remove products to/from cart
+
+View product details & images
+
+Pagination & dynamic scrolling
+
+3. Checkout Flow
+
+Fill checkout details & place orders
+
+Handle alerts/modals for invalid data
+
+Total price validation
+
+4. Advanced Selenium Scenarios
+
+Alerts / modal handling
+
+Scrolling to elements
+
+Keyboard actions (Enter, Tab, Delete)
+
+Screenshot capture on failure
+
+Drag & drop, window/tab switching
+
+Dropdown selection & hover actions
+
+Tables validation and sorting
+
+Data-driven testing (Excel/JSON)
+
+🚀 How to Run
+
+Clone the repository
+
+git clone https://github.com/dikshab0497/DemoBlaze-Automation.git
+cd DemoBlaze-Automation
+
+
+Import project into IntelliJ or Eclipse as a Maven project
+
+Install dependencies
+
+mvn clean install
+
+
+Run tests
+
+Using Cucumber Test Runner (.java class)
+
+Or via Maven
+
+mvn test
+
+
+Reports
+
+Extent Reports are generated automatically under /test-output/
+
+Screenshots for failed steps are included in reports
+
+📌 CI/CD Integration
+
+Framework is ready for Jenkins or GitHub Actions pipelines
+
+Automated test runs trigger reports and email notifications
+
+Supports parallel execution for faster regression testing
 
 🙋‍♀️ Author
+
 Diksha Bandagale
-📧 dikshab0497@gmail.com
-🔗 LinkedIn
+📧 dikshabandagale0497@gmail.com
 
-📌 TODO / Improvements
-Add screenshot capture on test failure
+🔗 LinkedIn:https://www.linkedin.com/public-profile/settings/?trk=d_flagship3_profile_self_view_public_profile&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BiD8MIP6fQXK5CjdCYjrBMQ%3D%3D
 
-Add tagging in feature files for modular test execution
+✅ This README now clearly shows:
 
-Integrate cross-browser testing
+Project scope and coverage
 
-Add GitHub Actions or Jenkins pipeline for CI/CD
+Tools and tech stack
 
-Email the Extent report post-execution
+Test flow and advanced features
 
-yaml
-Copy
-Edit
+CI/CD readiness
 
----
-
-### 🔹 Step 3: Save the File
-
-Just press `Ctrl + S` or click File → Save.
-
----
-
-### 🔹 Step 4: Push the Updated Content to GitHub
-
-Go back to Git Bash and run:
-
-```bash
-git add README.md
-git commit -m "Updated README with full project details"
-git push
-🔍 Result:
-Check your repo here 👉 https://github.com/dikshab0497/Magento-Automation
-
-You’ll now see your full README nicely rendered on the homepage.
-
-Let me know when it's done — we can then improve .gitignore, add screenshots to the report, or anything else you'd like 💻🚀
-
-
-
-
-
-
-
-
-You said:
-also i ahve used log4g for log and screenshots etc
-
-
-ChatGPT said:
-Awesome! 🎯 You're building a solid professional-grade framework — using Log4j for logging and capturing screenshots on failures makes it robust and real-world ready. Let’s now add these features to your README.md so recruiters, teammates, and interviewers can quickly see your project strengths.
-
-✅ Updated Sections for README.md
-Add the following in your README file to reflect Log4j and Screenshot functionality:
-
-🔧 Additional Framework Features
-📝 Log4j for detailed runtime logs (info, debug, error)
-
-📸 Automatic screenshot capture on test failure
-
-📁 Organized logs & screenshots stored in timestamped folders
-
-🧼 Hooks for test setup and teardown (via Cucumber)
-
-🔐 GitHub version-controlled code
-
-📋 Logging with Log4j
-This framework uses Apache Log4j to manage and store logs during test execution.
-
-Logs are useful to trace failures, track test flow, and debug issues efficiently.
-
-🔹 Log levels:
-
-INFO: General test steps
-
-DEBUG: Detailed internal steps
-
-ERROR: When exceptions or failures occur
-
-📁 Logs are saved under: logs/ or configured directory in log4j.properties
-
-📸 Screenshots on Failure
-Whenever a test scenario fails, a screenshot is automatically captured and saved.
-
-📍 Screenshot location: screenshots/ (or as configured)
-
-📌 Integrated with Extent Reports — failed steps show screenshots
-
-This helps in quick debugging and improves test reporting quality.
-
-
-
-
-
+Easy-to-follow run instructions
