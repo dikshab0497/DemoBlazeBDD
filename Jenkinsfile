@@ -3,7 +3,7 @@ pipeline {
     parameters {
         string(
             name: 'TestCase',
-            defaultValue: '',
+            defaultValue: 'LoginWithValidCred,LogOut,SignUp',
             description: 'Enter Cucumber tags separated by comma'
         )
         choice(
@@ -28,7 +28,6 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                echo "Pulling latest code..."
                 checkout scm
             }
         }
@@ -56,7 +55,7 @@ pipeline {
 
                         branches["Run ${tag}"] = {
                             node {
-                                stage("Execute ${tag}") {
+                                stage("Executing @${tag}") {
 
                                     def reportDir = "${env.REPORT_BASE_DIR}\\${tag}"
                                     bat "mkdir \"${reportDir}\""
@@ -80,24 +79,25 @@ pipeline {
         stage('Publish Extent Reports') {
             steps {
                 script {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
 
-                        def reports = findFiles(glob: "reports_${env.BUILD_NUMBER}/**/Test-Report.html")
+                    def reports = findFiles(glob: "reports_${env.BUILD_NUMBER}/**/Test-Report.html")
 
-                        reports.each { file ->
-                            def path = file.path.replace('\\Test-Report.html','')
+                    if (reports.size() == 0) {
+                        echo "❌ No Test-Report.html found!"
+                    }
 
-                            def folderName = path.tokenize('/\\')[-1]
+                    reports.each { file ->
+                        def path = file.path.replace('\\Test-Report.html','')
+                        def folderName = path.tokenize('/\\')[-1]
 
-                            publishHTML(target: [
-                                reportDir: path,
-                                reportFiles: 'Test-Report.html',
-                                reportName: "Extent Report - ${folderName}",
-                                keepAll: true,
-                                alwaysLinkToLastBuild: true,
-                                allowMissing: true
-                            ])
-                        }
+                        publishHTML(target: [
+                            reportDir: path,
+                            reportFiles: 'Test-Report.html',
+                            reportName: "Extent Report - ${folderName}",
+                            keepAll: true,
+                            alwaysLinkToLastBuild: true,
+                            allowMissing: true
+                        ])
                     }
                 }
             }

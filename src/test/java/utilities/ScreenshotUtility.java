@@ -13,24 +13,31 @@ import java.util.Date;
 public class ScreenshotUtility {
 
     public static String takeScreenshot(WebDriver driver, String screenshotName) {
+
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
-        // Save screenshots inside reports folder for Jenkins
-        String screenshotDir = System.getProperty("user.dir") + "/reports/screenshots/";
+        // Directory passed from Jenkins via -Dextent.report.dir
+        String reportDir = System.getProperty("extent.report.dir");
+
+        // Local fallback
+        if (reportDir == null) {
+            reportDir = System.getProperty("user.dir") + "/reports";
+        }
+
+        // Screenshot folder inside the tag folder
+        String screenshotDir = reportDir + "/screenshots/";
+        new File(screenshotDir).mkdirs();
+
         String screenshotPath = screenshotDir + screenshotName + "_" + timeStamp + ".png";
 
         try {
-            File dir = new File(screenshotDir);
-            if (!dir.exists()) dir.mkdirs();
-
             File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(src, new File(screenshotPath));
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Return relative path for ExtentReports embedding
+        // Relative path needed for ExtentReports
         return "screenshots/" + screenshotName + "_" + timeStamp + ".png";
     }
 }
