@@ -3,7 +3,7 @@ pipeline {
     parameters {
         string(
             name: 'TestCase',
-            defaultValue: 'LoginWithValidCred,LogOut,SignUp',
+            defaultValue: '',
             description: 'Enter Cucumber tags separated by comma'
         )
         choice(
@@ -55,6 +55,7 @@ pipeline {
 
                         branches["Run ${tag}"] = {
                             node {
+
                                 stage("Executing @${tag}") {
 
                                     def reportDir = "${env.REPORT_BASE_DIR}\\${tag}"
@@ -87,7 +88,7 @@ pipeline {
                     }
 
                     reports.each { file ->
-                        def path = file.path.replace('\\Test-Report.html','')
+                        def path = file.path.replace('\\Test-Report.html', '')
                         def folderName = path.tokenize('/\\')[-1]
 
                         publishHTML(target: [
