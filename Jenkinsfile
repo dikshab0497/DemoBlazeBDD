@@ -9,7 +9,7 @@ pipeline {
         )
         choice(
             name: 'Environment',
-            choices: ['DEV', 'QA', 'UAT'],
+            choices: ['DEV','QA','UAT'],
             description: 'Select Environment'
         )
         string(
@@ -22,7 +22,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'M3'   // Maven configured in Jenkins
+        maven 'M3'
     }
 
     stages {
@@ -37,55 +37,51 @@ pipeline {
         stage('Prepare Report Folder') {
             steps {
                 script {
-                    // Build-specific base report folder
-                    env.REPORT_BASE_DIR = "reports_${env.BUILD_NUMBER}"
-                    bat "rmdir /s /q ${env.REPORT_BASE_DIR} || exit 0"
-                    bat "mkdir ${env.REPORT_BASE_DIR}"
+                    // Base report folder for this build
+                    env.REPORT_BASE_DIR = "${env.WORKSPACE}\\reports_${env.BUILD_NUMBER}"
+                    bat "rmdir /s /q \"${env.REPORT_BASE_DIR}\" || exit 0"
+                    bat "mkdir \"${env.REPORT_BASE_DIR}\""
                 }
             }
         }
 
         stage('Run Tests in Parallel') {
-    		steps {
-        		script {
-            		def mvnHome = tool 'M3'
-            		def tags = params.TestCase.split(",")
-            		def branches = [:]
+            steps {
+                script {
+                    def mvnHome = tool 'M3'
+                    def tags = params.TestCase.split(",")
+                    def branches = [:]
 
-            		for (int i = 0; i < tags.size(); i++) {
-                	def tag = tags[i].trim()
-                	branches["Run ${tag}"] = {
-                    	node {
-                        	stage("Execute ${tag}") {
-                            	withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
-                                // Use Windows-friendly backslash
-                                def reportDir = "${env.REPORT_DIR}\\${tag}"
-                                bat "mkdir \"${reportDir}\""
+                    for (int i = 0; i < tags.size(); i++) {
+                        def tag = tags[i].trim()
+                        branches["Run ${tag}"] = {
+                            node {
+                                stage("Execute ${tag}") {
+                                    def reportDir = "${env.REPORT_BASE_DIR}\\${tag}"
+                                    bat "mkdir \"${reportDir}\""
 
-                                // Run Maven test with automatic '@'
-                                bat """
-                                   ${mvnHome}\\bin\\mvn.cmd clean test \
-                                   -Dcucumber.filter.tags=@${tag} \
-                                   -Denv=${params.Environment} \
-                                   -Dextent.report.dir=${reportDir}
-                                """
+                                    withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+                                        bat """
+                                            ${mvnHome}\\bin\\mvn.cmd clean test \
+                                            -Dcucumber.filter.tags=@${tag} \
+                                            -Denv=${params.Environment} \
+                                            -Dextent.report.dir=${reportDir}
+                                        """
+                                    }
+                                }
                             }
                         }
                     }
+
+                    parallel branches
                 }
             }
-
-            parallel branches
         }
-    }
-}
-
 
         stage('Publish Extent Reports') {
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
-                        // Publish all parallel report folders
                         def reportFolders = findFiles(glob: "${env.REPORT_BASE_DIR}/*/")
                         reportFolders.each { folder ->
                             publishHTML(target: [
