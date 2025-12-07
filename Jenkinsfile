@@ -1,11 +1,10 @@
 pipeline {
 
-    // Jenkins parameters
     parameters {
         string(
             name: 'TestCase',
             defaultValue: '',
-            description: 'Enter Cucumber tags separated by comma (e.g.,LoginWithValidCred,SignUp)'
+            description: 'Enter Cucumber tags separated by comma'
         )
         choice(
             name: 'Environment',
@@ -22,7 +21,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'M3'   // Maven configured in Jenkins
+        maven 'M3'
     }
 
     stages {
@@ -37,8 +36,8 @@ pipeline {
         stage('Prepare Report Folder') {
             steps {
                 script {
-                    // Build-specific base report folder
                     env.REPORT_BASE_DIR = "reports_${env.BUILD_NUMBER}"
+
                     bat "rmdir /s /q ${env.REPORT_BASE_DIR} || exit 0"
                     bat "mkdir ${env.REPORT_BASE_DIR}"
                 }
@@ -46,64 +45,63 @@ pipeline {
         }
 
         stage('Run Tests in Parallel') {
-    		steps {
-        		script {
-            		def mvnHome = tool 'M3'
-            		def tags = params.TestCase.split(",")
-            		def branches = [:]
+            steps {
+                script {
+                    def mvnHome = tool 'M3'
+                    def tags = params.TestCase.split(",")
+                    def branches = [:]
 
-            		for (int i = 0; i < tags.size(); i++) {
-                	def tag = tags[i].trim()
-                	branches["Run ${tag}"] = {
-                    	node {
-                        	stage("Execute ${tag}") {
-                            	withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
-                                // Use Windows-friendly backslash
-                                def reportDir = "${env.REPORT_DIR}\\${tag}"
-                                bat "mkdir \"${reportDir}\""
+                    for (String rawTag : tags) {
+                        def tag = rawTag.trim()
 
-                                // Run Maven test with automatic '@'
-                                bat """
-                                   ${mvnHome}\\bin\\mvn.cmd clean test \
-                                   -Dcucumber.filter.tags=@${tag} \
-                                   -Denv=${params.Environment} \
-                                   -Dextent.report.dir=${reportDir}
-                                """
+                        branches["Run ${tag}"] = {
+                            node {
+                                stage("Execute ${tag}") {
+
+                                    def reportDir = "${env.REPORT_BASE_DIR}\\${tag}"
+                                    bat "mkdir \"${reportDir}\""
+
+                                    bat """
+                                        ${mvnHome}\\bin\\mvn.cmd clean test ^
+                                        -Dcucumber.filter.tags=@${tag} ^
+                                        -Denv=${params.Environment} ^
+                                        -Dextent.report.dir=\"${reportDir}\"
+                                    """
+                                }
                             }
+                        }
+                    }
+
+                    parallel branches
+                }
+            }
+        }
+
+        stage('Publish Extent Reports') {
+            steps {
+                script {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+
+                        def reports = findFiles(glob: "reports_${env.BUILD_NUMBER}/**/Test-Report.html")
+
+                        reports.each { file ->
+                            def path = file.path.replace('\\Test-Report.html','')
+
+                            def folderName = path.tokenize('/\\')[-1]
+
+                            publishHTML(target: [
+                                reportDir: path,
+                                reportFiles: 'Test-Report.html',
+                                reportName: "Extent Report - ${folderName}",
+                                keepAll: true,
+                                alwaysLinkToLastBuild: true,
+                                allowMissing: true
+                            ])
                         }
                     }
                 }
             }
-
-            parallel branches
         }
-    }
-}
-
-
-       stage('Publish Extent Reports') {
-    steps {
-        script {
-            catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
-                // Use relative workspace path
-                def reportFolders = findFiles(glob: "reports_${env.BUILD_NUMBER}/*/Test-Report.html")
-                reportFolders.each { reportFile ->
-                    // Extract folder name for report name
-                    def folderName = reportFile.path.split(/[\\\/]/)[1]  // gets the tag folder name
-                    publishHTML(target: [
-                        reportDir: reportFile.path.replace('\\Test-Report.html',''),
-                        reportFiles: 'Test-Report.html',
-                        reportName: "Extent Report - ${folderName}",
-                        keepAll: true,
-                        alwaysLinkToLastBuild: true,
-                        allowMissing: true
-                    ])
-                }
-            }
-        }
-    }
-}
-
     }
 
     post {
@@ -111,19 +109,17 @@ pipeline {
             echo "Build Completed!"
         }
         success {
-            echo "All Tests Passed!"
             emailext(
                 subject: "Jenkins Build Success",
-                body: "Build SUCCESS for ${env.JOB_NAME} #${env.BUILD_NUMBER}. Check console output: ${env.BUILD_URL}console",
-                to: "${params.EmailTo ?: 'team@example.com'}"
+                body: "Build SUCCESS for ${env.JOB_NAME} #${env.BUILD_NUMBER}.",
+                to: "${params.EmailTo}"
             )
         }
         failure {
-            echo "Some Tests Failed!"
             emailext(
                 subject: "Jenkins Build Failed",
-                body: "Build FAILED for ${env.JOB_NAME} #${env.BUILD_NUMBER}. Check console output: ${env.BUILD_URL}console",
-                to: "${params.EmailTo ?: 'team@example.com'}"
+                body: "Build FAILED for ${env.JOB_NAME} #${env.BUILD_NUMBER}.",
+                to: "${params.EmailTo}"
             )
         }
     }
