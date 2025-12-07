@@ -58,11 +58,11 @@ pipeline {
                     	node {
                         	stage("Execute ${tag}") {
                             	withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
-                                // Unique folder per parallel test
-                                def reportDir = "${env.REPORT_BASE_DIR}/${tag}"
-                                bat "mkdir ${reportDir}"
+                                // Use Windows-friendly backslash
+                                def reportDir = "${env.REPORT_DIR}\\${tag}"
+                                bat "mkdir \"${reportDir}\""
 
-                                // Add '@' automatically when passing to Maven
+                                // Run Maven test with automatic '@'
                                 bat """
                                    ${mvnHome}\\bin\\mvn.cmd clean test \
                                    -Dcucumber.filter.tags=@${tag} \
