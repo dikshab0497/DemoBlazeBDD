@@ -19,13 +19,15 @@ public class ExtentReportManager {
             // Use build-specific folder from Jenkins or fallback
             String reportDir = System.getProperty("extent.report.dir", System.getProperty("user.dir") + "/reports");
             new File(reportDir).mkdirs();
-
+            
             if (System.getenv("JENKINS_HOME") != null) {
-                reportPath = reportDir + "/Test-Report.html";
+                // Unique report per thread in Jenkins
+                reportPath = reportDir + "/Test-Report-" + Thread.currentThread().getId() + ".html";
             } else {
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                 reportPath = reportDir + "/Test-Report-" + timeStamp + ".html";
             }
+
 
             ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
             spark.config().setReportName("Automation Test Report");

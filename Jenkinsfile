@@ -5,7 +5,7 @@ pipeline {
         string(
             name: 'TestCase',
             defaultValue: '',
-            description: 'Enter Cucumber tags separated by comma (e.g., @LoginWithValidCred,@SignUp)'
+            description: 'Enter Cucumber tags separated by comma (e.g.,LoginWithValidCred,SignUp)'
         )
         choice(
             name: 'Environment',
@@ -37,57 +37,66 @@ pipeline {
         stage('Prepare Report Folder') {
             steps {
                 script {
-                    // Build-specific report folder
-                    env.REPORT_DIR = "reports_${env.BUILD_NUMBER}"
-                    bat "rmdir /s /q ${env.REPORT_DIR} || exit 0"
-                    bat "mkdir ${env.REPORT_DIR}"
+                    // Build-specific base report folder
+                    env.REPORT_BASE_DIR = "reports_${env.BUILD_NUMBER}"
+                    bat "rmdir /s /q ${env.REPORT_BASE_DIR} || exit 0"
+                    bat "mkdir ${env.REPORT_BASE_DIR}"
                 }
             }
         }
 
         stage('Run Tests in Parallel') {
-            steps {
-                script {
-                    def mvnHome = tool 'M3'
-                    def tags = params.TestCase.split(",")
-                    def branches = [:]
+    		steps {
+        		script {
+            		def mvnHome = tool 'M3'
+            		def tags = params.TestCase.split(",")
+            		def branches = [:]
 
-                    for (int i = 0; i < tags.size(); i++) {
-                        def tag = tags[i].trim()
-                        branches["Run ${tag}"] = {
-                            node {
-                                stage("Execute ${tag}") {
-                                    withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
-                                        // Run Maven test with tag, environment, and report folder
-                                        bat """
-                                           ${mvnHome}\\bin\\mvn.cmd clean test \
-                                           -Dcucumber.filter.tags=${tag} \
-                                           -Denv=${params.Environment} \
-                                           -Dextent.report.dir=${env.REPORT_DIR}
-                                        """
-                                    }
-                                }
+            		for (int i = 0; i < tags.size(); i++) {
+                	def tag = tags[i].trim()
+                	branches["Run ${tag}"] = {
+                    	node {
+                        	stage("Execute ${tag}") {
+                            	withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+                                // Unique folder per parallel test
+                                def reportDir = "${env.REPORT_BASE_DIR}/${tag}"
+                                bat "mkdir ${reportDir}"
+
+                                // Add '@' automatically when passing to Maven
+                                bat """
+                                   ${mvnHome}\\bin\\mvn.cmd clean test \
+                                   -Dcucumber.filter.tags=@${tag} \
+                                   -Denv=${params.Environment} \
+                                   -Dextent.report.dir=${reportDir}
+                                """
                             }
                         }
                     }
-
-                    parallel branches
                 }
             }
+
+            parallel branches
         }
+    }
+}
+
 
         stage('Publish Extent Reports') {
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
-                        // Only publish current build folder
-                        publishHTML(target: [
-                            reportDir: env.REPORT_DIR,
-                            reportFiles: '*.html',
-                            reportName: 'ExtentReports',
-                            keepAll: false,
-                            alwaysLinkToLastBuild: true
-                        ])
+                        // Publish all parallel report folders
+                        def reportFolders = findFiles(glob: "${env.REPORT_BASE_DIR}/*/")
+                        reportFolders.each { folder ->
+                            publishHTML(target: [
+                                reportDir: folder.path,
+                                reportFiles: '*.html',
+                                reportName: "Extent Report - ${folder.name}",
+                                keepAll: true,
+                                alwaysLinkToLastBuild: true,
+                                allowMissing: true
+                            ])
+                        }
                     }
                 }
             }
