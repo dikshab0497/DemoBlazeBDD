@@ -1,6 +1,6 @@
 pipeline {
 
-    // Parameters from Jenkins UI
+    // Jenkins parameters
     parameters {
         string(
             name: 'TestCase',
@@ -34,12 +34,22 @@ pipeline {
             }
         }
 
+        stage('Prepare Report Folder') {
+            steps {
+                script {
+                    // Build-specific report folder
+                    env.REPORT_DIR = "reports_${env.BUILD_NUMBER}"
+                    bat "rmdir /s /q ${env.REPORT_DIR} || exit 0"
+                    bat "mkdir ${env.REPORT_DIR}"
+                }
+            }
+        }
+
         stage('Run Tests in Parallel') {
             steps {
                 script {
                     def mvnHome = tool 'M3'
                     def tags = params.TestCase.split(",")
-
                     def branches = [:]
 
                     for (int i = 0; i < tags.size(); i++) {
@@ -48,25 +58,13 @@ pipeline {
                             node {
                                 stage("Execute ${tag}") {
                                     withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
-
-                                        // Temp folder for this tag
-                                        def tempReportDir = "reports_${tag.replaceAll('@','')}"
-                                        bat "rmdir /s /q ${tempReportDir} || exit 0"
-                                        bat "mkdir ${tempReportDir}"
-
-                                        // Run Maven tests for this tag
+                                        // Run Maven test with tag, environment, and report folder
                                         bat """
                                            ${mvnHome}\\bin\\mvn.cmd clean test \
                                            -Dcucumber.filter.tags=${tag} \
-                                           -Denv=${params.Environment}
+                                           -Denv=${params.Environment} \
+                                           -Dextent.report.dir=${env.REPORT_DIR}
                                         """
-
-                                        // Copy all generated HTML reports to temp folder
-                                        bat "copy /Y target\\*.html ${tempReportDir}\\ || exit 0"
-
-                                        // Merge temp report into main reports folder
-                                        bat "mkdir reports || exit 0"
-                                        bat "copy /Y ${tempReportDir}\\*.html reports\\ || exit 0"
                                     }
                                 }
                             }
@@ -82,19 +80,14 @@ pipeline {
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
-                        def files = findFiles(glob: 'reports/*.html')
-                        if (files.size() == 0) {
-                            echo "❗ No Extent HTML report found!"
-                        } else {
-                            publishHTML(target: [
-                                reportDir: 'reports',    // folder where all HTML reports are
-                                reportFiles: '*.html',   // pick all HTML files
-                                reportName: 'Extent Reports',
-                                keepAll: true,
-                                alwaysLinkToLastBuild: true,
-                                allowMissing: true
-                            ])
-                        }
+                        // Only publish current build folder
+                        publishHTML(target: [
+                            reportDir: env.REPORT_DIR,
+                            reportFiles: '*.html',
+                            reportName: 'ExtentReports',
+                            keepAll: false,
+                            alwaysLinkToLastBuild: true
+                        ])
                     }
                 }
             }
