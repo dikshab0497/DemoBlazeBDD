@@ -28,13 +28,15 @@ public class Hooks extends BaseClass {
             byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName());
 
-            String path = ScreenshotUtility.takeScreenshot(driver, scenario.getName());
+            String path = ScreenshotUtility.takeScreenshot(driver, scenario.getName() + "_" + System.currentTimeMillis());
 
             if (scenario.isFailed()) {
-                ExtentReportManager.getTest().fail("Scenario failed: " + scenario.getName())
+                ExtentReportManager.getTest()
+                        .fail("Scenario failed: " + scenario.getName())
                         .addScreenCaptureFromPath(path);
             } else {
-                ExtentReportManager.getTest().pass("Scenario passed: " + scenario.getName())
+                ExtentReportManager.getTest()
+                        .pass("Scenario passed: " + scenario.getName())
                         .addScreenCaptureFromPath(path);
             }
 
@@ -42,7 +44,6 @@ public class Hooks extends BaseClass {
             ExtentReportManager.getTest().log(Status.FAIL, "Error: " + e.getMessage());
         } finally {
             tearDown();  // close browser
-            // ❌ Do NOT flush report here in parallel mode
         }
     }
 }

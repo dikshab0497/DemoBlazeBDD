@@ -2,8 +2,11 @@ package runner;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.AfterSuite;
+
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import io.cucumber.java.Scenario;
+import hooks.Hooks;
 import utilities.ExtentReportManager;
 
 @CucumberOptions(
@@ -11,21 +14,22 @@ import utilities.ExtentReportManager;
         glue = {"StepDefinitions", "hooks"},
         plugin = {
                 "pretty",
-                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
                 "json:target/cucumber.json"
         },
         monochrome = true
 )
 public class TestNGRunner extends AbstractTestNGCucumberTests {
 
+    // Enable parallel execution
     @Override
     @DataProvider(parallel = true)
     public Object[][] scenarios() {
         return super.scenarios();
     }
 
+    // Flush Extent report once after all scenarios finish
     @AfterSuite
     public void flushExtentReport() {
-        ExtentReportManager.flushReport();  // flush once at end
+        ExtentReportManager.flushReport();
     }
 }

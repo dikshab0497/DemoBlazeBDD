@@ -10,49 +10,44 @@ import java.net.InetAddress;
 
 public class ExtentReportManager {
 
-    private static ThreadLocal<ExtentReports> extent = new ThreadLocal<>();
+    private static ExtentReports extent; // SINGLETON now
     private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
-    private static ThreadLocal<String> reportPath = new ThreadLocal<>();
+    private static String reportPath; // Only one report path needed
 
-    public static ExtentReports getExtent() {
+    public static synchronized ExtentReports getExtent() {
 
-        if (extent.get() == null) {
+        if (extent == null) {
 
             // Folder passed from Jenkins: -Dextent.report.dir
             String reportDir = System.getProperty("extent.report.dir");
 
             // Fallback for local run
             if (reportDir == null) {
-                reportDir = System.getProperty("user.dir") + "/reports";
+                reportDir = System.getProperty("user.dir") + "/ExtentReport";
             }
 
             new File(reportDir).mkdirs();
 
-            // Jenkins expects this specific filename
-            String finalPath = reportDir + "/Test-Report.html";
-            reportPath.set(finalPath);
+            reportPath = reportDir + "/ExtentReport.html"; // single file for all tests
 
-            ExtentSparkReporter spark = new ExtentSparkReporter(finalPath);
+            ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
             spark.config().setReportName("Automation Test Report");
             spark.config().setDocumentTitle("Execution Results");
             spark.config().setTheme(Theme.STANDARD);
             spark.config().setEncoding("utf-8");
-            spark.config().setCss(".badge { font-size: 14px }");
 
-            ExtentReports extentReport = new ExtentReports();
-            extentReport.attachReporter(spark);
+            extent = new ExtentReports();
+            extent.attachReporter(spark);
 
             // Add metadata
-            extentReport.setSystemInfo("Executed By", System.getProperty("user.name"));
-            extentReport.setSystemInfo("Operating System", System.getProperty("os.name"));
-            extentReport.setSystemInfo("Java Version", System.getProperty("java.version"));
-            extentReport.setSystemInfo("Environment", System.getProperty("env", "LOCAL"));
-            extentReport.setSystemInfo("Machine", getHostName());
-
-            extent.set(extentReport);
+            extent.setSystemInfo("Executed By", System.getProperty("user.name"));
+            extent.setSystemInfo("Operating System", System.getProperty("os.name"));
+            extent.setSystemInfo("Java Version", System.getProperty("java.version"));
+            extent.setSystemInfo("Environment", System.getProperty("env", "LOCAL"));
+            extent.setSystemInfo("Machine", getHostName());
         }
 
-        return extent.get();
+        return extent;
     }
 
     public static ExtentTest createTest(String testName) {
@@ -65,14 +60,14 @@ public class ExtentReportManager {
         return extentTest.get();
     }
 
-    public static void flushReport() {
-        if (extent.get() != null) {
-            extent.get().flush();
+    public static synchronized void flushReport() { // flush only once
+        if (extent != null) {
+            extent.flush();
         }
     }
 
     public static String getReportPath() {
-        return reportPath.get();
+        return reportPath;
     }
 
     private static String getHostName() {
