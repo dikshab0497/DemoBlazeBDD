@@ -35,12 +35,10 @@ pipeline {
         stage('Prepare Report Folder') {
             steps {
                 script {
-                    // Single consolidated report folder per build
-                    env.REPORT_DIR = "ExtentReport_${env.BUILD_NUMBER}"
-
-                    // Clean if exists
-                    bat "rmdir /s /q ${env.REPORT_DIR} || exit 0"
-                    bat "mkdir ${env.REPORT_DIR}"
+                    // Folder for all parallel runs
+                    env.REPORT_DIR = "${env.WORKSPACE}\\ExtentReport_${env.BUILD_NUMBER}"
+                    bat "rmdir /s /q \"${env.REPORT_DIR}\" || exit 0"
+                    bat "mkdir \"${env.REPORT_DIR}\""
                 }
             }
         }
@@ -52,7 +50,6 @@ pipeline {
                     def tags = params.TestCase.split(",")
                     def branches = [:]
 
-                    // Create parallel branches per tag
                     for (String rawTag : tags) {
                         def tag = rawTag.trim()
                         branches["Run ${tag}"] = {
@@ -62,13 +59,14 @@ pipeline {
                                         ${mvnHome}\\bin\\mvn.cmd clean test ^
                                         -Dcucumber.filter.tags=@${tag} ^
                                         -Denv=${params.Environment} ^
-                                        -Dextent.report.dir=${env.REPORT_DIR}
+                                        -Dextent.report.dir="${env.REPORT_DIR}"
                                     """
                                 }
                             }
                         }
                     }
 
+                    // Execute all tags in parallel
                     parallel branches
                 }
             }
@@ -77,14 +75,12 @@ pipeline {
         stage('Publish Extent Report') {
             steps {
                 script {
-                    // Publish the consolidated report
                     publishHTML(target: [
                         reportDir: env.REPORT_DIR,
                         reportFiles: 'ExtentReport.html',
-                        reportName: 'Extent Report',
+                        reportName: "Extent Report",
                         keepAll: true,
-                        alwaysLinkToLastBuild: true,
-                        allowMissing: true
+                        alwaysLinkToLastBuild: true
                     ])
                 }
             }

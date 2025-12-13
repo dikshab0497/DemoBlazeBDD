@@ -25,25 +25,18 @@ public class Hooks extends BaseClass {
     @After
     public void tearDownScenario(Scenario scenario) {
         try {
-            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", scenario.getName());
-
-            String path = ScreenshotUtility.takeScreenshot(driver, scenario.getName() + "_" + System.currentTimeMillis());
-
+            String screenshotPath = ScreenshotUtility.takeScreenshot(driver, scenario.getName());
             if (scenario.isFailed()) {
-                ExtentReportManager.getTest()
-                        .fail("Scenario failed: " + scenario.getName())
-                        .addScreenCaptureFromPath(path);
+                ExtentReportManager.getTest().fail("Scenario failed").addScreenCaptureFromPath(screenshotPath);
             } else {
-                ExtentReportManager.getTest()
-                        .pass("Scenario passed: " + scenario.getName())
-                        .addScreenCaptureFromPath(path);
+                ExtentReportManager.getTest().pass("Scenario passed").addScreenCaptureFromPath(screenshotPath);
             }
-
         } catch (Exception e) {
-            ExtentReportManager.getTest().log(Status.FAIL, "Error: " + e.getMessage());
+            ExtentReportManager.getTest().fail("Error: " + e.getMessage());
         } finally {
-            tearDown();  // close browser
+            tearDown(); // close browser
+            // DO NOT flush here
         }
     }
+
 }
