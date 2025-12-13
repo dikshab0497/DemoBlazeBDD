@@ -37,7 +37,9 @@ pipeline {
                 script {
                     // Folder for all parallel runs
                     env.REPORT_DIR = "${env.WORKSPACE}\\ExtentReport_${env.BUILD_NUMBER}"
-                    bat "rmdir /s /q \"${env.REPORT_DIR}\" || exit 0"
+                    // Clean folder if exists
+                    bat "if exist \"${env.REPORT_DIR}\" rmdir /s /q \"${env.REPORT_DIR}\""
+                    // Create new folder
                     bat "mkdir \"${env.REPORT_DIR}\""
                 }
             }
@@ -52,7 +54,7 @@ pipeline {
 
                     for (String rawTag : tags) {
                         def tag = rawTag.trim()
-                        branches["Run ${tag}"] = {
+                        branches["Run @${tag}"] = {
                             node {
                                 stage("Executing @${tag}") {
                                     bat """
@@ -75,9 +77,11 @@ pipeline {
         stage('Publish Extent Report') {
             steps {
                 script {
+                    // Wait a few seconds to make sure all parallel test reports are written
+                    sleep 5
                     publishHTML(target: [
                         reportDir: env.REPORT_DIR,
-                        reportFiles: 'ExtentReport.html',
+                        reportFiles: 'Test-Report.html', // Use actual generated report file
                         reportName: "Extent Report",
                         keepAll: true,
                         alwaysLinkToLastBuild: true
@@ -93,15 +97,15 @@ pipeline {
         }
         success {
             emailext(
-                subject: "Jenkins Build Success",
-                body: "Build SUCCESS for ${env.JOB_NAME} #${env.BUILD_NUMBER}.",
+                subject: "Jenkins Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Build SUCCESS for ${env.JOB_NAME} #${env.BUILD_NUMBER}.\nCheck Extent Report at ${env.BUILD_URL}display/redirect",
                 to: "${params.EmailTo}"
             )
         }
         failure {
             emailext(
-                subject: "Jenkins Build Failed",
-                body: "Build FAILED for ${env.JOB_NAME} #${env.BUILD_NUMBER}.",
+                subject: "Jenkins Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Build FAILED for ${env.JOB_NAME} #${env.BUILD_NUMBER}.\nCheck Jenkins logs for details: ${env.BUILD_URL}",
                 to: "${params.EmailTo}"
             )
         }
