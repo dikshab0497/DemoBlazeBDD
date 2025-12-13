@@ -46,49 +46,49 @@ pipeline {
         }
 
         stage('Run Tests in Parallel') {
-            steps {
-                script {
-                    def mvnHome = tool 'M3'
-                    def tags = params.TestCase.split(",")
-                    def branches = [:]
+    steps {
+        script {
+            def mvnHome = tool 'M3'
+            def tags = params.TestCase.split(",")
+            def branches = [:]
 
-                    for (String rawTag : tags) {
-                        def tag = rawTag.trim()
-                        branches["Run @${tag}"] = {
-                            node {
-                                stage("Executing @${tag}") {
-                                    bat """
-                                        ${mvnHome}\\bin\\mvn.cmd clean test ^
-                                        -Dcucumber.filter.tags=@${tag} ^
-                                        -Denv=${params.Environment} ^
-                                        -Dextent.report.dir="${env.REPORT_DIR}"
-                                    """
-                                }
-                            }
+            for (String rawTag : tags) {
+                def tag = rawTag.trim()
+                branches["Run @${tag}"] = {
+                    node {
+                        stage("Executing @${tag}") {
+                            def branchReportDir = "${env.WORKSPACE}\\ExtentReport_${env.BUILD_NUMBER}\\${tag}"
+                            bat "mkdir \"${branchReportDir}\""
+                            bat """
+                                ${mvnHome}\\bin\\mvn.cmd clean test ^
+                                -Dcucumber.filter.tags=@${tag} ^
+                                -Denv=${params.Environment} ^
+                                -Dextent.report.dir="${branchReportDir}"
+                            """
                         }
                     }
-
-                    // Execute all tags in parallel
-                    parallel branches
                 }
             }
-        }
 
-        stage('Publish Extent Report') {
-            steps {
-                script {
-                    // Wait a few seconds to make sure all parallel test reports are written
-                    sleep 5
-                    publishHTML(target: [
-                        reportDir: env.REPORT_DIR,
-                        reportFiles: 'Test-Report.html', // Use actual generated report file
-                        reportName: "Extent Report",
-                        keepAll: true,
-                        alwaysLinkToLastBuild: true
-                    ])
-                }
-            }
+            parallel branches
         }
+    }
+}
+
+stage('Publish Extent Report') {
+    steps {
+        script {
+            // Merge individual reports if needed OR just pick one main folder
+            publishHTML(target: [
+                reportDir: "${env.WORKSPACE}\\ExtentReport_${env.BUILD_NUMBER}",
+                reportFiles: 'Test-Report.html', // make sure this is the main report
+                reportName: "Extent Report",
+                keepAll: true,
+                alwaysLinkToLastBuild: true
+            ])
+        }
+    }
+}
     }
 
     post {
