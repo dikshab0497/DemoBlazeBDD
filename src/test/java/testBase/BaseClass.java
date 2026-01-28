@@ -76,7 +76,8 @@ public class BaseClass {
         }
     }
 
-    // ⭐ Flush ExtentReport after all tests
+//     ⭐ Flush ExtentReport after all tests
+//    
     @AfterSuite
     public void flushExtentReport() {
         ExtentReportManager.flushReport();

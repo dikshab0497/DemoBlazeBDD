@@ -23,7 +23,8 @@ public class TestNGRunner extends AbstractTestNGCucumberTests {
 
     @AfterSuite
     public void flushExtentReport() {
-        ExtentReportManager.flushReport();  // flush once after all parallel tests
+        ExtentReportManager.flushReport();  
+        // flush once after all parallel tests
     }
 }
 
