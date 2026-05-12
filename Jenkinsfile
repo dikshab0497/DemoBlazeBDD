@@ -7,12 +7,11 @@ pipeline {
             description: 'Enter Test cases tag'
         )
         choice(
-			name:'Environment',
-			choices:['QA','UAT','PRODUCTION'], 
-			description : 'Select Environment'
-			)
-        
-    }
+    		name:'Environment',
+    		choices:['QA','UAT','PRODUCTION'], 
+    		description : 'Select Environment'
+		)
+	}
 
     agent any
 
