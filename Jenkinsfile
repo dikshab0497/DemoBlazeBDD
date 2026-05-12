@@ -3,7 +3,7 @@ pipeline {
     parameters {
         string(
             name: 'TestCase',
-            defaultValue: '@LoginWithInValidCred',
+            defaultValue: '@LogOut',
             description: 'Enter Test cases tag'
         )
         
