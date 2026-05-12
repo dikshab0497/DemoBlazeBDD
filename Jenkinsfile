@@ -6,6 +6,11 @@ pipeline {
             defaultValue: '@LogOut',
             description: 'Enter Test cases tag'
         )
+        choice(
+			name:'Environment',
+			choices:['QA','UAT','PRODUCTION'], 
+			description : 'Select Environment'
+			)
         
     }
 
@@ -20,14 +25,19 @@ pipeline {
         stage('Run Tests') {
             steps {
 				script{
-					echo "Running Test case ${params.TestCase}"
-					bat "mvn clean test -Dcucumber.filter.tags=${params.TestCase}"
+					echo "Running Test case ${params.TestCase} on ${params.Environment} Environment"
+					bat "mvn clean test -Dcucumber.filter.tags=${params.TestCase} -DEnvironment=${params.Environment}"
 				}
                 
             }
         }
 
        
-           }
+      }
+      post {
+   		always { 
+	  		echo "Build completed"
+    	}
+	}
 
 }
