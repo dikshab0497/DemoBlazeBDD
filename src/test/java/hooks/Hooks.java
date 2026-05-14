@@ -15,7 +15,7 @@ public class Hooks extends BaseClass {
     @Before
     public void setUp(Scenario scenario) throws Exception {
         loadConfig();
-        String browser = System.getProperty("Browser");
+        String browser = System.getProperty("browser");
         if(browser == null) {
         	browser = configProp.getProperty("browser");
         }
