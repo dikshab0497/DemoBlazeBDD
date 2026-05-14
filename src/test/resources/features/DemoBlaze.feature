@@ -13,13 +13,13 @@ Feature: Account Flow - Login functionality
     Then user enters username and password
     Then user should validate message in Alert Box 
   
- @SignUp
+ @SignUp @Smoke
   Scenario: TC003 - Sign Up with New credentials
     When user clicks on SignUP button
     Then user enters username and password For SignUP
     Then user validate successful message in Alert Box 
  
- @LogOut
+ @LogOut @Smoke
   Scenario: TC004 - LogOut Functionality
     When user clicks on LogIn button
     Then user enters username and password
@@ -43,7 +43,7 @@ Feature: Account Flow - Login functionality
     When User clicks on the category of product
     Then All displayed products should belong to the selected category
   
-  @SearchProduct
+  @SearchProduct @Regression
   Scenario: TC007 - Validation of selected product from selected category
     When User clicks on the category of product
     Then All displayed products should belong to the selected category
