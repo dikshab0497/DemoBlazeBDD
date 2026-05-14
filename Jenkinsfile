@@ -29,7 +29,7 @@ pipeline {
         stage('Run Tests') {
             steps {
 				script{
-					echo "Running Test case ${params.TestCase} on ${params.Environment} Environment on ${params.browser}"
+					echo "Running Test case ${params.TestCase} on ${params.Environment} Environment on ${params.Browser}"
 					bat "mvn clean test -Dcucumber.filter.tags=${params.TestCase} -DEnvironment=${params.Environment} -Dbrowser=${params.Browser}"
 				}
                 
