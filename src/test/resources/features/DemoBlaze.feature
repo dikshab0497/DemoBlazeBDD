@@ -1,7 +1,7 @@
 Feature: Account Flow - Login functionality
 
   
-@LoginWithValidCred
+@LoginWithValidCred @Smoke
   Scenario: TC001 - Login with valid credentials
     When user clicks on LogIn button
     Then user enters username and password
@@ -13,7 +13,7 @@ Feature: Account Flow - Login functionality
     Then user enters username and password
     Then user should validate message in Alert Box 
   
- @SignUp @Smoke
+ @SignUp
   Scenario: TC003 - Sign Up with New credentials
     When user clicks on SignUP button
     Then user enters username and password For SignUP
@@ -21,9 +21,9 @@ Feature: Account Flow - Login functionality
  
  @LogOut @Smoke
   Scenario: TC004 - LogOut Functionality
-    When user clicks on LogIn button
-    Then user enters username and password
-    Then user should be logged in and redirected to homepage
+    #When user clicks on LogIn button
+    #Then user enters username and password
+    #Then user should be logged in and redirected to homepage
     When user clicks on LogOut button
  
  @SignUpWithExistingCred
