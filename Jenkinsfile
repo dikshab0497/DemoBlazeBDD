@@ -23,8 +23,19 @@ pipeline {
     tools {
         maven 'M3'
     }
+    
+    options {
+    	skipDefaultCheckout(true)
+	}
 
     stages {
+		
+		stage('Checkout code') {
+              steps {
+        		git branch: 'main',
+        		url: 'https://github.com/dikshab0497/DemoBlazeBDD.git'
+    		}
+        }
 
         stage('Run Tests') {
             steps {
