@@ -18,7 +18,7 @@ pipeline {
 		)
 		string(
             name: 'RepoUrl',
-            defaultValue: '/main',
+            defaultValue: 'main',
             description: 'Enter repo url'
         )
 	}
