@@ -16,6 +16,11 @@ pipeline {
     		choices:['chrome','edge'], 
     		description : 'Select Browser'
 		)
+		string(
+            name: 'RepoUrl',
+            defaultValue: '/main',
+            description: 'Enter repo url'
+        )
 	}
 
     agent any
@@ -32,7 +37,7 @@ pipeline {
 		
 		stage('Checkout code') {
               steps {
-        		git branch: 'main',
+        		git branch: "${params.RepoUrl}",
         		url: 'https://github.com/dikshab0497/DemoBlazeBDD.git'
     		}
         }
