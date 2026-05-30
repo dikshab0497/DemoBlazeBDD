@@ -77,7 +77,7 @@ pipeline {
             	keepAll: true,
             	reportDir: "${env.BUILD_NUMBER}/ExtentReport",
             	reportFiles: '*.html',
-            	reportName: 'Extent Report'
+            	reportName: 'ExtentReport'
         	])
         echo "Build completed"
     }
