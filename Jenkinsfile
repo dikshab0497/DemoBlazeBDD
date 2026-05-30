@@ -70,10 +70,16 @@ pipeline {
        
       }
       post {
-   		always { 
-	  		echo "Build completed"
-	  		cleanWs()
-    	}
-	}
-
+    	always {
+        	publishHTML([
+            	allowMissing: false,
+            	alwaysLinkToLastBuild: true,
+            	keepAll: true,
+            	reportDir: 'ExtentReport',
+            	reportFiles: '*.html',
+            	reportName: 'Extent Report'
+        	])
+        echo "Build completed"
+    }
+}
 }
