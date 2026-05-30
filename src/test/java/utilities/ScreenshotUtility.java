@@ -21,7 +21,7 @@ public class ScreenshotUtility {
 
         // Local fallback
         if (reportDir == null) {
-            reportDir = System.getProperty("user.dir") + "/reports";
+            reportDir = System.getProperty("user.dir") + "/ExtentReport";
         }
 
         // Screenshot folder inside the tag folder
