@@ -61,7 +61,7 @@ pipeline {
             steps {
 				script{
 					echo "Running Test case ${params.TestCase} on ${params.Environment.toLowerCase()} Environment on ${params.Browser}"
-					bat "mvn test -Dcucumber.filter.tags=${params.TestCase} -Denv=${params.Environment.toLowerCase()} -Dbrowser=${params.Browser}"
+					bat "mvn test -Dcucumber.filter.tags=${params.TestCase} -Denv=${params.Environment.toLowerCase()} -Dbrowser=${params.Browser} -Dextent.report.dir=%WORKSPACE%\\%BUILD_NUMBER%\\ExtentReport"
 				}
                 
             }
@@ -75,7 +75,7 @@ pipeline {
             	allowMissing: false,
             	alwaysLinkToLastBuild: true,
             	keepAll: true,
-            	reportDir: 'ExtentReport',
+            	reportDir: "${env.BUILD_NUMBER}/ExtentReport",
             	reportFiles: '*.html',
             	reportName: 'Extent Report'
         	])
