@@ -24,6 +24,8 @@ public class ExtentReportManager {
 //            String reportPath = reportDir + "/ExtentReport.html";
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String reportPath = reportDir + "/ExtentReport_" + timeStamp + ".html";
+            
+            System.out.println("Extent Report Path: " + reportPath);
 
             ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
             spark.config().setTheme(Theme.STANDARD);
