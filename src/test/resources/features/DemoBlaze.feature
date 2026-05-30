@@ -21,9 +21,9 @@ Feature: Account Flow - Login functionality
  
  @LogOut @Smoke
   Scenario: TC004 - LogOut Functionality
-    #When user clicks on LogIn button
-    #Then user enters username and password
-    #Then user should be logged in and redirected to homepage
+    When user clicks on LogIn button
+    Then user enters username and password
+    Then user should be logged in and redirected to homepage
     When user clicks on LogOut button
  
  @SignUpWithExistingCred
@@ -38,7 +38,7 @@ Feature: Account Flow - Login functionality
     Then user enters username and password For SignUP 
     Then user validate Warning message While signUp in Alert Box 
  
- @BrowseCategort
+ @BrowseCategort @Smoke
   Scenario: TC006 - Validation of selected category appears or not
     When User clicks on the category of product
     Then All displayed products should belong to the selected category

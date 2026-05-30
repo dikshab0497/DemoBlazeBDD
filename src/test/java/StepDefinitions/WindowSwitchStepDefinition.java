@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class WindowSwitchStepDefinition extends BaseClass{
 	
-	 WebDriver driver = Hooks.driver;
+	 WebDriver driver = Hooks.getDriver();
 	    String parentWindow;
 
 	    @Given("I navigate to the window page")

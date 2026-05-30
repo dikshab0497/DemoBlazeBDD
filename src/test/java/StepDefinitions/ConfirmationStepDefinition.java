@@ -14,7 +14,7 @@ public class ConfirmationStepDefinition extends BaseClass{
 	@Given("User Validate Details From confirmation Screen")
     public void validateDetailsFromConfmScreen() throws InterruptedException {
        
-		confirmationPage = new ConfirmationPage(driver);
+		confirmationPage = new ConfirmationPage(getDriver());
 
         String purchaseProductDetail = confirmationPage.getPurchaseOrderDetails();
         

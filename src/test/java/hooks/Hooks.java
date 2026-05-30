@@ -29,7 +29,7 @@ public class Hooks extends BaseClass {
     @After
     public void tearDownScenario(Scenario scenario) {
         try {
-            String screenshotPath = ScreenshotUtility.takeScreenshot(driver, scenario.getName());
+            String screenshotPath = ScreenshotUtility.takeScreenshot(getDriver(), scenario.getName());
             if (scenario.isFailed()) {
                 ExtentReportManager.getTest().fail("Scenario failed").addScreenCaptureFromPath(screenshotPath);
             } else {

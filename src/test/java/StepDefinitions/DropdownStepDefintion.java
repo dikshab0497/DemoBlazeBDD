@@ -10,7 +10,7 @@ import hooks.Hooks;
 import static org.testng.Assert.*;
 
 public class DropdownStepDefintion extends BaseClass {
-	 WebDriver driver = Hooks.driver; // reuse your existing driver
+	 WebDriver driver = Hooks.getDriver(); // reuse your existing driver
 
 	    @Given("I navigate to the dropdown page")
 	    public void i_navigate_to_the_dropdown_page() {

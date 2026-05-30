@@ -20,9 +20,15 @@ import utilities.ExtentReportManager;
 
 public class BaseClass {
 
-    public static WebDriver driver;
+//    public static WebDriver driver;
+	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();// for parellel executions
     public static Properties configProp;
     public static Logger logger;
+    
+    
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
 
     // Load config.properties
     public static void loadConfig() throws IOException {
@@ -42,37 +48,43 @@ public class BaseClass {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setPlatform(Platform.valueOf(os.toUpperCase()));
             capabilities.setBrowserName(browser);
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+//            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+            driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities));
 
         } else if (configProp.getProperty("execution_env").equalsIgnoreCase("local")) {
             switch (browser.toLowerCase()) {
                 case "chrome":
-                    driver = new ChromeDriver();
+                	driver.set(new ChromeDriver());
                     break;
                 case "edge":
-                    driver = new EdgeDriver();
+                	driver.set(new EdgeDriver());
+//                    driver = new EdgeDriver();
                     break;
                 case "firefox":
-                    driver = new FirefoxDriver();
-                    break;
+                	driver.set(new FirefoxDriver());
+//                    driver = new FirefoxDriver();
                 default:
                     throw new IllegalArgumentException("Invalid browser: " + browser);
             }
         }
 
-        driver.manage().window().maximize();
+//        driver.manage().window().maximize();
+        getDriver().manage().window().maximize();
     }
 
     // Open application URL
     public static void openApplication() {
     	String env = System.getProperty("env", "qa").toLowerCase(); // "dev", "qa", or "uat"
-        driver.get(configProp.getProperty(env +".appURL"));
+//        driver.get(configProp.getProperty(env +".appURL"));
+        getDriver().get(configProp.getProperty(env +".appURL"));
     }
 
     // Close browser
     public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
+        if (getDriver() != null) {
+//            driver.quit();
+            getDriver().quit();
+            driver.remove();
         }
     }
 

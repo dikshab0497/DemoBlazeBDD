@@ -11,7 +11,7 @@ import static org.testng.Assert.*;
 
 public class HoverActionStepDefinition extends BaseClass {
 	
-	 WebDriver driver = Hooks.driver;
+	 WebDriver driver = Hooks.getDriver();
 
 	    @Given("I navigate to the hover page")
 	    public void i_navigate_to_the_hover_page() {

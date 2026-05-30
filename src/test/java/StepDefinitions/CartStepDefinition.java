@@ -16,7 +16,7 @@ public class CartStepDefinition extends BaseClass {
 	@Given("User Validate product in Cart")
     public void validateProductPresentInCart() throws InterruptedException {
        
-		cartpage = new CartPage(driver);
+		cartpage = new CartPage(getDriver());
 
         String productName = cartpage.getProductFromAddToCart();
         String keyword = "MacBook air";
@@ -30,7 +30,7 @@ public class CartStepDefinition extends BaseClass {
 	@Given("User Delete Product from Cart")
     public void deleteProductFromCart() throws InterruptedException {
        
-		cartpage = new CartPage(driver);
+		cartpage = new CartPage(getDriver());
 		
 		cartpage.deleteProductFromCart();
 
@@ -39,7 +39,7 @@ public class CartStepDefinition extends BaseClass {
 	@Given("User Validate Product is Deleted")
     public void validateProductDeletionFromCart() throws InterruptedException {
        
-		cartpage = new CartPage(driver);
+		cartpage = new CartPage(getDriver());
 		String productName = "MacBook air";
 		
 		List<WebElement> products = cartpage.validateProductDeletion(productName);

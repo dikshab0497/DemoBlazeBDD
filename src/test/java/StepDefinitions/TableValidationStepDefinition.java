@@ -13,7 +13,7 @@ import java.util.*;
 
 public class TableValidationStepDefinition extends BaseClass {
 	
-	WebDriver driver = Hooks.driver;
+	WebDriver driver = Hooks.getDriver();
     List<String> originalList = new ArrayList<>();
     List<String> sortedList = new ArrayList<>();
 

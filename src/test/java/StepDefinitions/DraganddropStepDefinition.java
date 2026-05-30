@@ -10,7 +10,7 @@ import hooks.Hooks;
 import static org.testng.Assert.*;
 
 public class DraganddropStepDefinition extends BaseClass {
-	WebDriver driver = Hooks.driver;
+	WebDriver driver = Hooks.getDriver();
 
     @Given("I navigate to the drag and drop page")
     public void i_navigate_to_the_drag_and_drop_page() {

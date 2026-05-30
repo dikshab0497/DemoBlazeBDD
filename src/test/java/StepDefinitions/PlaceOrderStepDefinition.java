@@ -12,7 +12,7 @@ public class PlaceOrderStepDefinition extends BaseClass{
 	@Given("User Enter Deatils on Purchase Order Form")
     public void enterDetailsOnOurchaseOrderForm() throws InterruptedException {
        
-		placeOrderPage = new PlaceOrderPage(driver);
+		placeOrderPage = new PlaceOrderPage(getDriver());
 
 		placeOrderPage.enterPlaceOrderDetails();
 		
@@ -21,7 +21,7 @@ public class PlaceOrderStepDefinition extends BaseClass{
 	@Given("User Enter On Alert Box that speficies Data missing")
     public void enterAlertBoxForMissingData() throws InterruptedException {
        
-		placeOrderPage = new PlaceOrderPage(driver);
+		placeOrderPage = new PlaceOrderPage(getDriver());
 
 		placeOrderPage.clickOnAddToCartAlertBox();
 		

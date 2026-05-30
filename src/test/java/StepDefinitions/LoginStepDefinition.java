@@ -13,7 +13,7 @@ public class LoginStepDefinition extends BaseClass {
 
     @Given("user enters username and password")
     public void enterLoginCredential() throws InterruptedException {
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage(getDriver());
         try {
         	
         	String env = configProp.getProperty("env","qa").toLowerCase();
@@ -24,7 +24,7 @@ public class LoginStepDefinition extends BaseClass {
 
             ExtentReportManager.getTest().log(Status.PASS, "Entered username and password");
         } catch (Exception e) {
-            String path = ScreenshotUtility.takeScreenshot(driver, "LoginCredentialsFail");
+            String path = ScreenshotUtility.takeScreenshot(getDriver(), "LoginCredentialsFail");
             ExtentReportManager.getTest().log(Status.FAIL, "❌ Failed to enter login credentials: " + e.getMessage())
                     .addScreenCaptureFromPath(path);
             throw e;
@@ -33,12 +33,12 @@ public class LoginStepDefinition extends BaseClass {
 
     @Given("user should validate message in Alert Box")
     public void checkInValidLoginStatus() {
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage(getDriver());
         try {
             loginPage.validateAlertBox();
             ExtentReportManager.getTest().log(Status.PASS, "Alert box validated successfully");
         } catch (Exception e) {
-            String path = ScreenshotUtility.takeScreenshot(driver, "AlertBoxFail");
+            String path = ScreenshotUtility.takeScreenshot(getDriver(), "AlertBoxFail");
             ExtentReportManager.getTest().log(Status.FAIL, "❌ Failed to validate alert box: " + e.getMessage())
                     .addScreenCaptureFromPath(path);
             throw e;
@@ -47,7 +47,7 @@ public class LoginStepDefinition extends BaseClass {
 
     @Given("user enters details using keyboard actions")
     public void enterLoginDetailsWithKeyboardAct() throws InterruptedException {
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage(getDriver());
         try {
             ExtentReportManager.getTest().log(Status.INFO, "Entering login details using keyboard actions");
 
@@ -58,7 +58,7 @@ public class LoginStepDefinition extends BaseClass {
 
             ExtentReportManager.getTest().log(Status.PASS, "Entered login details successfully using keyboard actions");
         } catch (Exception e) {
-            String path = ScreenshotUtility.takeScreenshot(driver, "KeyboardActionsFail");
+            String path = ScreenshotUtility.takeScreenshot(getDriver(), "KeyboardActionsFail");
             ExtentReportManager.getTest().log(Status.FAIL, "❌ Failed to enter login details using keyboard actions: " + e.getMessage())
                     .addScreenCaptureFromPath(path);
             throw e;

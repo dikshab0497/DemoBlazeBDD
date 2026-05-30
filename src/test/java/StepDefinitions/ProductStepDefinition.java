@@ -24,7 +24,7 @@ public class ProductStepDefinition extends BaseClass{
 	@Given("User check selected product is display")
     public void validateProductFromCategory() throws InterruptedException {
        
-		laptopProductsPage = new LaptopProductsPage(driver);
+		laptopProductsPage = new LaptopProductsPage(getDriver());
 
         String productName = laptopProductsPage.getProductDetailsFromSelectedCategory();
         String keyword = "MacBook air";
@@ -39,7 +39,7 @@ public class ProductStepDefinition extends BaseClass{
 	@Given("User click AddToCartButton")
     public void clickOnAddToCartBtn() throws InterruptedException {
        
-		laptopProductsPage = new LaptopProductsPage(driver);
+		laptopProductsPage = new LaptopProductsPage(getDriver());
 
 		laptopProductsPage.clickOnAddToCart();
 		laptopProductsPage.clickOnAddToCartAlertBox();
@@ -48,7 +48,7 @@ public class ProductStepDefinition extends BaseClass{
 	@Given("User click on Cart Link")
     public void clickOnCartLink() throws InterruptedException {
        
-		laptopProductsPage = new LaptopProductsPage(driver);
+		laptopProductsPage = new LaptopProductsPage(getDriver());
 
 		laptopProductsPage.clickOnCart();
 		
@@ -56,7 +56,7 @@ public class ProductStepDefinition extends BaseClass{
 	
 	@Given("User validates product details on Product Page")
 	public void validateProductDetailsOnProductPage() {
-		laptopProductsPage = new LaptopProductsPage(driver);
+		laptopProductsPage = new LaptopProductsPage(getDriver());
 
 
 	    String expectedName = "MacBook air";
@@ -75,7 +75,7 @@ public class ProductStepDefinition extends BaseClass{
 	@Given("User Place an Order")
     public void clickOnbtnPlaceOrder() throws InterruptedException {
        
-		laptopProductsPage = new LaptopProductsPage(driver);
+		laptopProductsPage = new LaptopProductsPage(getDriver());
 
 		laptopProductsPage.clickOnPlaceOrderbtn();
 		
@@ -92,8 +92,8 @@ public class ProductStepDefinition extends BaseClass{
 	        products.add(excel.getCellData("ProductName", i, 0));
 	    }
        
-        homePage = new HomePage(driver);
-    	laptopProductsPage = new LaptopProductsPage(driver);
+        homePage = new HomePage(getDriver());
+    	laptopProductsPage = new LaptopProductsPage(getDriver());
         
         for(String ProductName:products) {
         	
@@ -124,7 +124,7 @@ public class ProductStepDefinition extends BaseClass{
 	@Given("User Validate total amount")
     public void validateTotalPrice() throws InterruptedException {
        
-		cartpage = new CartPage(driver);
+		cartpage = new CartPage(getDriver());
 		
 		String strTotalPrice  = cartpage.getTotalAmount();
 		
@@ -138,7 +138,7 @@ public class ProductStepDefinition extends BaseClass{
 	@Given("User scroll the page till particular product")
     public void scrollPageTillProduct() throws InterruptedException {
        
-		laptopProductsPage = new LaptopProductsPage(driver);
+		laptopProductsPage = new LaptopProductsPage(getDriver());
 
 		laptopProductsPage.scrollPageTillProduct();
 		

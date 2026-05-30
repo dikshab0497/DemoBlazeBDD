@@ -13,7 +13,7 @@ public class SignupStepDefinition extends BaseClass{
 	@Given("user enters username and password For SignUP")
     public void enterSignUpCredential() throws InterruptedException  {
        
-		signup = new SignupPage(driver);
+		signup = new SignupPage(getDriver());
         
 		String env = configProp.getProperty("env","qa").toLowerCase();
         
@@ -28,7 +28,7 @@ public class SignupStepDefinition extends BaseClass{
 	
 	@Given("user validate successful message in Alert Box")
     public void checkSuccessfulStatus() {
-		signup = new SignupPage(driver);
+		signup = new SignupPage(getDriver());
     	
 		Assert.assertEquals(signup.validateSuccessfulAlertBox(), "Sign up successful.", "Sign up Unsuccessful.");
     	
@@ -36,7 +36,7 @@ public class SignupStepDefinition extends BaseClass{
 	
 	@Given("user validate Warning message in Alert Box")
     public void checkWarningStatus() {
-		signup = new SignupPage(driver);
+		signup = new SignupPage(getDriver());
     	
 		Assert.assertEquals(signup.validateWarningAlertBox(), "This user already exist.", "Sign up Unsuccessful.");
     	
@@ -44,7 +44,7 @@ public class SignupStepDefinition extends BaseClass{
     
 	@Given("user validate Warning message While signUp in Alert Box")
     public void checkWarningSignUpStatus() {
-		signup = new SignupPage(driver);
+		signup = new SignupPage(getDriver());
     	
 		Assert.assertEquals(signup.validateWarningAlertBox(), "Please fill out Username and Password.", "Sign up Unsuccessful.");
     	

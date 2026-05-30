@@ -17,9 +17,9 @@ pipeline {
     		description : 'Select Browser'
 		)
 		string(
-            name: 'RepoUrl',
+            name: 'Branch',
             defaultValue: 'main',
-            description: 'Enter repo url'
+            description: 'Enter Branch name'
         )
 	}
 
@@ -37,16 +37,31 @@ pipeline {
 		
 		stage('Checkout code') {
               steps {
-        		git branch: "${params.RepoUrl}",
+        		git branch: "${params.Branch}",
         		url: 'https://github.com/dikshab0497/DemoBlazeBDD.git'
     		}
         }
-
-        stage('Run Tests') {
+        stage('Build') {
             steps {
 				script{
-					echo "Running Test case ${params.TestCase} on ${params.Environment} Environment on ${params.Browser}"
-					bat "mvn clean test -Dcucumber.filter.tags=${params.TestCase} -DEnvironment=${params.Environment} -Dbrowser=${params.Browser}"
+					echo "Compiling the test case............"
+					bat "mvn clean compile"
+				}
+                
+            }
+        }
+
+        stage('Run Tests') {
+			when{
+				expression {
+        			(params.Environment == 'QA' && params.Browser == 'chrome') && params.TestCase?.trim().length() > 0
+    			}
+			}
+			
+            steps {
+				script{
+					echo "Running Test case ${params.TestCase} on ${params.Environment.toLowerCase()} Environment on ${params.Browser}"
+					bat "mvn test -Dcucumber.filter.tags=${params.TestCase} -Denv=${params.Environment.toLowerCase()} -Dbrowser=${params.Browser}"
 				}
                 
             }
@@ -57,6 +72,7 @@ pipeline {
       post {
    		always { 
 	  		echo "Build completed"
+	  		cleanWs()
     	}
 	}
 

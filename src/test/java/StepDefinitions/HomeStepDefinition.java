@@ -18,7 +18,7 @@ public class HomeStepDefinition extends BaseClass {
 	@Given("user clicks on SignUP button")
     public void clickOnSignUpButton() throws InterruptedException {
        
-        homePage = new HomePage(driver);
+        homePage = new HomePage(getDriver());
 
         homePage.clickSignUp();
     }
@@ -26,7 +26,7 @@ public class HomeStepDefinition extends BaseClass {
 
     @Given("user clicks on LogIn button")
     public void clickOnLoginButton() throws InterruptedException {
-    	homePage = new HomePage(driver);
+    	homePage = new HomePage(getDriver());
        try {
            ExtentReportManager.getTest().log(Status.INFO, "Clicking on Login button");
            homePage.clickLogIn();
@@ -41,7 +41,7 @@ public class HomeStepDefinition extends BaseClass {
     @Given("user should be logged in and redirected to homepage")
     public void checkLoginSussefulorNot() {
        
-    	homePage = new HomePage(driver);
+    	homePage = new HomePage(getDriver());
     	try {
             ExtentReportManager.getTest().log(Status.INFO, "Redirecting homepage");
             
@@ -61,7 +61,7 @@ public class HomeStepDefinition extends BaseClass {
     @Given("user clicks on LogOut button")
     public void clickLogOutButton() throws InterruptedException {
        
-        homePage = new HomePage(driver);
+        homePage = new HomePage(getDriver());
 
         homePage.clickLogOut();
     }
@@ -69,7 +69,7 @@ public class HomeStepDefinition extends BaseClass {
     @Given("User clicks on the category of product")
     public void selectCategory() throws InterruptedException {
        
-        homePage = new HomePage(driver);
+        homePage = new HomePage(getDriver());
 
         homePage.clickCategory();
     }
@@ -77,7 +77,7 @@ public class HomeStepDefinition extends BaseClass {
     @Given("All displayed products should belong to the selected category")
     public void validateProductFromCategory() throws InterruptedException {
        
-        homePage = new HomePage(driver);
+        homePage = new HomePage(getDriver());
 
         String productName = homePage.getProductDetails();
         String keyword = "MacBook air";
@@ -91,7 +91,7 @@ public class HomeStepDefinition extends BaseClass {
     @Given("User click on the product")
     public void clickProductFromCategory() throws InterruptedException {
        
-        homePage = new HomePage(driver);
+        homePage = new HomePage(getDriver());
 
         homePage.clickLaptopProduct();
     }
@@ -99,13 +99,13 @@ public class HomeStepDefinition extends BaseClass {
     @Given("User Scrolls the page")
     public void scrollPageDown() throws InterruptedException {
        
-        homePage = new HomePage(driver);
+        homePage = new HomePage(getDriver());
 
         homePage.scrollToBottom();
     }
     @Given("User fetches all products across pages")
     public void fetchAllProducts() throws InterruptedException {
-    	homePage = new HomePage(driver);
+    	homePage = new HomePage(getDriver());
 
         List<String> allProducts = homePage.getAllProductNames();
 
