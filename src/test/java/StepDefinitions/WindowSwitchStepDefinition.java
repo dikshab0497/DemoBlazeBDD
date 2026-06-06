@@ -1,12 +1,15 @@
 package StepDefinitions;
 
 import testBase.BaseClass;
+import utilities.ConfigPropertiesUtility;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
 
 import hooks.Hooks;
 
 import static org.testng.Assert.*;
+
+import java.io.IOException;
 import java.util.Set;
 
 public class WindowSwitchStepDefinition extends BaseClass{
@@ -15,8 +18,8 @@ public class WindowSwitchStepDefinition extends BaseClass{
 	    String parentWindow;
 
 	    @Given("I navigate to the window page")
-	    public void i_navigate_to_the_window_page() {
-	        driver.get(configProp.getProperty("window_url"));
+	    public void i_navigate_to_the_window_page() throws IOException {
+	        driver.get(ConfigPropertiesUtility.getProperty("window_url"));
 	        parentWindow = driver.getWindowHandle();
 	    }
 

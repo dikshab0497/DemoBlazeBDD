@@ -1,6 +1,7 @@
 package StepDefinitions;
 import io.cucumber.java.en.*;
 import testBase.BaseClass;
+import utilities.ConfigPropertiesUtility;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
@@ -9,12 +10,14 @@ import hooks.Hooks;
 
 import static org.testng.Assert.*;
 
+import java.io.IOException;
+
 public class DropdownStepDefintion extends BaseClass {
 	 WebDriver driver = Hooks.getDriver(); // reuse your existing driver
 
 	    @Given("I navigate to the dropdown page")
-	    public void i_navigate_to_the_dropdown_page() {
-	    	driver.get(configProp.getProperty("dropdown_url"));
+	    public void i_navigate_to_the_dropdown_page() throws IOException {
+	    	driver.get(ConfigPropertiesUtility.getProperty("dropdown_url"));
 
 	    }
 

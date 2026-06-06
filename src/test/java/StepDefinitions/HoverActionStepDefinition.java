@@ -1,6 +1,7 @@
 package StepDefinitions;
 
 import testBase.BaseClass;
+import utilities.ConfigPropertiesUtility;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -9,13 +10,15 @@ import hooks.Hooks;
 
 import static org.testng.Assert.*;
 
+import java.io.IOException;
+
 public class HoverActionStepDefinition extends BaseClass {
 	
 	 WebDriver driver = Hooks.getDriver();
 
 	    @Given("I navigate to the hover page")
-	    public void i_navigate_to_the_hover_page() {
-	        driver.get(configProp.getProperty("hover_url"));
+	    public void i_navigate_to_the_hover_page() throws IOException {
+	        driver.get(ConfigPropertiesUtility.getProperty("hover_url"));
 	    }
 
 	    @When("I hover over the first image")

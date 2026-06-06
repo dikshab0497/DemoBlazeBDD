@@ -1,25 +1,28 @@
 package StepDefinitions;
 
+import java.io.IOException;
+
 import org.testng.Assert;
 
 import io.cucumber.java.en.Given;
 import pages.SignupPage;
 import testBase.BaseClass;
+import utilities.ConfigPropertiesUtility;
 
 public class SignupStepDefinition extends BaseClass{
 	
 	SignupPage signup;
     
 	@Given("user enters username and password For SignUP")
-    public void enterSignUpCredential() throws InterruptedException  {
+    public void enterSignUpCredential() throws InterruptedException, IOException  {
        
 		signup = new SignupPage(getDriver());
         
-		String env = configProp.getProperty("env","qa").toLowerCase();
+//		String env = ConfigPropertiesUtility.getProperty("env").toLowerCase();
         
-        String username = configProp.getProperty(env + ".userName1");
+        String username = ConfigPropertiesUtility.getProperty("qa.userName1");
        
-        String password = configProp.getProperty(env + ".password1");
+        String password = ConfigPropertiesUtility.getProperty("qa.password1");
         
         
         System.out.print(username);

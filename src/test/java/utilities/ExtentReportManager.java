@@ -2,6 +2,7 @@ package utilities;
 
 import com.aventstack.extentreports.ExtentReports;
 
+
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
@@ -15,31 +16,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
+import utilities.ConfigPropertiesUtility;
+
 public class ExtentReportManager {
 
     private static ExtentReports extent;
     private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
     
-public static Properties configProp;
-	
-	// Load config.properties
-    public static void loadConfig() throws IOException {
-        if (configProp == null) {
-            configProp = new Properties();
-            FileInputStream fis = new FileInputStream(".//src//test//resources//config.properties");
-            configProp.load(fis);
-        }
-    }
 
     public static synchronized ExtentReports getExtent() throws IOException {
-    	loadConfig();
         if (extent == null) {
             String reportDir = System.getProperty("extent.report.dir", System.getProperty("user.dir") + "/ExtentReport");
             new File(reportDir).mkdirs();
 //            String reportPath = reportDir + "/ExtentReport.html";
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 //            String reportPath = reportDir + "/ExtentReport_" + timeStamp + ".html";System.getProperty("user.dir")
-            String reportPath = reportDir + "/" + configProp.getProperty("testCase").replace("@","") + "_"+ timeStamp + ".html";
+            String reportPath = reportDir + "/" + ConfigPropertiesUtility.getProperty("testCase").replace("@","") + "_"+ timeStamp + ".html";
             
             System.out.println("Extent Report Path: " + reportPath);
 

@@ -4,6 +4,7 @@ import com.aventstack.extentreports.Status;
 import io.cucumber.java.en.Given;
 import pages.LoginPage;
 import testBase.BaseClass;
+import utilities.ConfigPropertiesUtility;
 import utilities.ExtentReportManager;
 import utilities.ScreenshotUtility;
 
@@ -12,13 +13,13 @@ public class LoginStepDefinition extends BaseClass {
     LoginPage loginPage;
 
     @Given("user enters username and password")
-    public void enterLoginCredential() throws InterruptedException {
+    public void enterLoginCredential() throws Exception {
         loginPage = new LoginPage(getDriver());
         try {
         	
-        	String env = configProp.getProperty("env","qa").toLowerCase();
-            String username = configProp.getProperty(env + ".userName");
-            String password = configProp.getProperty(env + ".password");
+//        	String env = ConfigPropertiesUtility.getProperty("env").toLowerCase();
+            String username = ConfigPropertiesUtility.getProperty("qa.userName");
+            String password = ConfigPropertiesUtility.getProperty("qa.password");
 
             loginPage.enterLoginCredentials(username,password);
 
@@ -46,13 +47,13 @@ public class LoginStepDefinition extends BaseClass {
     }
 
     @Given("user enters details using keyboard actions")
-    public void enterLoginDetailsWithKeyboardAct() throws InterruptedException {
+    public void enterLoginDetailsWithKeyboardAct() throws Exception {
         loginPage = new LoginPage(getDriver());
         try {
             ExtentReportManager.getTest().log(Status.INFO, "Entering login details using keyboard actions");
 
-            String username = configProp.getProperty("userName");
-            String password = configProp.getProperty("password");
+            String username = ConfigPropertiesUtility.getProperty("userName");
+            String password = ConfigPropertiesUtility.getProperty("password");
 
             loginPage.enterLoginDetailsWithKeyboardActions(username, password);
 

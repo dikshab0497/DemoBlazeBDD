@@ -7,8 +7,8 @@
         <methods>
           <include name="setUpClass"/>
           <include name="flushExtentReport"/>
-          <include name="runScenario"/>
           <include name="tearDownClass"/>
+          <include name="runScenario" invocation-numbers="0"/>
           <include name="setCucumberTags"/>
         </methods>
       </class> <!-- runner.TestNGRunner -->

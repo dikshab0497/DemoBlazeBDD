@@ -16,13 +16,13 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterSuite;
 
+import utilities.ConfigPropertiesUtility;
 import utilities.ExtentReportManager;
 
 public class BaseClass {
 
 //    public static WebDriver driver;
 	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();// for parellel executions
-    public static Properties configProp;
     public static Logger logger;
     
     
@@ -30,28 +30,18 @@ public class BaseClass {
         return driver.get();
     }
 
-    // Load config.properties
-    public static void loadConfig() throws IOException {
-        if (configProp == null) {
-            configProp = new Properties();
-            FileInputStream fis = new FileInputStream(".//src//test//resources//config.properties");
-            configProp.load(fis);
-        }
-    }
-
     // Setup WebDriver (local/remote)
     public static void setupDriver(String os, String browser) throws IOException {
-        loadConfig();
         logger = LogManager.getLogger(BaseClass.class);
 
-        if (configProp.getProperty("execution_env").equalsIgnoreCase("remote")) {
+        if (ConfigPropertiesUtility.getProperty("execution_env").equalsIgnoreCase("remote")) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setPlatform(Platform.valueOf(os.toUpperCase()));
             capabilities.setBrowserName(browser);
 //            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
             driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities));
 
-        } else if (configProp.getProperty("execution_env").equalsIgnoreCase("local")) {
+        } else if (ConfigPropertiesUtility.getProperty("execution_env").equalsIgnoreCase("local")) {
             switch (browser.toLowerCase()) {
                 case "chrome":
                 	driver.set(new ChromeDriver());
@@ -73,10 +63,10 @@ public class BaseClass {
     }
 
     // Open application URL
-    public static void openApplication() {
+    public static void openApplication() throws IOException {
     	String env = System.getProperty("env", "qa").toLowerCase(); // "dev", "qa", or "uat"
 //        driver.get(configProp.getProperty(env +".appURL"));
-        getDriver().get(configProp.getProperty(env +".appURL"));
+        getDriver().get(ConfigPropertiesUtility.getProperty(env +".appURL"));
     }
 
     // Close browser

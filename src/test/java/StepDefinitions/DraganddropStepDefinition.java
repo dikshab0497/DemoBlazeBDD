@@ -1,6 +1,7 @@
 package StepDefinitions;
 
 import testBase.BaseClass;
+import utilities.ConfigPropertiesUtility;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -9,12 +10,14 @@ import hooks.Hooks;
 
 import static org.testng.Assert.*;
 
+import java.io.IOException;
+
 public class DraganddropStepDefinition extends BaseClass {
 	WebDriver driver = Hooks.getDriver();
 
     @Given("I navigate to the drag and drop page")
-    public void i_navigate_to_the_drag_and_drop_page() {
-        driver.get(configProp.getProperty("dragdrop_url"));
+    public void i_navigate_to_the_drag_and_drop_page() throws IOException {
+        driver.get(ConfigPropertiesUtility.getProperty("dragdrop_url"));
     }
 
     @When("I drag the element A and drop it onto element B")

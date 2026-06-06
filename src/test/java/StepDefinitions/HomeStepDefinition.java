@@ -9,6 +9,7 @@ import com.aventstack.extentreports.Status;
 import io.cucumber.java.en.Given;
 import pages.HomePage;
 import testBase.BaseClass;
+import utilities.ConfigPropertiesUtility;
 import utilities.ExtentReportManager;
 
 public class HomeStepDefinition extends BaseClass {
@@ -39,16 +40,17 @@ public class HomeStepDefinition extends BaseClass {
     }
     
     @Given("user should be logged in and redirected to homepage")
-    public void checkLoginSussefulorNot() {
+    public void checkLoginSussefulorNot() throws Exception {
        
     	homePage = new HomePage(getDriver());
     	try {
             ExtentReportManager.getTest().log(Status.INFO, "Redirecting homepage");
             
-        String env = configProp.getProperty("env","qa");
-        String username = configProp.getProperty(env + ".userName");
+//        String env = ConfigPropertiesUtility.getProperty("env");
+        String username = ConfigPropertiesUtility.getProperty("qa.userName");
           
         Assert.assertEquals(homePage.getWelcomeText(), "Welcome "+ username, "Welcome text does not match!");
+        
         ExtentReportManager.getTest().log(Status.PASS, "Redirection succesfull");
     	}catch(Exception e) {
     		

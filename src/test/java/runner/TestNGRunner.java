@@ -42,6 +42,7 @@ import org.testng.annotations.AfterSuite;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import utilities.ConfigPropertiesUtility;
 import utilities.ExtentReportManager;
 
 
@@ -66,11 +67,10 @@ public class TestNGRunner extends AbstractTestNGCucumberTests {
 	
     @BeforeSuite
     public void setCucumberTags() throws IOException {
-    	loadConfig();
         String tag = System.getProperty("cucumber.filter.tags");
 
         if (tag == null || tag.trim().isEmpty()) {
-            tag = configProp.getProperty("testCase");
+            tag = ConfigPropertiesUtility.getProperty("testCase");
             System.setProperty("cucumber.filter.tags", tag);
         }
 

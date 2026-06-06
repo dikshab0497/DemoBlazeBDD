@@ -7,6 +7,7 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import testBase.BaseClass;
+import utilities.ConfigPropertiesUtility;
 import utilities.ExtentReportManager;
 import utilities.ScreenshotUtility;
 
@@ -14,10 +15,9 @@ public class Hooks extends BaseClass {
 
     @Before
     public void setUp(Scenario scenario) throws Exception {
-        loadConfig();
         String browser = System.getProperty("browser");
         if(browser == null) {
-        	browser = configProp.getProperty("browser");
+        	browser = ConfigPropertiesUtility.getProperty("browser");
         }
         setupDriver("windows",browser);
         openApplication();
