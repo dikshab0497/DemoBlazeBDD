@@ -21,6 +21,7 @@ pipeline {
             defaultValue: 'main',
             description: 'Enter Branch name'
         )
+       
 	}
 
     agent any
@@ -36,11 +37,16 @@ pipeline {
     stages {
 		
 		stage('Checkout code') {
-              steps {
-        		git branch: "${params.Branch}",
-        		url: 'https://github.com/dikshab0497/DemoBlazeBDD.git'
-    		}
-        }
+    		steps {
+        		checkout([
+            		$class: 'GitSCM',
+            		branches: [[name: "*/${params.Branch}"]],
+            		userRemoteConfigs: [[
+                	url: 'https://github.com/dikshab0497/DemoBlazeBDD.git'
+            	]]
+        	])
+    	}
+}
         stage('Build') {
             steps {
 				script{
