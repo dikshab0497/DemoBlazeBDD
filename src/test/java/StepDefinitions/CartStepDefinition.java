@@ -10,45 +10,49 @@ import pages.CartPage;
 import testBase.BaseClass;
 
 public class CartStepDefinition extends BaseClass {
-	
-	CartPage cartpage;
 
-	@Given("User Validate product in Cart")
+    CartPage cartPage;
+
+    @Given("User Validate product in Cart")
     public void validateProductPresentInCart() throws InterruptedException {
-       
-		cartpage = new CartPage(getDriver());
+        logger.info("[CART-STEP] Validating product in cart...");
+        cartPage = new CartPage(getDriver());
 
-        String productName = cartpage.getProductFromAddToCart();
+        String productName = cartPage.getProductFromAddToCart();
         String keyword = "MacBook air";
-        
+
+        logger.info("[CART-STEP] Product found: " + productName);
+        logger.info("[CART-STEP] Asserting product contains: " + keyword);
+
         Assert.assertTrue(
-        	    productName.contains(keyword),
-        	    "Product '" + productName + "' is present in Cart page"
-        	);
+                productName.contains(keyword),
+                "Product '" + productName + "' is present in Cart page"
+        );
+        logger.info("[CART-STEP] Assertion passed — product is present in cart");
     }
 
-	@Given("User Delete Product from Cart")
+    @Given("User Delete Product from Cart")
     public void deleteProductFromCart() throws InterruptedException {
-       
-		cartpage = new CartPage(getDriver());
-		
-		cartpage.deleteProductFromCart();
+        logger.info("[CART-STEP] Deleting product from cart...");
+        cartPage = new CartPage(getDriver());
+        cartPage.deleteProductFromCart();
+        logger.info("[CART-STEP] Product deleted from cart");
+    }
 
-      }
-	
-	@Given("User Validate Product is Deleted")
+    @Given("User Validate Product is Deleted")
     public void validateProductDeletionFromCart() throws InterruptedException {
-       
-		cartpage = new CartPage(getDriver());
-		String productName = "MacBook air";
-		
-		List<WebElement> products = cartpage.validateProductDeletion(productName);
-		
-		Assert.assertTrue(products.size() == 0, "Product is still present in cart: " + productName);
-	}
-	
-	
+        logger.info("[CART-STEP] Validating product deletion...");
+        cartPage = new CartPage(getDriver());
 
+        String productName = "MacBook air";
+        List<WebElement> products = cartPage.validateProductDeletion(productName);
 
+        logger.info("[CART-STEP] Remaining items with name '" + productName + "': " + products.size());
 
+        Assert.assertTrue(
+                products.size() == 0,
+                "Product is still present in cart: " + productName
+        );
+        logger.info("[CART-STEP] Assertion passed — product successfully deleted from cart");
+    }
 }

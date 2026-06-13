@@ -11,6 +11,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class LoginPage extends BasePage {
 	
@@ -37,14 +39,17 @@ public class LoginPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginusername")));
                 
         usernameLogin.sendKeys(username);
+        logger.info("User enter username");
         
         Thread.sleep(500); 
     	passwordLogin.sendKeys(password);
-    	
+    	logger.info("User enter password");
+    	 
     	Thread.sleep(500); 
     	
     	btnLogin.click();
-    	
+    	logger.info("User click login button");
+    	 
     	Thread.sleep(500); 
 	}
 	
