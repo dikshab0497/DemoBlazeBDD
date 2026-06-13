@@ -11788,3 +11788,108 @@
 21:10:55.906 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@2b22a1cc: 5 ms
 21:10:55.911 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@102efc59: 5 ms
 21:10:55.911 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@3936df72: 0 ms
+21:19:19.722 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 7 ms.
+21:19:19.737 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 10 ms.
+21:19:19.739 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.741 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+21:19:19.743 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.743 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+21:19:19.744 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.744 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+21:19:19.745 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.746 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+21:19:19.747 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.748 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+21:19:19.750 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.750 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+21:19:19.751 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.752 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+21:19:19.756 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.757 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+21:19:19.758 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.758 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+21:19:19.762 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.763 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+21:19:19.763 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.764 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+21:19:19.765 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 1 ms.
+21:19:19.765 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+21:19:19.767 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.768 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+21:19:19.768 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+21:19:19.771 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 2 ms.
+21:19:19.783 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\Diksha\AppData\Local\Temp\testng-eclipse--1186590273\testng-customsuite.xml
+
+21:19:19.808 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+21:19:19.808 [main] INFO  runner.TestNGRunner - [RUNNER] Test Suite Starting...
+21:19:19.809 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+21:19:19.810 [main] INFO  utilities.ConfigPropertiesUtility - [CONFIG] Loading config from: .//src//test//resources//config.properties
+21:19:19.811 [main] INFO  utilities.ConfigPropertiesUtility - [CONFIG] Config loaded successfully. Total properties: 18
+21:19:19.811 [main] INFO  runner.TestNGRunner - [RUNNER] Tags loaded from config: @LogOut
+21:19:19.811 [main] INFO  runner.TestNGRunner - [RUNNER] Executing Cucumber Tag: @LogOut
+21:19:19.833 [main] INFO  org.testng.internal.Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 4 ms.
+21:19:20.104 [main] INFO  runner.TestNGRunner - [RUNNER] Loading scenarios (parallel execution enabled)
+21:19:20.230 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+21:19:20.231 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] ID      : 0cb21243-167e-4f03-9816-e937beedbdbe
+21:19:20.232 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Name    : TC004 - LogOut Functionality
+21:19:20.232 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Tags    : [@LogOut, @Smoke]
+21:19:20.233 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Start   : 2026-06-13T21:19:20.233979900
+21:19:20.233 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+21:19:20.233 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+21:19:20.235 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Execution Environment : local
+21:19:20.235 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] OS                    : windows
+21:19:20.235 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser               : chrome
+21:19:20.235 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+21:19:30.209 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Local WebDriver initialised
+21:19:30.245 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser launched and maximised: chrome
+21:19:30.245 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Environment : qa
+21:19:30.246 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Opening URL : https://www.demoblaze.com/
+21:19:32.024 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Application loaded successfully
+21:19:32.027 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Creating test node: TC004 - LogOut Functionality
+21:19:32.033 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Report directory : C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport
+21:19:32.033 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Report file      : C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport/LogOut_20260613_211932.html
+21:19:32.497 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] System Info — Executed By: Diksha | OS: Windows 11 | Java: 21.0.6 | Machine: DESKTOP-1FSL10N
+21:19:32.498 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] ExtentReports initialised successfully
+21:19:32.522 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Clicking Login button...
+21:19:32.559 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Clicking Login button...
+21:19:32.723 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Login modal triggered
+21:19:32.726 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Login button clicked successfully
+21:19:32.730 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Entering username and password...
+21:19:32.733 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Username: memo97
+21:19:32.734 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Password: ********
+21:19:33.422 [TestNG-PoolService-1] INFO  pages.LoginPage - User enter username
+21:19:34.012 [TestNG-PoolService-1] INFO  pages.LoginPage - User enter password
+21:19:34.662 [TestNG-PoolService-1] INFO  pages.LoginPage - User click login button
+21:19:35.168 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Credentials entered successfully ✅
+21:19:35.169 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Validating login and homepage redirection...
+21:19:35.170 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Fetching welcome text...
+21:19:37.299 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Welcome text: Welcome memo97
+21:19:37.299 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Expected welcome text: Welcome memo97
+21:19:37.301 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Actual welcome text  : Welcome memo97
+21:19:37.306 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Login validation passed ✅
+21:19:37.308 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Clicking Logout button...
+21:19:37.309 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Clicking Logout button...
+21:19:37.836 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Logged out successfully
+21:19:37.837 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Logout button clicked
+21:19:37.838 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+21:19:37.841 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Name    : TC004 - LogOut Functionality
+21:19:37.844 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] End     : 2026-06-13T21:19:37.843891900
+21:19:37.847 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Status  : PASSED
+21:19:37.850 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+21:19:37.857 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] No report dir from system property — using default: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport
+21:19:38.207 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] Captured: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport/screenshots/TC004 - LogOut Functionality_20260613_211937.png
+21:19:38.214 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCREENSHOT] Pass screenshot: screenshots/TC004 - LogOut Functionality_20260613_211937.png
+21:19:38.214 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Closing browser...
+21:19:38.602 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser closed and ThreadLocal driver removed
+21:19:38.834 [main] INFO  utilities.ExtentReportManager - [REPORT] Flushing Extent Report...
+21:19:39.099 [main] INFO  utilities.ExtentReportManager - [REPORT] Extent Report flushed successfully
+21:19:39.099 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+21:19:39.099 [main] INFO  runner.TestNGRunner - [RUNNER] Test Suite Finished. Extent Report flushed.
+21:19:39.099 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+21:19:39.163 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@7173ae5b: 57 ms
+21:19:39.164 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@72456279: 1 ms
+21:19:39.172 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@710d89e2: 8 ms
+21:19:39.177 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@2b22a1cc: 4 ms
+21:19:39.189 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@102efc59: 11 ms
+21:19:39.189 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@3936df72: 0 ms

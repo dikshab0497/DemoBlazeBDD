@@ -14,10 +14,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends BasePage {
 
-    private static final By LOGIN_BTN        = By.id("login2");
-    private static final By PRODUCT_MACBOOK  = By.xpath("//a[normalize-space()='MacBook air']");
-    private static final By ALL_PRODUCTS     = By.cssSelector(".card-block .card-title");
-    private static final By NEXT_BTN         = By.id("next2");
+    private static final By LOGIN_BTN       = By.id("login2");
+    private static final By PRODUCT_MACBOOK = By.xpath("//a[normalize-space()='MacBook air']");
+    private static final By ALL_PRODUCTS    = By.cssSelector(".card-block .card-title");
+    private static final By NEXT_BTN        = By.id("next2");
 
     @FindBy(xpath = "//a[@id='login2']")
     WebElement lnkLogIn;
@@ -43,7 +43,7 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    public void clickLogIn() throws InterruptedException {
+    public void clickLogIn() {
         logger.info("[HOME] Clicking Login button...");
         WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(LOGIN_BTN));
         loginBtn.click();
@@ -58,23 +58,28 @@ public class HomePage extends BasePage {
         return text;
     }
 
-    public void clickSignUp() throws InterruptedException {
+    public void clickSignUp() {
         logger.info("[HOME] Clicking Sign Up button...");
+        wait.until(ExpectedConditions.elementToBeClickable(lnkSignUp));
         lnkSignUp.click();
+        logger.info("[HOME] Sign Up button clicked");
     }
 
-    public void clickLogOut() throws InterruptedException {
+    public void clickLogOut() {
         logger.info("[HOME] Clicking Logout button...");
+        wait.until(ExpectedConditions.elementToBeClickable(lnkLogOut));
         lnkLogOut.click();
         logger.info("[HOME] Logged out successfully");
     }
 
-    public void clickCategory() throws InterruptedException {
+    public void clickCategory() {
         logger.info("[HOME] Clicking Laptop category...");
+        wait.until(ExpectedConditions.elementToBeClickable(laptopCategory));
         laptopCategory.click();
+        logger.info("[HOME] Laptop category clicked");
     }
 
-    public String getProductDetails() throws InterruptedException {
+    public String getProductDetails() {
         logger.info("[HOME] Fetching product details...");
         wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_MACBOOK));
         String product = productName.getText();
@@ -82,20 +87,24 @@ public class HomePage extends BasePage {
         return product;
     }
 
-    public void clickLaptopProduct() throws InterruptedException {
+    public void clickLaptopProduct() {
         logger.info("[HOME] Clicking on MacBook air product...");
+        wait.until(ExpectedConditions.elementToBeClickable(productName));
         productName.click();
+        logger.info("[HOME] MacBook air clicked");
     }
 
-    public void scrollToBottom() throws InterruptedException {
+    public void scrollToBottom() {
         logger.info("[HOME] Scrolling to bottom of page...");
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        Thread.sleep(2000);
+        // ✅ wait for page ready state instead of Thread.sleep
+        wait.until(webDriver -> ((JavascriptExecutor) webDriver)
+                .executeScript("return document.readyState").equals("complete"));
         logger.info("[HOME] Scroll complete");
     }
 
-    public List<String> getAllProductNames() throws InterruptedException {
+    public List<String> getAllProductNames() {
         List<String> allProducts = new ArrayList<>();
         boolean hasNext = true;
         int pageCount = 1;
@@ -116,7 +125,8 @@ public class HomePage extends BasePage {
                     ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", nextBtn);
                     wait.until(ExpectedConditions.elementToBeClickable(nextBtn));
                     nextBtn.click();
-                    Thread.sleep(2000);
+                    // ✅ wait for products to reload instead of Thread.sleep(2000)
+                    wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(ALL_PRODUCTS));
                     pageCount++;
                 } else {
                     logger.info("[HOME] Last page reached");
@@ -132,7 +142,7 @@ public class HomePage extends BasePage {
         return allProducts;
     }
 
-    public void addProductsToCart(String products) throws InterruptedException {
+    public void addProductsToCart(String products) {
         logger.info("[HOME] Adding product to cart: " + products);
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//a[normalize-space()='" + products + "']")));

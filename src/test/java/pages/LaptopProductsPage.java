@@ -13,10 +13,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LaptopProductsPage extends BasePage {
 
-    private static final By HEADER_MACBOOK   = By.xpath("//h2[normalize-space()='MacBook air']");
-    private static final By BTN_ADD_TO_CART  = By.xpath("//a[normalize-space()='Add to cart']");
-    private static final By TXT_PRICE        = By.xpath("//h3[@class='price-container']");
-    private static final By LNK_MACBOOK_PRO  = By.xpath("//a[normalize-space()='MacBook Pro']");
+    private static final By HEADER_MACBOOK  = By.xpath("//h2[normalize-space()='MacBook air']");
+    private static final By BTN_ADD_TO_CART = By.xpath("//a[normalize-space()='Add to cart']");
+    private static final By TXT_PRICE       = By.xpath("//h3[@class='price-container']");
+    private static final By LNK_MACBOOK_PRO = By.xpath("//a[normalize-space()='MacBook Pro']");
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -42,7 +42,7 @@ public class LaptopProductsPage extends BasePage {
         super(driver);
     }
 
-    public String getProductDetailsFromSelectedCategory() throws InterruptedException {
+    public String getProductDetailsFromSelectedCategory() {
         logger.info("[LAPTOP] Waiting for product header...");
         wait.until(ExpectedConditions.visibilityOfElementLocated(HEADER_MACBOOK));
         String header = headerLaptopProduct.getText();
@@ -52,13 +52,14 @@ public class LaptopProductsPage extends BasePage {
 
     public void clickOnAddToCart() {
         logger.info("[LAPTOP] Clicking Add to Cart...");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(BTN_ADD_TO_CART));
+        wait.until(ExpectedConditions.elementToBeClickable(BTN_ADD_TO_CART));
         btnAddToCart.click();
         logger.info("[LAPTOP] Add to Cart clicked");
     }
 
     public String getProductName() {
         logger.info("[LAPTOP] Fetching product name...");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".name")));
         String name = driver.findElement(By.cssSelector(".name")).getText();
         logger.info("[LAPTOP] Product name: " + name);
         return name;
@@ -74,6 +75,7 @@ public class LaptopProductsPage extends BasePage {
 
     public String getProductDescription() {
         logger.info("[LAPTOP] Fetching product description...");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#more-information")));
         String description = driver.findElement(By.cssSelector("#more-information")).getText();
         logger.info("[LAPTOP] Product description: " + description);
         return description;
@@ -83,31 +85,38 @@ public class LaptopProductsPage extends BasePage {
         logger.info("[LAPTOP] Waiting for Add to Cart alert...");
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
-        logger.info("[LAPTOP] Alert message: " + alert.getText()); // ✅ replaced System.out.println
+        logger.info("[LAPTOP] Alert message: " + alert.getText());
         alert.accept();
         logger.info("[LAPTOP] Alert accepted");
     }
 
     public void clickOnCart() {
         logger.info("[LAPTOP] Navigating to Cart...");
+        wait.until(ExpectedConditions.elementToBeClickable(linkCart));
         linkCart.click();
+        logger.info("[LAPTOP] Cart link clicked");
     }
 
     public void clickOnHome() {
         logger.info("[LAPTOP] Navigating to Home...");
+        wait.until(ExpectedConditions.elementToBeClickable(linkHome));
         linkHome.click();
+        logger.info("[LAPTOP] Home link clicked");
     }
 
     public void clickOnPlaceOrderbtn() {
         logger.info("[LAPTOP] Clicking Place Order button...");
+        wait.until(ExpectedConditions.elementToBeClickable(btnPlaceOrder));
         btnPlaceOrder.click();
+        logger.info("[LAPTOP] Place Order button clicked");
     }
 
-    public void scrollPageTillProduct() throws InterruptedException {
+    public void scrollPageTillProduct() {
         logger.info("[LAPTOP] Scrolling to MacBook Pro...");
         wait.until(ExpectedConditions.visibilityOfElementLocated(LNK_MACBOOK_PRO));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", scrollProd);
-        Thread.sleep(2000);
+        // ✅ wait for element to be clickable after scroll instead of Thread.sleep(2000)
+        wait.until(ExpectedConditions.elementToBeClickable(scrollProd));
         scrollProd.click();
         logger.info("[LAPTOP] MacBook Pro clicked after scroll");
     }
