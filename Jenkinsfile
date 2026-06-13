@@ -85,6 +85,22 @@ pipeline {
             	reportFiles: '*.html',
             	reportName: 'ExtentReport'
         	])
+        	emailext(
+            	to: 'dikshabandagale0497@gmail.com',
+            	subject: "Jenkins Build ${currentBuild.currentResult}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            	body: """
+            	Build Status: ${currentBuild.currentResult}
+            	Build Number: ${env.BUILD_NUMBER}
+            	Build URL: ${env.BUILD_URL}
+
+            	Environment: ${params.Environment}
+            	Browser: ${params.Browser}
+            	Test Case Tag: ${params.TestCase}
+
+            	Report Link: ${env.BUILD_URL}ExtentReport/
+            	"""
+        )
+
         echo "Build completed"
     }
 }
