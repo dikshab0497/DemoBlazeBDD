@@ -7,7 +7,9 @@ import io.cucumber.java.Scenario;
 import testBase.BaseClass;
 import utilities.ConfigPropertiesUtility;
 import utilities.ExtentReportManager;
+import utilities.ScenarioContextGlobalDataUtility;
 import utilities.ScreenshotUtility;
+import utilities.TestContext;
 
 public class Hooks extends BaseClass {
 
@@ -39,7 +41,7 @@ public class Hooks extends BaseClass {
         logger.info(SEPARATOR);
         logger.info("[SCENARIO] Name    : " + scenario.getName());
         logger.info("[SCENARIO] End     : " + java.time.LocalDateTime.now());
-        logger.info("[SCENARIO] Status  : " + (scenario.isFailed() ? "FAILED" : "PASSED"));
+        logger.info("[SCENARIO] Status  : " + (scenario.isFailed() ? "❌ FAILED" : "✅ PASSED"));
         logger.info(SEPARATOR);
 
         try {
@@ -57,8 +59,12 @@ public class Hooks extends BaseClass {
             }
         } catch (Exception e) {
             ExtentReportManager.getTest().fail("Error capturing screenshot: " + e.getMessage());
-            logger.error("[ERROR] Screenshot/report error: " + e.getMessage(), e); // ✅ logs full stack trace
+            logger.error("[ERROR] Screenshot/report error: " + e.getMessage(), e);
         } finally {
+            // ✅ reset shared state between scenarios
+            ScenarioContextGlobalDataUtility.reset();
+            TestContext.reset();
+            logger.info("[HOOKS] Scenario context reset");
             tearDown();
         }
     }

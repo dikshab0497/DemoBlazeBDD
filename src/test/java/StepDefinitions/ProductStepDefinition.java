@@ -1,9 +1,13 @@
 package StepDefinitions;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import io.cucumber.java.en.Given;
@@ -16,12 +20,17 @@ import utilities.ScenarioContextGlobalDataUtility;
 
 public class ProductStepDefinition extends BaseClass {
 
+    private static final By PRODUCT_CARD_TITLES = By.cssSelector(".card-block .card-title");
+    private static final By PRODUCT_HEADER      = By.cssSelector(".name");
+
     LaptopProductsPage laptopProductsPage;
     HomePage homePage;
     CartPage cartPage;
 
+    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+
     @Given("User check selected product is display")
-    public void validateProductFromCategory() throws InterruptedException {
+    public void validateProductFromCategory() {
         logger.info("[PRODUCT-STEP] Validating selected product is displayed...");
         laptopProductsPage = new LaptopProductsPage(getDriver());
 
@@ -39,7 +48,7 @@ public class ProductStepDefinition extends BaseClass {
     }
 
     @Given("User click AddToCartButton")
-    public void clickOnAddToCartBtn() throws InterruptedException {
+    public void clickOnAddToCartBtn() {
         logger.info("[PRODUCT-STEP] Clicking Add to Cart...");
         laptopProductsPage = new LaptopProductsPage(getDriver());
         laptopProductsPage.clickOnAddToCart();
@@ -48,7 +57,7 @@ public class ProductStepDefinition extends BaseClass {
     }
 
     @Given("User click on Cart Link")
-    public void clickOnCartLink() throws InterruptedException {
+    public void clickOnCartLink() {
         logger.info("[PRODUCT-STEP] Navigating to Cart...");
         laptopProductsPage = new LaptopProductsPage(getDriver());
         laptopProductsPage.clickOnCart();
@@ -68,7 +77,7 @@ public class ProductStepDefinition extends BaseClass {
         String actualPrice       = laptopProductsPage.getProductPrice();
         String actualDescription = laptopProductsPage.getProductDescription();
 
-        logger.info("[PRODUCT-STEP] Expected Name: " + expectedName + " | Actual: " + actualName);
+        logger.info("[PRODUCT-STEP] Expected Name : " + expectedName  + " | Actual: " + actualName);
         logger.info("[PRODUCT-STEP] Expected Price: " + expectedPrice + " | Actual: " + actualPrice);
 
         Assert.assertEquals(actualName, expectedName, "Product name mismatch!");
@@ -79,7 +88,7 @@ public class ProductStepDefinition extends BaseClass {
     }
 
     @Given("User Place an Order")
-    public void clickOnbtnPlaceOrder() throws InterruptedException {
+    public void clickOnbtnPlaceOrder() {
         logger.info("[PRODUCT-STEP] Clicking Place Order button...");
         laptopProductsPage = new LaptopProductsPage(getDriver());
         laptopProductsPage.clickOnPlaceOrderbtn();
@@ -87,7 +96,7 @@ public class ProductStepDefinition extends BaseClass {
     }
 
     @Given("User add multiple products from Excel")
-    public void addMultipleProductsToCart() throws InterruptedException, IOException {
+    public void addMultipleProductsToCart() throws IOException {
         logger.info("[PRODUCT-STEP] Reading products from Excel...");
         ExcelUtility excel = new ExcelUtility("src/test/resources/testdata/ProductNames.xlsx");
         int rowCount = excel.getRowCount("ProductName");
@@ -105,19 +114,26 @@ public class ProductStepDefinition extends BaseClass {
 
         for (String productName : products) {
             logger.info("[PRODUCT-STEP] Adding product to cart: " + productName);
+
             homePage.clickCategory();
-            Thread.sleep(500);
+            // ✅ wait for product cards to load instead of Thread.sleep(500)
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(PRODUCT_CARD_TITLES));
+
             homePage.addProductsToCart(productName);
-            Thread.sleep(500);
+            // ✅ wait for product page to load instead of Thread.sleep(500)
+            wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_HEADER));
 
             String strAmount = laptopProductsPage.getProductPrice();
-            Thread.sleep(500);
             logger.info("[PRODUCT-STEP] Product price: " + strAmount);
+            // ✅ removed Thread.sleep(500) — getProductPrice() already has its own wait
 
             laptopProductsPage.clickOnAddToCart();
-            Thread.sleep(500);
+            // ✅ removed Thread.sleep(500) — clickOnAddToCartAlertBox() waits for alert
             laptopProductsPage.clickOnAddToCartAlertBox();
+
+            // ✅ wait for home link to be clickable instead of implicit delay
             laptopProductsPage.clickOnHome();
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(PRODUCT_CARD_TITLES));
 
             int price = Integer.parseInt(strAmount.replaceAll("[^0-9]", ""));
             totalAmount += price;
@@ -145,7 +161,7 @@ public class ProductStepDefinition extends BaseClass {
     }
 
     @Given("User scroll the page till particular product")
-    public void scrollPageTillProduct() throws InterruptedException {
+    public void scrollPageTillProduct() {
         logger.info("[PRODUCT-STEP] Scrolling page to specific product...");
         laptopProductsPage = new LaptopProductsPage(getDriver());
         laptopProductsPage.scrollPageTillProduct();

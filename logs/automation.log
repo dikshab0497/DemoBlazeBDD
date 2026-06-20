@@ -11893,3 +11893,620 @@
 21:19:39.177 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@2b22a1cc: 4 ms
 21:19:39.189 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@102efc59: 11 ms
 21:19:39.189 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@3936df72: 0 ms
+14:36:20.683 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 4 ms.
+14:36:20.696 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 7 ms.
+14:36:20.700 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.701 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+14:36:20.704 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.704 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:36:20.705 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.706 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+14:36:20.713 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.714 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+14:36:20.716 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.717 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+14:36:20.717 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.717 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:36:20.718 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.718 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:36:20.720 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.720 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:36:20.722 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.722 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:36:20.726 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.727 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:36:20.728 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.728 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:36:20.729 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.730 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:36:20.734 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:36:20.734 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:36:20.735 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 1 ms.
+14:36:20.736 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:36:20.750 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\Diksha\AppData\Local\Temp\testng-eclipse--828802866\testng-customsuite.xml
+
+14:36:20.772 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:36:20.772 [main] INFO  runner.TestNGRunner - [RUNNER] Test Suite Starting...
+14:36:20.772 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:36:20.773 [main] INFO  utilities.ConfigPropertiesUtility - [CONFIG] Loading config from: .//src//test//resources//config.properties
+14:36:20.774 [main] INFO  utilities.ConfigPropertiesUtility - [CONFIG] Config loaded successfully. Total properties: 18
+14:36:20.774 [main] INFO  runner.TestNGRunner - [RUNNER] Tags loaded from config: @LogOut
+14:36:20.774 [main] INFO  runner.TestNGRunner - [RUNNER] Executing Cucumber Tag: @LogOut
+14:36:20.784 [main] INFO  org.testng.internal.Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 3 ms.
+14:36:21.262 [main] INFO  runner.TestNGRunner - [RUNNER] Loading scenarios (parallel execution enabled)
+14:36:21.362 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:36:21.363 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] ID      : b16c8841-3a14-4bb9-a107-9e5fb0deb201
+14:36:21.363 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Name    : TC004 - LogOut Functionality
+14:36:21.363 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Tags    : [@LogOut, @Smoke]
+14:36:21.363 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Start   : 2026-06-20T14:36:21.363288800
+14:36:21.363 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:36:21.363 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:36:21.363 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Execution Environment : local
+14:36:21.363 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] OS                    : windows
+14:36:21.363 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser               : chrome
+14:36:21.364 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:37:13.064 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 5 ms.
+14:37:13.120 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 37 ms.
+14:37:13.122 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.123 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:37:13.125 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.125 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:37:13.126 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.126 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:37:13.140 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.143 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:37:13.146 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.147 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+14:37:13.148 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.149 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:37:13.149 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.150 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:37:13.152 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.152 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:37:13.153 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.153 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:37:13.157 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.158 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+14:37:13.158 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.158 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:37:13.160 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.160 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:37:13.162 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.163 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:37:13.163 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:37:13.165 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 2 ms.
+14:37:13.177 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\Diksha\AppData\Local\Temp\testng-eclipse--1709280205\testng-customsuite.xml
+
+14:37:13.204 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:37:13.204 [main] INFO  runner.TestNGRunner - [RUNNER] Test Suite Starting...
+14:37:13.204 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:37:13.205 [main] INFO  utilities.ConfigPropertiesUtility - [CONFIG] Loading config from: .//src//test//resources//config.properties
+14:37:13.205 [main] INFO  utilities.ConfigPropertiesUtility - [CONFIG] Config loaded successfully. Total properties: 18
+14:37:13.206 [main] INFO  runner.TestNGRunner - [RUNNER] Tags loaded from config: @LogOut
+14:37:13.206 [main] INFO  runner.TestNGRunner - [RUNNER] Executing Cucumber Tag: @LogOut
+14:37:13.222 [main] INFO  org.testng.internal.Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 3 ms.
+14:37:13.514 [main] INFO  runner.TestNGRunner - [RUNNER] Loading scenarios (parallel execution enabled)
+14:37:13.616 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:37:13.617 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] ID      : 1280033d-d1f7-4902-8240-6a561492a277
+14:37:13.617 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Name    : TC004 - LogOut Functionality
+14:37:13.617 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Tags    : [@LogOut, @Smoke]
+14:37:13.618 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Start   : 2026-06-20T14:37:13.617929400
+14:37:13.618 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:37:13.618 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:37:13.618 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Execution Environment : local
+14:37:13.618 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] OS                    : windows
+14:37:13.618 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser               : chrome
+14:37:13.618 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:37:29.723 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Local WebDriver initialised
+14:37:29.737 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Local WebDriver initialised
+14:37:29.783 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser launched and maximised: chrome
+14:37:29.783 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Environment : qa
+14:37:29.784 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Opening URL : https://www.demoblaze.com/
+14:37:29.780 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser launched and maximised: chrome
+14:37:29.785 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Environment : qa
+14:37:29.786 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Opening URL : https://www.demoblaze.com/
+14:37:35.803 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Application loaded successfully
+14:37:35.805 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Creating test node: TC004 - LogOut Functionality
+14:37:35.807 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Report directory : C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport
+14:37:35.807 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Report file      : C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport/LogOut_20260620_143735.html
+14:37:36.247 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] System Info — Executed By: Diksha | OS: Windows 11 | Java: 21.0.6 | Machine: DESKTOP-1FSL10N
+14:37:36.248 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] ExtentReports initialised successfully
+14:37:36.278 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Clicking Login button...
+14:37:36.331 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Clicking Login button...
+14:37:36.506 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Login modal triggered
+14:37:36.506 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Login button clicked successfully
+14:37:36.508 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Entering username and password...
+14:37:36.551 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Username: memo97
+14:37:36.551 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Password: ********
+14:37:36.551 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Waiting for login form...
+14:37:37.124 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Entering username: memo97
+14:37:37.383 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Entering password
+14:37:37.543 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Clicking Login button
+14:37:56.583 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Application loaded successfully
+14:37:56.585 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Creating test node: TC004 - LogOut Functionality
+14:37:56.587 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Report directory : C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport
+14:37:56.587 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Report file      : C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport/LogOut_20260620_143756.html
+14:37:56.789 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] System Info — Executed By: Diksha | OS: Windows 11 | Java: 21.0.6 | Machine: DESKTOP-1FSL10N
+14:37:56.789 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] ExtentReports initialised successfully
+14:37:56.801 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Clicking Login button...
+14:37:56.818 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Clicking Login button...
+14:37:57.027 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Login modal triggered
+14:37:57.029 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Login button clicked successfully
+14:37:57.031 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Entering username and password...
+14:37:57.032 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Username: memo97
+14:37:57.033 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Password: ********
+14:37:57.033 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Waiting for login form...
+14:37:57.384 [TestNG-PoolService-1] ERROR testBase.BaseClass - [LOGIN-STEP] Failed to enter login credentials: Expected condition failed: waiting for visibility of element located by By.id: nameofuser (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.33.0', revision: '2c6aaad03a'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.155 (07b52360cc1..., userDataDir: C:\Users\Diksha\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49691}, goog:processID: 26904, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49691/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 1f40f8c6af616b6bc8b6bb5c9381d358
+org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: nameofuser (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.33.0', revision: '2c6aaad03a'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.155 (07b52360cc1..., userDataDir: C:\Users\Diksha\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49691}, goog:processID: 26904, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49691/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 1f40f8c6af616b6bc8b6bb5c9381d358
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84) ~[selenium-support-4.33.0.jar:?]
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228) ~[selenium-support-4.33.0.jar:?]
+	at pages.LoginPage.enterLoginCredentials(LoginPage.java:57) ~[test-classes/:?]
+	at StepDefinitions.LoginStepDefinition.enterLoginCredential(LoginStepDefinition.java:27) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:84) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:56) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:84) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132) ~[cucumber-testng-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:137) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:137) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129) ~[cucumber-testng-7.14.0.jar:7.14.0]
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35) ~[cucumber-testng-7.14.0.jar:7.14.0]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.invokers.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:81) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.thread.Async$AsyncTask.run(Async.java:34) ~[testng-7.10.1.jar:7.10.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+14:37:57.394 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] No report dir from system property — using default: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport
+14:37:57.591 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Entering username: memo97
+14:37:57.743 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] Captured: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport/screenshots/LoginCredentialsFail_20260620_143757.png
+14:37:57.755 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:37:57.755 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Name    : TC004 - LogOut Functionality
+14:37:57.755 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] End     : 2026-06-20T14:37:57.755527900
+14:37:57.757 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Status  : ❌ FAILED
+14:37:57.757 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:37:57.757 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] No report dir from system property — using default: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport
+14:37:57.781 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Entering password
+14:37:57.933 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Clicking Login button
+14:37:58.046 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] Captured: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport/screenshots/TC004 - LogOut Functionality_20260620_143757.png
+14:37:58.051 [TestNG-PoolService-1] ERROR testBase.BaseClass - [SCREENSHOT] Failure screenshot: screenshots/TC004 - LogOut Functionality_20260620_143757.png
+14:37:58.053 [TestNG-PoolService-1] INFO  utilities.ScenarioContextGlobalDataUtility - [SCENARIO-CONTEXT] Resetting expectedTotal to 0
+14:37:58.055 [TestNG-PoolService-1] INFO  utilities.TestContext - [TEST-CONTEXT] Resetting lastError
+14:37:58.055 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOOKS] Scenario context reset
+14:37:58.056 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Closing browser...
+14:37:58.697 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser closed and ThreadLocal driver removed
+14:37:59.041 [main] INFO  utilities.ExtentReportManager - [REPORT] Flushing Extent Report...
+14:37:59.372 [main] INFO  utilities.ExtentReportManager - [REPORT] Extent Report flushed successfully
+14:37:59.372 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:37:59.372 [main] INFO  runner.TestNGRunner - [RUNNER] Test Suite Finished. Extent Report flushed.
+14:37:59.372 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:37:59.426 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@4d192aef: 47 ms
+14:37:59.437 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@2418ba04: 10 ms
+14:37:59.455 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@53ed09e8: 18 ms
+14:37:59.462 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@10bea4: 6 ms
+14:37:59.470 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@3a543f31: 8 ms
+14:37:59.470 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@47b67fcb: 0 ms
+14:38:13.655 [TestNG-PoolService-1] ERROR testBase.BaseClass - [LOGIN-STEP] Failed to enter login credentials: Expected condition failed: waiting for visibility of element located by By.id: nameofuser (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.33.0', revision: '2c6aaad03a'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.155 (07b52360cc1..., userDataDir: C:\Users\Diksha\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49690}, goog:processID: 17572, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49690/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: fdc91df493a213118478e52b2be77288
+org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: nameofuser (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.33.0', revision: '2c6aaad03a'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.155 (07b52360cc1..., userDataDir: C:\Users\Diksha\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49690}, goog:processID: 17572, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49690/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: fdc91df493a213118478e52b2be77288
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84) ~[selenium-support-4.33.0.jar:?]
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228) ~[selenium-support-4.33.0.jar:?]
+	at pages.LoginPage.enterLoginCredentials(LoginPage.java:57) ~[test-classes/:?]
+	at StepDefinitions.LoginStepDefinition.enterLoginCredential(LoginStepDefinition.java:27) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:84) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:56) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:84) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132) ~[cucumber-testng-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:137) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:137) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129) ~[cucumber-testng-7.14.0.jar:7.14.0]
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35) ~[cucumber-testng-7.14.0.jar:7.14.0]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.invokers.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:81) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.thread.Async$AsyncTask.run(Async.java:34) ~[testng-7.10.1.jar:7.10.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+14:38:13.688 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] No report dir from system property — using default: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport
+14:38:13.914 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] Captured: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport/screenshots/LoginCredentialsFail_20260620_143813.png
+14:38:13.922 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:38:13.922 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Name    : TC004 - LogOut Functionality
+14:38:13.922 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] End     : 2026-06-20T14:38:13.922971600
+14:38:13.923 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Status  : ❌ FAILED
+14:38:13.923 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:38:13.923 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] No report dir from system property — using default: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport
+14:38:14.131 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] Captured: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport/screenshots/TC004 - LogOut Functionality_20260620_143813.png
+14:38:14.133 [TestNG-PoolService-1] ERROR testBase.BaseClass - [SCREENSHOT] Failure screenshot: screenshots/TC004 - LogOut Functionality_20260620_143813.png
+14:38:14.136 [TestNG-PoolService-1] INFO  utilities.ScenarioContextGlobalDataUtility - [SCENARIO-CONTEXT] Resetting expectedTotal to 0
+14:38:14.137 [TestNG-PoolService-1] INFO  utilities.TestContext - [TEST-CONTEXT] Resetting lastError
+14:38:14.137 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOOKS] Scenario context reset
+14:38:14.138 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Closing browser...
+14:38:14.506 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser closed and ThreadLocal driver removed
+14:38:14.800 [main] INFO  utilities.ExtentReportManager - [REPORT] Flushing Extent Report...
+14:38:15.049 [main] INFO  utilities.ExtentReportManager - [REPORT] Extent Report flushed successfully
+14:38:15.049 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:38:15.049 [main] INFO  runner.TestNGRunner - [RUNNER] Test Suite Finished. Extent Report flushed.
+14:38:15.050 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:38:15.100 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@4d192aef: 46 ms
+14:38:15.114 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@2418ba04: 14 ms
+14:38:15.123 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@53ed09e8: 8 ms
+14:38:15.129 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@10bea4: 6 ms
+14:38:15.134 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@3a543f31: 5 ms
+14:38:15.135 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@47b67fcb: 0 ms
+14:40:27.463 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 13 ms.
+14:40:27.487 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 14 ms.
+14:40:27.489 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.489 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.490 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.490 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.491 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.491 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.492 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.493 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.494 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.495 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+14:40:27.495 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.496 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.496 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.496 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.498 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.498 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.499 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.499 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.501 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.502 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.502 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.502 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.503 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.504 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.507 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.507 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.508 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:40:27.508 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:40:27.518 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\Diksha\AppData\Local\Temp\testng-eclipse--1235145322\testng-customsuite.xml
+
+14:40:27.544 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:40:27.544 [main] INFO  runner.TestNGRunner - [RUNNER] Test Suite Starting...
+14:40:27.545 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:40:27.546 [main] INFO  utilities.ConfigPropertiesUtility - [CONFIG] Loading config from: .//src//test//resources//config.properties
+14:40:27.547 [main] INFO  utilities.ConfigPropertiesUtility - [CONFIG] Config loaded successfully. Total properties: 18
+14:40:27.547 [main] INFO  runner.TestNGRunner - [RUNNER] Tags loaded from config: @LogOut
+14:40:27.547 [main] INFO  runner.TestNGRunner - [RUNNER] Executing Cucumber Tag: @LogOut
+14:40:27.573 [main] INFO  org.testng.internal.Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 7 ms.
+14:40:27.897 [main] INFO  runner.TestNGRunner - [RUNNER] Loading scenarios (parallel execution enabled)
+14:40:27.988 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:40:27.988 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] ID      : c6540f93-892b-4a1c-aee9-ebab334d8dd0
+14:40:27.989 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Name    : TC004 - LogOut Functionality
+14:40:27.989 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Tags    : [@LogOut, @Smoke]
+14:40:27.989 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Start   : 2026-06-20T14:40:27.989553700
+14:40:27.989 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:40:27.990 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:40:27.990 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Execution Environment : local
+14:40:27.990 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] OS                    : windows
+14:40:27.990 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser               : chrome
+14:40:27.992 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:40:29.356 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Local WebDriver initialised
+14:40:29.409 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser launched and maximised: chrome
+14:40:29.411 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Environment : qa
+14:40:29.412 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Opening URL : https://www.demoblaze.com/
+14:41:03.843 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Application loaded successfully
+14:41:03.848 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Creating test node: TC004 - LogOut Functionality
+14:41:03.851 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Report directory : C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport
+14:41:03.851 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Report file      : C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport/LogOut_20260620_144103.html
+14:41:04.094 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] System Info — Executed By: Diksha | OS: Windows 11 | Java: 21.0.6 | Machine: DESKTOP-1FSL10N
+14:41:04.095 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] ExtentReports initialised successfully
+14:41:04.106 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Clicking Login button...
+14:41:04.125 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Clicking Login button...
+14:41:14.428 [TestNG-PoolService-1] ERROR testBase.BaseClass - [HOME-STEP] Failed to click Login button: Expected condition failed: waiting for element to be clickable: By.id: login2 (tried for 10 second(s) with 500 milliseconds interval)
+org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.id: login2 (tried for 10 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84) ~[selenium-support-4.33.0.jar:?]
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228) ~[selenium-support-4.33.0.jar:?]
+	at pages.HomePage.clickLogIn(HomePage.java:48) ~[test-classes/:?]
+	at StepDefinitions.HomeStepDefinition.clickOnLoginButton(HomeStepDefinition.java:33) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:84) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:56) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:84) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132) ~[cucumber-testng-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:137) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:137) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129) ~[cucumber-testng-7.14.0.jar:7.14.0]
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35) ~[cucumber-testng-7.14.0.jar:7.14.0]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.invokers.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:81) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.thread.Async$AsyncTask.run(Async.java:34) ~[testng-7.10.1.jar:7.10.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=149.0.7827.103)
+Build info: version: '4.33.0', revision: '2c6aaad03a'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [53d67c2c5a06c12aec8606c201904153, findElement {using=id, value=login2}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.155 (07b52360cc1..., userDataDir: C:\Users\Diksha\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65291}, goog:processID: 6436, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:65291/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 53d67c2c5a06c12aec8606c201904153
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[?:?]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?]
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:544) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:66) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:367) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:361) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:194) ~[selenium-support-4.33.0.jar:?]
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190) ~[selenium-support-4.33.0.jar:?]
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:627) ~[selenium-support-4.33.0.jar:?]
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:624) ~[selenium-support-4.33.0.jar:?]
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203) ~[selenium-support-4.33.0.jar:?]
+	... 32 more
+14:41:14.457 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:41:14.457 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Name    : TC004 - LogOut Functionality
+14:41:14.457 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] End     : 2026-06-20T14:41:14.457872900
+14:41:14.460 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Status  : ❌ FAILED
+14:41:14.460 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:41:14.462 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] No report dir from system property — using default: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport
+14:41:14.471 [TestNG-PoolService-1] ERROR testBase.BaseClass - [ERROR] Screenshot/report error: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=149.0.7827.103)
+Build info: version: '4.33.0', revision: '2c6aaad03a'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [53d67c2c5a06c12aec8606c201904153, screenshot {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.155 (07b52360cc1..., userDataDir: C:\Users\Diksha\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65291}, goog:processID: 6436, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:65291/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 53d67c2c5a06c12aec8606c201904153
+org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=149.0.7827.103)
+Build info: version: '4.33.0', revision: '2c6aaad03a'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [53d67c2c5a06c12aec8606c201904153, screenshot {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.155 (07b52360cc1..., userDataDir: C:\Users\Diksha\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65291}, goog:processID: 6436, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:65291/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 53d67c2c5a06c12aec8606c201904153
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[?:?]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[?:?]
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:544) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:617) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:621) ~[selenium-remote-driver-4.33.0.jar:?]
+	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:333) ~[selenium-remote-driver-4.33.0.jar:?]
+	at utilities.ScreenshotUtility.takeScreenshot(ScreenshotUtility.java:37) ~[test-classes/:?]
+	at hooks.Hooks.tearDownScenario(Hooks.java:48) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.java.JavaHookDefinition.execute(JavaHookDefinition.java:64) ~[cucumber-java-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.CoreHookDefinition.execute(CoreHookDefinition.java:46) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.HookDefinitionMatch.runStep(HookDefinitionMatch.java:21) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:84) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:56) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:90) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132) ~[cucumber-testng-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:137) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:137) ~[cucumber-core-7.14.0.jar:7.14.0]
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129) ~[cucumber-testng-7.14.0.jar:7.14.0]
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35) ~[cucumber-testng-7.14.0.jar:7.14.0]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.invokers.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:81) ~[testng-7.10.1.jar:7.10.1]
+	at org.testng.internal.thread.Async$AsyncTask.run(Async.java:34) ~[testng-7.10.1.jar:7.10.1]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+14:41:14.474 [TestNG-PoolService-1] INFO  utilities.ScenarioContextGlobalDataUtility - [SCENARIO-CONTEXT] Resetting expectedTotal to 0
+14:41:14.475 [TestNG-PoolService-1] INFO  utilities.TestContext - [TEST-CONTEXT] Resetting lastError
+14:41:14.475 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOOKS] Scenario context reset
+14:41:14.475 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Closing browser...
+14:41:14.568 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser closed and ThreadLocal driver removed
+14:41:14.984 [main] INFO  utilities.ExtentReportManager - [REPORT] Flushing Extent Report...
+14:41:15.276 [main] INFO  utilities.ExtentReportManager - [REPORT] Extent Report flushed successfully
+14:41:15.276 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:41:15.276 [main] INFO  runner.TestNGRunner - [RUNNER] Test Suite Finished. Extent Report flushed.
+14:41:15.276 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:41:15.351 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@332820f4: 69 ms
+14:41:15.365 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@a18649a: 14 ms
+14:41:15.376 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@2d82408: 11 ms
+14:41:15.384 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@19962194: 8 ms
+14:41:15.390 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@7c1e32c9: 6 ms
+14:41:15.390 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@383864d5: 0 ms
+14:41:35.514 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 4 ms.
+14:41:35.534 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 13 ms.
+14:41:35.537 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.539 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 2 ms.
+14:41:35.542 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.544 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:41:35.545 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.545 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:41:35.546 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.546 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:41:35.548 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.550 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:41:35.551 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.552 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:41:35.553 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.553 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:41:35.555 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.555 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:41:35.556 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.557 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:41:35.566 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 2 ms.
+14:41:35.567 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+14:41:35.568 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.568 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:41:35.570 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.571 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:41:35.573 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.574 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 0 ms.
+14:41:35.576 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms.
+14:41:35.578 [main] INFO  org.testng.internal.Utils - [Utils] MethodGroupsHelper.sortMethods() took 1 ms.
+14:41:35.588 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\Diksha\AppData\Local\Temp\testng-eclipse-581113029\testng-customsuite.xml
+
+14:41:35.622 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:41:35.622 [main] INFO  runner.TestNGRunner - [RUNNER] Test Suite Starting...
+14:41:35.623 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:41:35.624 [main] INFO  utilities.ConfigPropertiesUtility - [CONFIG] Loading config from: .//src//test//resources//config.properties
+14:41:35.625 [main] INFO  utilities.ConfigPropertiesUtility - [CONFIG] Config loaded successfully. Total properties: 18
+14:41:35.625 [main] INFO  runner.TestNGRunner - [RUNNER] Tags loaded from config: @LogOut
+14:41:35.626 [main] INFO  runner.TestNGRunner - [RUNNER] Executing Cucumber Tag: @LogOut
+14:41:35.646 [main] INFO  org.testng.internal.Utils - [Utils] DynamicGraphHelper.createDynamicGraph() took 4 ms.
+14:41:35.954 [main] INFO  runner.TestNGRunner - [RUNNER] Loading scenarios (parallel execution enabled)
+14:41:36.055 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:41:36.056 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] ID      : 35467a5e-e502-45bb-aefe-617bf6ce7e0a
+14:41:36.056 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Name    : TC004 - LogOut Functionality
+14:41:36.056 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Tags    : [@LogOut, @Smoke]
+14:41:36.057 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Start   : 2026-06-20T14:41:36.057579300
+14:41:36.057 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:41:36.057 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:41:36.057 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Execution Environment : local
+14:41:36.058 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] OS                    : windows
+14:41:36.058 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser               : chrome
+14:41:36.058 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:41:37.334 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Local WebDriver initialised
+14:41:37.361 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser launched and maximised: chrome
+14:41:37.361 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Environment : qa
+14:41:37.361 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Opening URL : https://www.demoblaze.com/
+14:41:49.892 [TestNG-PoolService-1] INFO  testBase.BaseClass - [APP] Application loaded successfully
+14:41:49.898 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Creating test node: TC004 - LogOut Functionality
+14:41:49.901 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Report directory : C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport
+14:41:49.906 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] Report file      : C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport/LogOut_20260620_144149.html
+14:41:50.343 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] System Info — Executed By: Diksha | OS: Windows 11 | Java: 21.0.6 | Machine: DESKTOP-1FSL10N
+14:41:50.343 [TestNG-PoolService-1] INFO  utilities.ExtentReportManager - [REPORT] ExtentReports initialised successfully
+14:41:50.378 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Clicking Login button...
+14:41:50.415 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Clicking Login button...
+14:41:50.573 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Login modal triggered
+14:41:50.575 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Login button clicked successfully
+14:41:50.579 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Entering username and password...
+14:41:50.583 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Username: memo97
+14:41:50.583 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Password: ********
+14:41:50.583 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Waiting for login form...
+14:41:51.153 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Entering username: memo97
+14:41:51.312 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Entering password
+14:41:51.461 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Clicking Login button
+14:41:54.113 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Login modal closed
+14:41:54.696 [TestNG-PoolService-1] INFO  pages.LoginPage - [LOGIN] Login successful — welcome text visible
+14:41:54.697 [TestNG-PoolService-1] INFO  testBase.BaseClass - [LOGIN-STEP] Credentials entered successfully ✅
+14:41:54.698 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Validating login and homepage redirection...
+14:41:54.701 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Fetching welcome text...
+14:41:54.757 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Welcome text: Welcome memo97
+14:41:54.757 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Expected welcome text: Welcome memo97
+14:41:54.757 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Actual welcome text  : Welcome memo97
+14:41:54.763 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Login validation passed ✅
+14:41:54.763 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Clicking Logout button...
+14:41:54.765 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Clicking Logout button...
+14:41:55.232 [TestNG-PoolService-1] INFO  pages.HomePage - [HOME] Logged out successfully
+14:41:55.233 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOME-STEP] Logout button clicked
+14:41:55.235 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:41:55.237 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Name    : TC004 - LogOut Functionality
+14:41:55.239 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] End     : 2026-06-20T14:41:55.239159100
+14:41:55.246 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCENARIO] Status  : ✅ PASSED
+14:41:55.247 [TestNG-PoolService-1] INFO  testBase.BaseClass - ================================================
+14:41:55.249 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] No report dir from system property — using default: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport
+14:41:55.541 [TestNG-PoolService-1] INFO  utilities.ScreenshotUtility - [SCREENSHOT] Captured: C:\Users\Diksha\OneDrive\Desktop\Diksha\DemoBlazeBDD/ExtentReport/screenshots/TC004 - LogOut Functionality_20260620_144155.png
+14:41:55.548 [TestNG-PoolService-1] INFO  testBase.BaseClass - [SCREENSHOT] Pass screenshot: screenshots/TC004 - LogOut Functionality_20260620_144155.png
+14:41:55.549 [TestNG-PoolService-1] INFO  utilities.ScenarioContextGlobalDataUtility - [SCENARIO-CONTEXT] Resetting expectedTotal to 0
+14:41:55.552 [TestNG-PoolService-1] INFO  utilities.TestContext - [TEST-CONTEXT] Resetting lastError
+14:41:55.552 [TestNG-PoolService-1] INFO  testBase.BaseClass - [HOOKS] Scenario context reset
+14:41:55.552 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Closing browser...
+14:41:55.850 [TestNG-PoolService-1] INFO  testBase.BaseClass - [DRIVER] Browser closed and ThreadLocal driver removed
+14:41:56.127 [main] INFO  utilities.ExtentReportManager - [REPORT] Flushing Extent Report...
+14:41:56.427 [main] INFO  utilities.ExtentReportManager - [REPORT] Extent Report flushed successfully
+14:41:56.428 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:41:56.428 [main] INFO  runner.TestNGRunner - [RUNNER] Test Suite Finished. Extent Report flushed.
+14:41:56.428 [main] INFO  runner.TestNGRunner - [RUNNER] ================================================
+14:41:56.477 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@7173ae5b: 46 ms
+14:41:56.478 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@72456279: 0 ms
+14:41:56.486 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@710d89e2: 8 ms
+14:41:56.493 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@2b22a1cc: 7 ms
+14:41:56.498 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@102efc59: 5 ms
+14:41:56.499 [main] INFO  org.testng.internal.Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@3936df72: 1 ms
