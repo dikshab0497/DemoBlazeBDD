@@ -1,157 +1,375 @@
-🛒 DemoBlaze End-to-End Automation Framework
+# 🛒 DemoBlaze — Selenium Cucumber BDD Automation Framework
 
-This project is a Selenium + Cucumber BDD automation framework for testing the DemoBlaze
- e-commerce website. It demonstrates end-to-end automation of critical account, product, and checkout flows, along with advanced Selenium scenarios, logging, reporting, and CI/CD integration.
+A production-ready end-to-end test automation framework for the [DemoBlaze](https://www.demoblaze.com/) e-commerce application, built with **Selenium WebDriver**, **Java**, **Cucumber BDD**, **TestNG**, and **Maven** — with full CI/CD integration via Jenkins.
 
-📌 Project Highlights
+---
 
-✅ Selenium WebDriver for robust UI automation
+## 📌 Project Highlights
 
-📘 Cucumber BDD with human-readable Gherkin scenarios
+| | |
+|--|--|
+| ✅ | Selenium WebDriver for robust UI automation |
+| 📘 | Cucumber BDD with human-readable Gherkin scenarios |
+| 🧪 | TestNG for test execution and assertions |
+| 📊 | Extent Reports for detailed HTML test reports |
+| 📝 | Log4j2 for console and rolling file logging |
+| 📸 | Automatic screenshots on pass and fail |
+| 🏗 | Page Object Model (POM) for maintainable, reusable code |
+| 🔁 | Cucumber Hooks for test setup and teardown |
+| 🔄 | CI/CD integration via Jenkins pipeline |
+| 🔬 | Advanced Selenium: dropdowns, hover, scroll, drag & drop, windows, tables, keyboard actions |
+| 🔁 | Retry Analyzer — auto-retries flaky tests up to 2 times |
+| 📂 | Data-driven testing via Excel (Apache POI) |
+| 🧵 | ThreadLocal WebDriver for parallel execution safety |
 
-🧪 TestNG for test execution and assertions
+---
 
-📊 Extent Reports for detailed HTML reports
+## 🛠️ Tech Stack
 
-📝 Log4j for runtime logging
+| Tool | Version | Purpose |
+|------|---------|---------|
+| Java | 21 | Core programming language |
+| Selenium WebDriver | 4.33.0 | Browser automation |
+| Cucumber | 7.14.0 | BDD framework |
+| TestNG | 7.10.1 | Test execution & assertions |
+| Maven | 3.x | Build & dependency management |
+| Log4j2 | 2.23.1 | Console & rolling file logging |
+| ExtentReports | 5.1.1 | Rich HTML test reports |
+| Apache POI | 5.2.5 | Excel data handling |
+| Jenkins | Latest | CI/CD pipeline |
+| Git & GitHub | - | Version control |
 
-📸 Automatic screenshots on test failures
+---
 
-🏗 Page Object Model (POM) for maintainable and reusable code
+## 🗂️ Project Structure
 
-🔁 Hooks (Before/After) for test setup and teardown
-
-🔄 CI/CD Integration using Jenkins/GitHub Actions
-
-🔬 Advanced Selenium Scenarios: dropdowns, hover actions, scrolling, tables, keyboard actions, alerts/modals, drag & drop, window/tab switching
-
-🛠️ Tech Stack
-Tool	Purpose
-Java	Programming Language
-Selenium	UI Automation
-Cucumber	Behavior-Driven Development
-Maven	Dependency & Project Management
-TestNG	Test Framework
-Extent Reports	Advanced HTML Reporting
-Log4j	Runtime Logging
-Git & GitHub	Version Control
-Jenkins / GitHub Actions	CI/CD Automation
-WebDriverManager / ChromeDriver	Browser Driver
-🗂️ Project Structure
-DemoBlaze-Automation/
+```
+DemoBlazeBDD/
 ├── src/
-│   ├── main/java/
-│   │   └── pages/           # Page Object Classes
-│   ├── test/java/
-│   │   ├── stepDefinitions/ # Step Definitions for Cucumber
-│   │   └── runner/          # Test Runner Classes
-├── features/                # Gherkin Feature Files
-├── test-output/             # Extent Reports & Screenshots
-├── pom.xml                  # Maven Configuration
-└── README.md                # Project Documentation
+│   └── test/
+│       ├── java/
+│       │   ├── hooks/
+│       │   │   └── Hooks.java                   # Cucumber @Before/@After lifecycle
+│       │   ├── pages/
+│       │   │   ├── BasePage.java                # Page base class with logger
+│       │   │   ├── HomePage.java
+│       │   │   ├── LoginPage.java
+│       │   │   ├── SignupPage.java
+│       │   │   ├── CartPage.java
+│       │   │   ├── LaptopProductsPage.java
+│       │   │   ├── PlaceOrderPage.java
+│       │   │   └── ConfirmationPage.java
+│       │   ├── runner/
+│       │   │   └── TestNGRunner.java            # Cucumber TestNG runner
+│       │   ├── StepDefinitions/
+│       │   │   ├── HomeStepDefinition.java
+│       │   │   ├── LoginStepDefinition.java
+│       │   │   ├── SignupStepDefinition.java
+│       │   │   ├── CartStepDefinition.java
+│       │   │   ├── ProductStepDefinition.java
+│       │   │   ├── PlaceOrderStepDefinition.java
+│       │   │   ├── ConfirmationStepDefinition.java
+│       │   │   ├── DropdownStepDefintion.java
+│       │   │   ├── DraganddropStepDefinition.java
+│       │   │   ├── HoverActionStepDefinition.java
+│       │   │   ├── TableValidationStepDefinition.java
+│       │   │   └── WindowSwitchStepDefinition.java
+│       │   ├── testBase/
+│       │   │   └── BaseClass.java               # ThreadLocal WebDriver, logger
+│       │   └── utilities/
+│       │       ├── ConfigPropertiesUtility.java
+│       │       ├── ExcelUtility.java
+│       │       ├── ExtentReportManager.java
+│       │       ├── ScreenshotUtility.java
+│       │       ├── PageObjectManager.java
+│       │       ├── RetryAnalyzer.java
+│       │       ├── RetryListener.java
+│       │       ├── ScenarioContextGlobalDataUtility.java
+│       │       ├── ChromeProfileManagerUtility.java
+│       │       └── TestContext.java
+│       └── resources/
+│           ├── features/
+│           │   ├── DemoBlaze.feature
+│           │   └── SeleniumPlayground.feature
+│           ├── testdata/
+│           │   └── ProductNames.xlsx
+│           ├── config.properties
+│           └── log4j2.xml
+├── logs/
+│   └── automation.log
+├── ExtentReport/
+├── Jenkinsfile
+├── master.xml
+└── pom.xml
+```
 
-🧪 Test Coverage
-1. Account Flow
+---
 
-Login with valid/invalid credentials
+## 🧪 Test Coverage
 
-Sign up new users
+### 1. Account Flow
+- Login with valid and invalid credentials
+- Sign up new users
+- Logout functionality
+- Alerts for duplicate registration
+- Field validations on account forms
+- Login via keyboard actions (Tab, Enter)
 
-Logout functionality
+### 2. Product Flow
+- Browse categories and search products
+- Add and remove products from cart
+- View product details, price, and description
+- Pagination and dynamic scrolling
+- Scroll to specific product element
 
-Alerts for duplicate registration
+### 3. Checkout Flow
+- Fill checkout details and place orders
+- Handle alerts and modals for invalid/missing data
+- Total price calculation and validation (Excel driven)
+- Confirmation screen validation
 
-Field validations on account forms
+### 4. Advanced Selenium Scenarios
+- Alerts and modal handling
+- Drag and drop functionality
+- Dropdown selection and validation
+- Hover actions and sub-menu display
+- Table sorting and data validation
+- New window/tab switching
+- Screenshot capture on failure
 
-2. Product Flow
+---
 
-Browse categories & search products
+## ⚙️ Prerequisites
 
-Add/remove products to/from cart
+- **Java JDK 21** — [Download](https://www.oracle.com/java/technologies/downloads/)
+- **Maven 3.x** — [Download](https://maven.apache.org/download.cgi)
+- **Google Chrome** or **Microsoft Edge** (latest)
+- **Git** — [Download](https://git-scm.com/)
+- **Eclipse / IntelliJ IDEA** (for local development)
 
-View product details & images
+---
 
-Pagination & dynamic scrolling
+## 🚀 Setup & Installation
 
-3. Checkout Flow
+### 1. Clone the Repository
 
-Fill checkout details & place orders
+```bash
+git clone https://github.com/dikshab0497/DemoBlazeBDD.git
+cd DemoBlazeBDD
+```
 
-Handle alerts/modals for invalid data
+### 2. Install Dependencies
 
-Total price validation
+```bash
+mvn clean install -DskipTests
+```
 
-4. Advanced Selenium Scenarios
+### 3. Configure `config.properties`
 
-Alerts / modal handling
+Located at `src/test/resources/config.properties`:
 
-Scrolling to elements
+```properties
+# Browser
+browser=chrome
 
-Keyboard actions (Enter, Tab, Delete)
+# Execution Environment
+execution_env=local
 
-Screenshot capture on failure
+# Application URLs
+qa.appURL=https://www.demoblaze.com/
+uat.appURL=https://www.demoblaze.com/
 
-Drag & drop, window/tab switching
+# Test Credentials
+qa.userName=your_username
+qa.password=your_password
 
-Dropdown selection & hover actions
+# Default Test Tag
+testCase=@Smoke
 
-Tables validation and sorting
+# External Tool URLs
+dropdown_url=https://the-internet.herokuapp.com/dropdown
+hover_url=https://the-internet.herokuapp.com/hovers
+dragdrop_url=https://the-internet.herokuapp.com/drag_and_drop
+window_url=https://the-internet.herokuapp.com/windows
+```
 
-Data-driven testing (Excel/JSON)
+> ⚠️ **Never commit `config.properties` with real credentials to GitHub.** Add it to `.gitignore`.
 
-🚀 How to Run
+---
 
-Clone the repository
+## ▶️ Running Tests
 
-git clone https://github.com/dikshab0497/DemoBlaze-Automation.git
-cd DemoBlaze-Automation
+### Run via Eclipse
+1. Right-click `TestNGRunner.java` → **Run As** → **TestNG Test**
+2. Or right-click `testng.xml` → **Run As** → **TestNG Suite**
 
+### Run via Maven
 
-Import project into IntelliJ or Eclipse as a Maven project
-
-Install dependencies
-
-mvn clean install
-
-
-Run tests
-
-Using Cucumber Test Runner (.java class)
-
-Or via Maven
-
+```bash
+# Run default tag from config.properties
 mvn test
 
+# Run specific tag
+mvn test -Dcucumber.filter.tags=@Smoke
 
-Reports
+# Run on specific environment and browser
+mvn test -Dcucumber.filter.tags=@LogOut -Denv=qa -Dbrowser=chrome
 
-Extent Reports are generated automatically under /test-output/
+# Run on UAT environment
+mvn test -Dcucumber.filter.tags=@Smoke -Denv=uat -Dbrowser=edge
+```
 
-Screenshots for failed steps are included in reports
+---
 
-📌 CI/CD Integration
+## 🏷️ Available Test Tags
 
-Framework is ready for Jenkins or GitHub Actions pipelines
+### DemoBlaze Feature
 
-Automated test runs trigger reports and email notifications
+| Tag | Description |
+|-----|-------------|
+| `@Smoke` | Core smoke tests |
+| `@Regression` | Full regression suite |
+| `@LoginWithValidCred` | Login with valid credentials |
+| `@LoginWithInValidCred` | Login with invalid credentials |
+| `@SignUp` | Sign up new user |
+| `@LogOut` | Logout functionality |
+| `@SignUpWithExistingCred` | Sign up with existing credentials |
+| `@FieldValidationOnSignUp` | Field validation on sign up |
+| `@BrowseCategort` | Browse product category |
+| `@SearchProduct` | Search product from category |
+| `@AddToCart` | Add product to cart |
+| `@DeleteProductFromCart` | Delete product from cart |
+| `@ValidateProductDetails` | Validate product details |
+| `@ScrollingNavigation` | Scroll and fetch all products |
+| `@PlaceOrder` | Place order end to end |
+| `@PlaceOrderWithMissingData` | Place order with missing data |
+| `@MultipleProductSelection` | Add multiple products from Excel |
+| `@ScrollTillParticularElement` | Scroll to specific product |
+| `@KeyboardAction` | Login using keyboard actions |
 
-Supports parallel execution for faster regression testing
+### Selenium Playground Feature
 
-🙋‍♀️ Author
+| Tag | Description |
+|-----|-------------|
+| `@DropdownSelection` | Dropdown selection validation |
+| `@HoverAction` | Hover action validation |
+| `@DragAndDrop` | Drag and drop functionality |
+| `@WindowSwitch` | New window switch validation |
+| `@TableValidation` | Table sorting validation |
 
-Diksha Bandagale
+---
+
+## 📊 Reports & Logs
+
+### Extent Report
+Generated automatically after each run:
+```
+ExtentReport/<TagName>_<timestamp>.html
+```
+Open the HTML file in any browser to view detailed results with screenshots.
+
+### Log File
+```
+logs/automation.log
+```
+Step-by-step execution logs with timestamps, thread info, and log levels (INFO/WARN/ERROR).
+
+---
+
+## 🔁 Retry Mechanism
+
+Failed tests are automatically retried **2 times** before being marked as failed — handles intermittent network or timing issues without manual re-runs.
+
+---
+
+## 🤖 Jenkins CI/CD Pipeline
+
+### Pipeline Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `TestCase` | String | `@LogOut` | Cucumber tag to execute |
+| `Environment` | Choice | `QA` | Target environment (QA / UAT / PRODUCTION) |
+| `Browser` | Choice | `chrome` | Browser (chrome / edge) |
+| `Branch` | String | `main` | Git branch to checkout |
+
+### Pipeline Stages
+
+```
+Checkout Code → Build (mvn compile) → Run Tests → Publish Report → Email Notification
+```
+
+### Jenkins Setup
+
+1. Install plugins: **Git**, **Maven Integration**, **HTML Publisher**, **Email Extension**
+2. Configure Maven tool named `M3` under **Global Tool Configuration**
+3. Create a new **Pipeline** job and point to this repository
+4. Configure SMTP email settings under **Manage Jenkins → Configure System**
+
+### Run Condition
+Tests execute only when:
+- `Environment` = `QA`
+- `Browser` = `chrome`
+- `TestCase` tag is not empty
+
+### Post Build
+- ✅ **ExtentReport** published to Jenkins build sidebar
+- ✅ **Email notification** sent after every build with build status, environment, browser, tag, and report link
+
+---
+
+## 🧱 Framework Architecture
+
+```
+┌─────────────────────────────────────────────────┐
+│             Feature Files (.feature)             │
+│         (Gherkin BDD — Given/When/Then)         │
+└──────────────────────┬──────────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────────┐
+│              Step Definitions                    │
+│      (Maps Gherkin steps to Java methods)       │
+└──────────────────────┬──────────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────────┐
+│               Page Object Model                  │
+│   (Page actions — Selenium WebDriver + POM)     │
+└──────────────────────┬──────────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────────┐
+│                 Base Classes                     │
+│  BaseClass (ThreadLocal Driver) | BasePage      │
+└──────────────────────┬──────────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────────┐
+│                  Utilities                       │
+│  Config | Excel | Reports | Screenshot | Retry  │
+└─────────────────────────────────────────────────┘
+```
+
+### Key Design Decisions
+
+- **ThreadLocal WebDriver** — safe for parallel test execution
+- **Page Object Model** — clean separation of page actions and test logic
+- **PageFactory** — element initialisation via `@FindBy` annotations
+- **`By` locator constants** — no XPath duplication across methods
+- **Log4j2** — consistent logging to console and rolling file appender
+- **ExtentReports** — rich HTML reports with screenshots on pass and fail
+- **Retry Analyzer** — auto-retry flaky tests without manual intervention
+- **Excel Data** — test data driven via Apache POI
+
+---
+
+## 🙋‍♀️ Author
+
+**Diksha Bandagale**
+Senior QA Automation Engineer | SDET
 📧 dikshabandagale0497@gmail.com
+🔗 [LinkedIn](https://www.linkedin.com/in/diksha-bandagale)
+🐙 [GitHub](https://github.com/dikshab0497)
 
-🔗 LinkedIn:https://www.linkedin.com/public-profile/settings/?trk=d_flagship3_profile_self_view_public_profile&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BiD8MIP6fQXK5CjdCYjrBMQ%3D%3D
+---
 
-✅ This README now clearly shows:
+## 📄 License
 
-Project scope and coverage
-
-Tools and tech stack
-
-Test flow and advanced features
-
-CI/CD readiness
-
-Easy-to-follow run instructions
+This project is built for portfolio and demonstration purposes.
